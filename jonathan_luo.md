@@ -1,14 +1,14 @@
 ## Week 5
 
-- List the tasks you completed this week here
+- Read over the spec and MVP.
 
 ## Week 6
 
-- List the tasks you completed this week here
+- Read over the spec and MVP
 
 ## Week 7
 
-- List the tasks you completed this week here
+- Planned the approach for the assignment
 
 ## Week 8
 
