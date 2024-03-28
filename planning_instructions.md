@@ -3,6 +3,7 @@
 **Branch**
 -   There should be a new branch created for every sub part i.e. a branch for 1a)
     and another branch for 1b) etc. Need nice branch names pls
+- Do NOT delete branches when merging (Untick the box)
 
 **Merge Requests**
 -   For the convience of code checking/reviewing, merge requests should contain code
