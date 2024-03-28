@@ -27,13 +27,18 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 
 [Answer]
 The observer pattern is present in the public class Switch, which extends an abstract class called Entity. The class contains
-a private list of Bomb instances called "bombs", in consistency with the characteristics of the Observer Pattern. The bombs, are the observers, whereas the Switch is an observer, indicated by a Bomb being able to subscribe or unsubcribe from a Switch, which 
-fufills another characteristic about Observer Patterns. 
+a private list of Bomb instances called "bombs", consistent with the characteristics of the Observer Pattern. The bombs, are the observers, whereas the Switch is a subject. This is indicated by several other factors, all characteristic of an Observer Pattern.
 
-The Bomb class has a method called "notify", which basically explodes the Bomb, ceasing it to exist. In an overriding method called "onOverlap", inherited from the class Entity, if the bomb overlaps
-with an instance of a Boulder, a boolean called activated is set to true, and the Bomb's notify method is called (which makes it explode). 
+Both Bomb and Switch have a subscribe method, where a Switch can be added to the list of Switch in the Bomb class. Switch however, has both a subscribe and unsubscribe method, which can allow for dynamic addition or removal of a Bomb.
 
-If a Bomb subscribes, and is activated, the Bomb is also notified (explodes). This fulfills another key trait of Observer Patterns, where each change of state in a subject (Switch in this example) notfies the observer of the change (A Bomb in this example), which causes the observer to update their state.
+The Bomb cannot notify or update the Switch, as these methods do not exist in Switch. However, a notify method is implemented
+in Bomb, and Switch can call this method to notify a Bomb when a Switch overlaps with a Boulder (thus being activated), which causes the Bomb to explode, or when Switch is activated and a Bomb subscribes, in which a Bomb is notified, by changing state (exploding).
+
+The relationship is a many-to-many relationship. A Switch can have be subscribed to multiple instances of a Bomb, and a Bomb can be subscribed to multiple instances of a Switch. However, there is a one-to-many dependency on Switch. That is, one Switch can
+notify and change the state of many instances of a Bomb.
+
+
+
 
 Thus the relationship between Switch and Bomb is a perfect example of an Observer Pattern in this code base.
 
