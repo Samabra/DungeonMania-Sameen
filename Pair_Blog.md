@@ -4,7 +4,7 @@
 
 ### a) From DRY to Design Patterns
 
-[Links to your merge requests](/put/links/here)
+[Links to your merge requests](https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/5)
 
 > i. Look inside src/main/java/dungeonmania/entities/enemies. Where can you notice an instance of repeated code? Note down the particular offending lines/methods/fields.
 
