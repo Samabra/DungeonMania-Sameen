@@ -4,19 +4,35 @@
 
 ### a) From DRY to Design Patterns
 
-[Links to your merge requests](/put/links/here)
+[Links to your merge requests](https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/5)
 
 > i. Look inside src/main/java/dungeonmania/entities/enemies. Where can you notice an instance of repeated code? Note down the particular offending lines/methods/fields.
 
 [Answer]
+In both Mercenary.java and ZombieToast.java, there was a series of repetitive if statements
+in the "move" method, in particular onwards from the check of the InvincibilityPotion.
 
 > ii. What Design Pattern could be used to improve the quality of the code and avoid repetition? Justify your choice by relating the scenario to the key characteristics of your chosen Design Pattern.
 
 [Answer]
+Currently, much of this logic is irrelevant and can be abstracted away. As such, 
+we can use a Strategy pattern that delegrates this responsibility/logic into another
+file to simplify things, thereby removing the repeated code. This design pattern
+allows flexibility as we utilise composition by encapsulating an interface, so for whatever
+reason we need to change how the enemy moves, it can be done so without modifying the actual
+enemy files.
 
 > iii. Using your chosen Design Pattern, refactor the code to remove the repetition.
 
 [Briefly explain what you did]
+I created the EnemyMovement interface which only had an "apply" method which would
+be responsible for changing the movement of the enemy when called. Next, MoveSpider,
+MoveZombieToast, and MoveMercenary was created to contain the logic that we would 
+like to abstract away from the offending files. 
+Since we're using a new instance variable through composition, we're required to 
+intialise this variable in the constructutor with the help of getters and setters. 
+And also, any required getters and setters for this refactoring was made.
+
 
 ### b) Observer Pattern
 
