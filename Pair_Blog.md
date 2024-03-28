@@ -20,9 +20,21 @@
 
 ### b) Observer Pattern
 
+
+
 > Identify one place where the Observer Pattern is present in the codebase, and outline how the implementation relates to the key characteristics of the Observer Pattern.
 
 [Answer]
+The observer pattern is present in the public class Switch, which extends an abstract class called Entity. The class contains
+a private list of Bomb instances called "bombs", in consistency with the characteristics of the Observer Pattern. The bombs, are the observers, whereas the Switch is an observer, indicated by a Bomb being able to subscribe or unsubcribe from a Switch, which 
+fufills another characteristic about Observer Patterns. 
+
+The Bomb class has a method called "notify", which basically explodes the Bomb, ceasing it to exist. In an overriding method called "onOverlap", inherited from the class Entity, if the bomb overlaps
+with an instance of a Boulder, a boolean called activated is set to true, and the Bomb's notify method is called (which makes it explode). 
+
+If a Bomb subscribes, and is activated, the Bomb is also notified (explodes). This fulfills another key trait of Observer Patterns, where each change of state in a subject (Switch in this example) notfies the observer of the change (A Bomb in this example), which causes the observer to update their state.
+
+Thus the relationship between Switch and Bomb is a perfect example of an Observer Pattern in this code base.
 
 ### c) Inheritance Design
 
