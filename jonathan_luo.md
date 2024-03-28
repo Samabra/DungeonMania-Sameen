@@ -9,6 +9,7 @@
 ## Week 7
 
 - Planned the approach for the assignment
+- Completed 1a, 
 
 ## Week 8
 
