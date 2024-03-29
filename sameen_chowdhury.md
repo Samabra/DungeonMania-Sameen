@@ -1,14 +1,15 @@
 ## Week 5
 
-- List the tasks you completed this week here
+- 
 
 ## Week 6
 
-- List the tasks you completed this week here
+- Read through the assignment spec and had a glimpse over the UML diagram
 
 ## Week 7
 
-- List the tasks you completed this week here
+- Reread the spec to fully comprehend the task
+- Started task 1. Finished task 1B 
 
 ## Week 8
 

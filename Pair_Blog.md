@@ -36,9 +36,26 @@ And also, any required getters and setters for this refactoring was made.
 
 ### b) Observer Pattern
 
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/6
+
+
 > Identify one place where the Observer Pattern is present in the codebase, and outline how the implementation relates to the key characteristics of the Observer Pattern.
 
 [Answer]
+The observer pattern is present in the public class Switch, which extends an abstract class called Entity. In this relationship, the bombs are the observers and the Switch is the subject. The Switch class contains
+a private list of Bomb instances called "bombs", consistent with the characteristics of the Observer Pattern since the Subject contains a list of its observers. This is indicated by several other factors, which are all characteristics of an Observer Pattern.
+
+In the Observer Pattern the Observer should be able to subscribe/unsubscribe from the Subject. Yet, a Switch cannot unsubscribe from a Bomb, which ascertains the fact that Switch is our Subject and Bomb is our observer even though both have a subscribe method. Additionally, Switch has an unsubscribe method  which allows for dynamic subscription/unsubscription of a Bomb from a Switch.
+
+Furthermore, the Bomb cannot notify or update the Switch, as these methods do not exist in Switch. However, a notify method is implemented 
+in Bomb, and Switch can call this method to notify a Bomb in a Switch's list of bombs when it is activated, in which a Bomb is notified, thereby changing the state of the Bomb (Bomb explodes).
+
+
+The relationship is a many-to-many relationship, but has a one-to-many dependency on Switch. A Bomb can subscribe to many Switch's and a Switch can subscribe to many Bomb's. Nonetheless, a one-to-many dependency does exist, and that is on Switch.
+Only Switch has the capacity to notify or update the state of many Bomb's. A Bomb cannot reciprocate this action. Hence there is 
+still a one-to-many relationship, in the sense that there is a one-to-many dependency.
+
+Thus the relationship between Switch and Bomb is indicative of an Observer Pattern in this code base.
 
 ### c) Inheritance Design
 
