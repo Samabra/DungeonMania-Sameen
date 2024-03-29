@@ -120,6 +120,10 @@ correct interface.
 [Links to your merge requests](/put/links/here)
 
 > i. Do you think the design is of good quality here? Do you think it complies with the open-closed principle? Do you think the design should be changed?
+Looking at GoalFactory.java first, this is a factory method, so the usage of switch
+statements are unavoidable (there is nothing wrong with it!). However, looking 
+at Goal.java, both the "achieved" and "toString" methods uses large switch statements 
+which is a code smell. This does not comply with the open-closed principle since
 
 [Answer]
 

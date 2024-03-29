@@ -31,7 +31,6 @@ public class Spider extends Enemy {
         forward = true;
     };
 
-    // FIXME: new change incuded changing this access modifier from private to public
     public void updateNextPosition() {
         if (forward) {
             nextPositionElement++;

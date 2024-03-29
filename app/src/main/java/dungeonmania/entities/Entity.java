@@ -27,7 +27,7 @@ public abstract class Entity {
     }
 
     public boolean canMoveOnto(GameMap map, Entity entity) {
-        return false;
+        return true;
     }
 
     // use setPosition
