@@ -6,7 +6,7 @@
 - Do NOT delete branches when merging (Untick the box)
 
 **Merge Requests**
--   For the convience of code checking/reviewing, merge requests should contain code
+-   For the convenience of code checking/reviewing, merge requests should contain code
     for only one subpart i.e. only 1a) or only 1b). It shouldn't contain both. (unless specified on spec)
 -   Code will only be merged to master after it is reviewed by another person
 -   Don't forget to include merge requests link to the appropriate section in your blog!
