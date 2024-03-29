@@ -47,10 +47,44 @@ And also, any required getters and setters for this refactoring was made.
 > i. Name the code smell present in the above code. Identify all subclasses of Entity which have similar code smells that point towards the same root cause.
 
 [Answer]
+Since the onOverLap, onMovedAway and onDestroy methods are defined to be 
+functionally redundant, it is a refused bequest! (violates Liskov Substitution Principle)
+Subclasses with this code smell includes:
+-   Boulder.java
+-   Door.java
+-   Exit.java
+-   Player.java
+-   Portal.java
+-   Switch.java
+-   Wall.java
+-   Arrow.java
+-   Bomb.java
+-   Key.java
+-   Sword.java
+-   Treasure.java
+-   Wood.java
+-   ZombieToastSpawner.java
+-   Builder.java (abstract superclass of Bow and Shield)
+-   Potion.java (abstract superclass of InvincibilityPotion and InvisibilityPotion)
+-   Enemy.java (abstract superclass of Mercenary, Spider, ZombieToast)
+
 
 > ii. Redesign the inheritance structure to solve the problem, in doing so remove the smells.
 
 [Briefly explain what you did]
+Since:
+Only Enemy and ZombieToastSpawner implemented onDestroy.
+Only Switch implemented OnMovedAway.
+Only Boulder, Door, Player, Portal, Switch, Arrow, Bomb, Key, Sword, Treasure, Wood, 
+Potion and Enemy implemented OnOverlap.
+I decided that it would be better off to create separate interfaces as a marker 
+that these methods exist in the entity object. Alternatively, the classic approach
+would be to delegate these methods elsewhere, but this would ruin the ability to 
+store the entities all in one list or cause other type incompatibilities. Anyhow, 
+I removed all of the redundant methods and allowed the classes that implemented the
+methods to implement the respective interfaces. Then to also fix type incompabilities
+when looping through the entire entity list in GameMap, I had to typecast to the 
+correct interface. 
 
 ### d) More Code Smells
 
