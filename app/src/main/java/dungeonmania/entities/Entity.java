@@ -27,7 +27,7 @@ public abstract class Entity {
     }
 
     public boolean canMoveOnto(GameMap map, Entity entity) {
-        return false;
+        return true;
     }
 
     // use setPosition
@@ -45,13 +45,6 @@ public abstract class Entity {
     public void translate(Position offset) {
         this.position = Position.translateBy(this.position, offset);
     }
-
-
-    public abstract void onOverlap(GameMap map, Entity entity);
-
-    public abstract void onMovedAway(GameMap map, Entity entity);
-
-    public abstract void onDestroy(GameMap gameMap);
 
     public Position getPosition() {
         return position;
