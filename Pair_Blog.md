@@ -101,7 +101,10 @@ store the entities all in one list or cause other type incompatibilities. Anyhow
 I removed all of the redundant methods and allowed the classes that implemented the
 methods to implement the respective interfaces. Then to also fix type incompabilities
 when looping through the entire entity list in GameMap, I had to typecast to the 
-correct interface. 
+correct interface.
+Also additionally changed the hardcoded return canMoveOnto method in Entity.java 
+to true and removed all instances of the overrides that hardcoded returned true in
+its subclasses and added hardcoded returns to false to respective files.
 
 ### d) More Code Smells
 
