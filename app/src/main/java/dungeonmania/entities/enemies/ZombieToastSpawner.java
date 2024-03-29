@@ -35,4 +35,8 @@ public class ZombieToastSpawner extends Entity implements Interactable, Destroya
         return Position.isAdjacent(player.getPosition(), getPosition()) && player.hasWeapon();
     }
 
+    @Override
+    public boolean canMoveOnto(GameMap map, Entity entity) {
+        return false;
+    }
 }
