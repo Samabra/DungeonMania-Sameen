@@ -47,7 +47,14 @@ public abstract class Entity {
     }
 
 
-    public abstract void onOverlap(GameMap map, Entity entity);
+    public void onOverlap(GameMap map, Entity entity) {
+        if (entity instanceof Player) {
+            if (!((Player) entity).pickUp(this))
+                return;
+            map.destroyEntity(this);
+        }
+    }
+
 
     public abstract void onMovedAway(GameMap map, Entity entity);
 

@@ -17,15 +17,6 @@ public class Wood extends Entity implements InventoryItem {
     }
 
     @Override
-    public void onOverlap(GameMap map, Entity entity) {
-        if (entity instanceof Player) {
-            if (!((Player) entity).pickUp(this))
-                return;
-            map.destroyEntity(this);
-        }
-    }
-
-    @Override
     public void onMovedAway(GameMap map, Entity entity) {
         return;
     }

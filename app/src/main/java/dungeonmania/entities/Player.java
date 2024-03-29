@@ -29,7 +29,7 @@ public class Player extends Entity implements Battleable {
     private Potion inEffective = null;
     private int nextTrigger = 0;
 
-    private int collectedTreasureCount = 0;
+    private int collectedCount = 0;
 
     private PlayerState state;
 
@@ -92,8 +92,11 @@ public class Player extends Entity implements Battleable {
     }
 
     public boolean pickUp(Entity item) {
-        if (item instanceof Treasure) collectedTreasureCount++;
-        return inventory.add((InventoryItem) item);
+        if (item instanceof InventoryItem) {
+            collectedCount++;
+            return inventory.add(item);
+        }
+        return false;
     }
 
     public Inventory getInventory() {
