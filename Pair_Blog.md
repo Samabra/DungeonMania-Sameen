@@ -26,19 +26,20 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 > Identify one place where the Observer Pattern is present in the codebase, and outline how the implementation relates to the key characteristics of the Observer Pattern.
 
 [Answer]
-The observer pattern is present in the public class Switch, which extends an abstract class called Entity. The class contains
-a private list of Bomb instances called "bombs", consistent with the characteristics of the Observer Pattern. The bombs, are the observers, whereas the Switch is a subject. This is indicated by several other factors, which are all characteristics of an Observer Pattern.
+The observer pattern is present in the public class Switch, which extends an abstract class called Entity. In this relationship, the bombs are the observers and the Switch is the subject. The Switch class contains
+a private list of Bomb instances called "bombs", consistent with the characteristics of the Observer Pattern since the Subject contains a list of its observers. This is indicated by several other factors, which are all characteristics of an Observer Pattern.
 
-Both Bomb and Switch have a subscribe method, where a Switch can be added to the list of Switch instances in the Bomb class and vice versa. However, Switch also has an unsubscribe method, which allows for dynamic subscription/unsubscription of a Bomb from a Switch. Yet, a Switch cannot unsubscribe from a Bomb.
+In the Observer Pattern the Observer should be able to subscribe/unsubscribe from the Subject. Yet, a Switch cannot unsubscribe from a Bomb, which ascertains the fact that Switch is our Subject and Bomb is our observer even though both have a subscribe method. Additionally, Switch has an unsubscribe method  which allows for dynamic subscription/unsubscription of a Bomb from a Switch.
 
-The Bomb cannot notify or update the Switch, as these methods do not exist in Switch. However, a notify method is implemented
+Furthermore, the Bomb cannot notify or update the Switch, as these methods do not exist in Switch. However, a notify method is implemented 
 in Bomb, and Switch can call this method to notify a Bomb in a Switch's list of bombs when it is activated, in which a Bomb is notified, thereby changing the state of the Bomb (Bomb explodes).
+
 
 The relationship is a many-to-many relationship, but has a one-to-many dependency on Switch. A Bomb can subscribe to many Switch's and a Switch can subscribe to many Bomb's. Nonetheless, a one-to-many dependency does exist, and that is on Switch.
 Only Switch has the capacity to notify or update the state of many Bomb's. A Bomb cannot reciprocate this action. Hence there is 
 still a one-to-many relationship, in the sense that there is a one-to-many dependency.
 
-Thus the relationship between Switch and Bomb is exemplary of an Observer Pattern in this code base.
+Thus the relationship between Switch and Bomb is indicative of an Observer Pattern in this code base.
 
 ### c) Inheritance Design
 
