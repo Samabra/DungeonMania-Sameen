@@ -152,7 +152,7 @@ Compound Nodes:
 -   AndGoal
 -   OrGoal
 Leaf Nodes:
--   ExitGoa
+-   ExitGoal
 -   BouldersGoal
 -   TreasureGoal
 This also forced me to alter the constructors that are used in GoalFactory.
