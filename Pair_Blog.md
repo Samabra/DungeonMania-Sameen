@@ -125,14 +125,37 @@ its subclasses and added hardcoded returns to false to respective files.
 > i. Do you think the design is of good quality here? Do you think it complies with the open-closed principle? Do you think the design should be changed?
 Looking at GoalFactory.java first, this is a factory method, so the usage of switch
 statements are unavoidable (there is nothing wrong with it!). However, looking 
-at Goal.java, both the "achieved" and "toString" methods uses large switch statements 
+at Goal.java, both the "achieved" and "toString" methods uses complex, large switch statements 
 which is a code smell. This does not comply with the open-closed principle since
+it is neither open for extention nor closed for modification, this makes it vulnerable
+to shotgun surgeries (i.e. original source code needs to be modified if new functionalities
+are added). In addition, there are conditions where the variables "target", goal1
+and goal2 are unused which is partially dead code. This definitely would ask for a 
+change in design as this current design makes it difficult to maintain and extend. 
 
 [Answer]
 
 > ii. If you think the design is sufficient as it is, justify your decision. If you think the answer is no, pick a suitable Design Pattern that would improve the quality of the code and refactor the code accordingly.
 
 [Briefly explain what you did]
+By observation,  the structure of Goal also stores two children Goals indicates  
+the presence of a tree structure. We should be utilising the Composite Pattern in 
+this case to remove the switch statements!
+I changed the original Goal class to an interface that will be implemented by 
+abstract class CompoundGoal and other leaf nodes since this is a feature of the 
+Composite Pattern where leaf and compound nodes are not discriminated. 
+P.S I decided not to make an abstract class for leaf nodes, as it was pertained with limited
+functionality. 
+Then I created the respective concrete classes to inherit these abstract classes 
+or implement Goal as required.
+Compound Nodes:
+-   AndGoal
+-   OrGoal
+Leaf Nodes:
+-   ExitGoa
+-   BouldersGoal
+-   TreasureGoal
+This also forced me to alter the constructors that are used in GoalFactory.
 
 ### f) Open Refactoring
 
