@@ -120,7 +120,7 @@ its subclasses and added hardcoded returns to false to respective files.
 
 ### e) Open-Closed Goals
 
-[Links to your merge requests](/put/links/here)
+[Links to your merge requests](https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/8)
 
 > i. Do you think the design is of good quality here? Do you think it complies with the open-closed principle? Do you think the design should be changed?
 Looking at GoalFactory.java first, this is a factory method, so the usage of switch
