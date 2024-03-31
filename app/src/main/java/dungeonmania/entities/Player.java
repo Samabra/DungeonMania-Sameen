@@ -7,7 +7,6 @@ import java.util.Queue;
 import dungeonmania.battles.BattleStatistics;
 import dungeonmania.battles.Battleable;
 import dungeonmania.entities.collectables.Bomb;
-import dungeonmania.entities.collectables.Treasure;
 import dungeonmania.entities.collectables.potions.InvincibilityPotion;
 import dungeonmania.entities.collectables.potions.Potion;
 import dungeonmania.entities.enemies.Enemy;
@@ -78,16 +77,29 @@ public class Player extends Entity implements Battleable, Overlappable {
             }
             map.getGame().battle(this, (Enemy) entity);
         }
+        if (entity instanceof InventoryItem) {
+            if (entity instanceof Bomb) {
+                Bomb bomb = (Bomb) entity;
+                if (!bomb.spawned()) {
+                    return;
+                }
+                pickUp((InventoryItem) bomb);
+                map.destroyEntity((Entity) bomb);
+                bomb.setState();
+            } else {
+                pickUp((InventoryItem) entity);
+                map.destroyEntity(entity);
+            }
+        }
     }
 
     public Entity getEntity(String itemUsedId) {
         return inventory.getEntity(itemUsedId);
     }
 
-    public boolean pickUp(Entity item) {
-        if (item instanceof Treasure)
-            collectedTreasureCount++;
-        return inventory.add((InventoryItem) item);
+    public boolean pickUp(InventoryItem item) {
+        collectedTreasureCount++;
+        return inventory.add(item);
     }
 
     public Inventory getInventory() {
