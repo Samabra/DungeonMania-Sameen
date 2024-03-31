@@ -29,7 +29,7 @@ public class Player extends Entity implements Battleable, Overlappable {
     private Potion inEffective = null;
     private int nextTrigger = 0;
 
-    private int collectedCount = 0;
+    private int collectedTreasureCount = 0;
 
     private PlayerState state;
 
@@ -80,6 +80,7 @@ public class Player extends Entity implements Battleable, Overlappable {
         }
         if (pickUp(entity)) {
             map.destroyEntity(entity);
+
         }
     }
 
@@ -89,7 +90,7 @@ public class Player extends Entity implements Battleable, Overlappable {
 
     public boolean pickUp(Entity item) {
         if (item instanceof InventoryItem) {
-            collectedCount++;
+            collectedTreasureCount++;
         }
         return inventory.add((InventoryItem) item);
     }

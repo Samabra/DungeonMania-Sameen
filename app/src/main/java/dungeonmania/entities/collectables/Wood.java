@@ -8,5 +8,4 @@ public class Wood extends Entity implements InventoryItem {
     public Wood(Position position) {
         super(position);
     }
-
 }
