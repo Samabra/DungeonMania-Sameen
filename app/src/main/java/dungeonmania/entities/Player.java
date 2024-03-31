@@ -77,8 +77,19 @@ public class Player extends Entity implements Battleable, Overlappable {
             }
             map.getGame().battle(this, (Enemy) entity);
         }
-        if (pickUp(entity)) {
-            map.destroyEntity(entity);
+        if (entity instanceof InventoryItem) {
+            if (entity instanceof Bomb) {
+                Bomb bomb = (Bomb) entity;
+                if (!bomb.spawned()) {
+                    return;
+                }
+                pickUp((InventoryItem) bomb);
+                map.destroyEntity((Entity) bomb);
+                bomb.setState();
+            } else {
+                pickUp((InventoryItem) entity);
+                map.destroyEntity(entity);
+            }
         }
     }
 
@@ -86,11 +97,9 @@ public class Player extends Entity implements Battleable, Overlappable {
         return inventory.getEntity(itemUsedId);
     }
 
-    public boolean pickUp(Entity item) {
-        if (item instanceof InventoryItem) {
-            collectedTreasureCount++;
-        }
-        return inventory.add((InventoryItem) item);
+    public boolean pickUp(InventoryItem item) {
+        collectedTreasureCount++;
+        return inventory.add(item);
     }
 
     public Inventory getInventory() {

@@ -130,9 +130,11 @@ As demonstrated above, the design smell is the issue of high coupling, which ind
 The refactored code now implements pickUp from the perspective of a Player when it overlaps with a collectable entity, not from the perspective of a colletable entity that has been overlapped or stepped on. This meant that;
 - All overriding onOverlap methods in all collectable entities were removed, as they handled the responsibility of being picked up as well, by calling a method in Player, introducing tight coupling.
 - Refactored the code by reproducing the implementation of all the redundant overriding onOverlap methods into overriding onOverlap method in Player. When Player steps on collectable entity, then entity is picked up.
-- This was done by simply calling the pickUp method already defined in Player class in onOverlap.
-- The pickUp method implementation changed to be able to pickUp all collectable entities.  
-- Initially, collectedTreasureCount changed to variable name collectedCount but later repealed as this would have led to further changes throughout the codebase.
+- If collectable entity is a bomb, I ensured that bomb is spawned first. If that was true, then Player picked up bomb and the
+state of the Bomb was set to INVENTORY.
+- For all other collectable entities, they were picked up by Player.
+- pickUp method in Player changed its paramater to accepting only instances of InventoryItem.
+- onOverlap method in Player now also checks if entity that the Player has overlapped is an Inventory item. 
 
 ### e) Open-Closed Goals
 
