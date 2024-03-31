@@ -3,7 +3,7 @@ import dungeonmania.entities.Entity;
 import dungeonmania.entities.inventory.InventoryItem;
 import dungeonmania.util.Position;
 
-public class Key extends Entity implements InventoryItem, Overlappable {
+public class Key extends Entity implements InventoryItem {
     private int number;
 
     public Key(Position position, int number) {

@@ -4,7 +4,7 @@ import dungeonmania.entities.Entity;
 import dungeonmania.entities.inventory.InventoryItem;
 import dungeonmania.util.Position;
 
-public class Wood extends Entity implements InventoryItem, Overlappable {
+public class Wood extends Entity implements InventoryItem {
     public Wood(Position position) {
         super(position);
     }
