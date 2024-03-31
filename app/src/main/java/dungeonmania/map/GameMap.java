@@ -18,6 +18,7 @@ import dungeonmania.entities.Switch;
 import dungeonmania.entities.collectables.Bomb;
 import dungeonmania.entities.enemies.Enemy;
 import dungeonmania.entities.enemies.ZombieToastSpawner;
+import dungeonmania.entities.inventory.InventoryItem;
 import dungeonmania.util.Direction;
 import dungeonmania.util.Position;
 
@@ -118,12 +119,18 @@ public class GameMap {
 
     private void triggerOverlapEvent(Entity entity) {
         List<Runnable> overlapCallbacks = new ArrayList<>();
+        List<Entity> collectableEntities = new ArrayList<>();
         getEntities(entity.getPosition()).forEach(e -> {
             if (e != entity && e instanceof Overlappable)
                 overlapCallbacks.add(() -> ((Overlappable) e).onOverlap(this, entity));
+            if (entity instanceof Player && e != entity && e instanceof InventoryItem)
+                collectableEntities.add(e);
         });
         overlapCallbacks.forEach(callback -> {
             callback.run();
+        });
+        collectableEntities.forEach(overlappedEntity -> {
+            player.onOverlap(this, overlappedEntity);
         });
     }
 
