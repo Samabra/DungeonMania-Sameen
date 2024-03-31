@@ -108,7 +108,9 @@ its subclasses and added hardcoded returns to false to respective files.
 
 ### d) More Code Smells
 
-[Links to your merge requests](/put/links/here)
+[Links to your merge requests]
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/9/diffs
+
 
 > i. What design smell is present in the above description?
 The design smell present in the code is the issue of high coupling. The description indicates a violation of the Single Responsibility Principle, as well as an exhibition of the Shotgun Surgery code smell. Modifying the Player class to implement picking up collectable entities, only to then require modifications to many other parts of the codebase is indicative of high coupling issues, since modifying Player to accommodate for picking up collectable entities resulted in having to change other parts of the code, exposing the dependency of the other classes on Player. 
@@ -130,12 +132,10 @@ As demonstrated above, the design smell is the issue of high coupling, which ind
 The refactored code now implements pickUp from the perspective of a Player when it overlaps with a collectable entity, not from the perspective of a colletable entity that has been overlapped or stepped on. This meant that;
 - All overriding onOverlap methods in all collectable entities were removed, as they handled the responsibility of being picked up as well, by calling a method in Player, introducing tight coupling.
 - Refactored the code by reproducing the implementation of all the redundant overriding onOverlap methods into overriding onOverlap method in Player. When Player steps on collectable entity, then entity is picked up.
-- If collectable entity is a bomb, I ensured that bomb is spawned first. If that was true, then Player picked up bomb and the
-state of the Bomb was set to INVENTORY.
-- For all other collectable entities, they were picked up by Player.
-- pickUp method in Player changed its paramater to accepting only instances of InventoryItem.
-- onOverlap method in Player now also checks if entity that the Player has overlapped is an Inventory item. 
-
+- pickUp method in Player changed its paramater to accepting only instances of InventoryItem, as entity is checked to be an instance of InventoryItem in Player onOverlap method.
+- If collectable entity is an instance of a bomb, the bomb was checked if it is spawned. If that is true, then bomb is picked up by Player, Bomb entity is removed from map and bomb is set to state INVENTORY
+- For all other collectable entities, they were picked up by Player and removed from map as usual.
+- In GameMap.java, the triggerOnOverlap method was modified to trigger the Player picking up the collectable entity. This was done by keeping original implementation, but adding another condition which checks if the entity is a Player
 ### e) Open-Closed Goals
 
 [Links to your merge requests](/put/links/here)
