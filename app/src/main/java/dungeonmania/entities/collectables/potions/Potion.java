@@ -4,27 +4,15 @@ import dungeonmania.Game;
 import dungeonmania.battles.BattleStatistics;
 import dungeonmania.entities.BattleItem;
 import dungeonmania.entities.Entity;
-import dungeonmania.entities.Overlappable;
-import dungeonmania.entities.Player;
 import dungeonmania.entities.inventory.InventoryItem;
-import dungeonmania.map.GameMap;
 import dungeonmania.util.Position;
 
-public abstract class Potion extends Entity implements InventoryItem, BattleItem, Overlappable {
+public abstract class Potion extends Entity implements InventoryItem, BattleItem {
     private int duration;
 
     public Potion(Position position, int duration) {
         super(position);
         this.duration = duration;
-    }
-
-    @Override
-    public void onOverlap(GameMap map, Entity entity) {
-        if (entity instanceof Player) {
-            if (!((Player) entity).pickUp(this))
-                return;
-            map.destroyEntity(this);
-        }
     }
 
     @Override
