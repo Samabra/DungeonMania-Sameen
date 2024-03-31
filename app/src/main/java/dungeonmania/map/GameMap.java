@@ -122,7 +122,7 @@ public class GameMap {
         getEntities(entity.getPosition()).forEach(e -> {
             if (e != entity && e instanceof Overlappable)
                 overlapCallbacks.add(() -> ((Overlappable) e).onOverlap(this, entity));
-            if (e instanceof Player && e != entity && !(e instanceof Overlappable))
+            if (entity instanceof Player && e != entity && !(e instanceof Overlappable))
                 collectableEntities.add(e);
         });
         overlapCallbacks.forEach(callback -> {
