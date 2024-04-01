@@ -145,9 +145,9 @@ Looking at GoalFactory.java first, this is a factory method, so the usage of swi
 statements are unavoidable (there is nothing wrong with it!). However, looking 
 at Goal.java, both the "achieved" and "toString" methods uses complex, large switch statements 
 which is a code smell. This does not comply with the open-closed principle since
-it is neither open for extention nor closed for modification, this makes it vulnerable
-to shotgun surgeries (i.e. original source code needs to be modified if new functionalities
-are added). In addition, there are conditions where the variables "target", goal1
+it is neither open for extension nor closed for modification, this makes it vulnerable
+to divergent change since all if and switch statements would need to be modified if a new
+feature is added. In addition, there are conditions where the variables "target", goal1
 and goal2 are unused which is partially dead code. This definitely would ask for a 
 change in design as this current design makes it difficult to maintain and extend. 
 
