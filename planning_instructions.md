@@ -21,17 +21,37 @@ Also as a side note: always constantly git pull origin  master to be on top of t
     file if possible. i.e. a brief dot point describing what the test emulates
 
 ## Task 1
-a)
-b)
-c)
-d)
-e)
-f)
+
 
 ## Task 2
+Original MVP Branch Coverage: 83.6%
+Original MVP Line coverage: 91.8%
 
 **Microevolution**
 Test edge cases:
+Note: json goal is called "enemies" (must use in goalFactory)
+Basic goals
+-   1)   Goal reached with defeating only ZombieToast and destroys ZombieToast Spawner
+-   2)  Goal reached defeating one spider (Done)
+-   3)  Goal reached with defeating only multiple Enemies (done)
+-   4)  Goal reached when defeating only mercenaries
+-   5)  Goal NOT reached when destroying enough ZombieToast without the spawner
+-   6)  Goal NOT reached when destroyed spawner but not ZombieToast
+-   7)  Goal NOT reached when not enough Zombies are destroyed (zombie toast destroyed)
+-   8)  Goal NOT reached when not enough spiders are destroyed (Done)
+Might need to test when goal is not reached since player died
+Also need to test bribing the mercenary, then continue killing other enemies until 
+enemy_count is reached
+Test player health if there is time
+
+Complex goals
+-   1) AND 1 boulder/switch
+-   1) OR 1 boulder/switch  (1) first)
+-   1) OR 1 boulder/switch (boulder first)
+-   1) AND EXIT
+-   1) OR EXIT (1) first)
+-   1) OR EXIT (EXIT first)
+Repeat the complex goals for 2), 3), 4), 5), 6) (if we're bored)
 **SunStone & More buildables**
 Test edge cases:
 **Logic Switches**
