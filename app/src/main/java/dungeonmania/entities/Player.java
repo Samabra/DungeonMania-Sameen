@@ -71,25 +71,13 @@ public class Player extends Entity implements Battleable, Overlappable {
     @Override
     public void onOverlap(GameMap map, Entity entity) {
         if (entity instanceof Enemy) {
-            if (entity instanceof Mercenary) {
-                if (((Mercenary) entity).isAllied())
-                    return;
+            if (mercenaryIsAllied((Enemy) entity)) {
+                return;
             }
-            map.getGame().battle(this, (Enemy) entity);
+            map.initiateBattle(this, (Enemy) entity);
         }
         if (entity instanceof InventoryItem) {
-            if (entity instanceof Bomb) {
-                Bomb bomb = (Bomb) entity;
-                if (!bomb.spawned()) {
-                    return;
-                }
-                pickUp((InventoryItem) bomb);
-                map.destroyEntity((Entity) bomb);
-                bomb.setState();
-            } else {
-                pickUp((InventoryItem) entity);
-                map.destroyEntity(entity);
-            }
+            pickUp((InventoryItem) entity, map);
         }
     }
 
@@ -97,9 +85,22 @@ public class Player extends Entity implements Battleable, Overlappable {
         return inventory.getEntity(itemUsedId);
     }
 
-    public boolean pickUp(InventoryItem item) {
+    private void pickUp(InventoryItem item, GameMap map) {
+        if (item instanceof Bomb) {
+            Bomb bomb = (Bomb) item;
+            if (!bomb.spawned()) {
+                return;
+            }
+            bomb.setState();
+        }
         collectedTreasureCount++;
-        return inventory.add(item);
+        inventory.add(item);
+        map.destroyEntity((Entity) item);
+    }
+
+    private boolean mercenaryIsAllied(Enemy enemy) {
+        return enemy instanceof Mercenary
+                && ((Mercenary) enemy).isAllied();
     }
 
     public Inventory getInventory() {
