@@ -54,4 +54,9 @@ public abstract class Enemy extends Entity implements Battleable, Destroyable, O
     }
 
     public abstract void move(Game game);
+
+    @Override
+    public boolean isAlive() {
+        return battleStatistics.getHealth() > 0;
+    }
 }

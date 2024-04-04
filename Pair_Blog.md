@@ -189,6 +189,8 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 [Merge Request 2](/put/links/here)
 
 - Having a look at class Game, the method battle also violates the Law of Demeter as it calls a method in BattleStatistics, called getHealth(). BattleStatistics is not a component class of class Game. 
+- To address this Law of Demeter issue, a public boolean method called isAlive() was implemented in Battleable Interface, as this method is a feature of both Enemy and Player class, and is only a concern if the entity is Battleable. The method has the same implementation in Enemy and Player. The method in question calls the getHealth method of the local battleStatistics component class located within either Enemy or Player, and compares it with the value of 0. The method itself is just one line, checking to see if getHealth() returns an integer greater than 0 or not.
+- Since the code is the exact same for both Enemy and Player, an inheritance approach was considered, where it could have been placed within Entity instead, but Entity does not have access to a BattleStatistics class, nor does it make sense for an Entity in general to have health, as most entities were not capable of life.
 
 
 Add all other changes you made in the same format here:
