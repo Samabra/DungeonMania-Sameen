@@ -186,7 +186,7 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 - Nested sequence of if statement in Player in method onOverlap. 
 - To simplify the onOverlap method further, I extracted methods out of the onOverlap method. If entity paramater is instance of an Enemy, I simply check if the enemy is a mercenary and is allied in a private boolean method in Player, called mercenaryIsAllied, thereby reducing the if statement nesting. In addressing the violation of the Law of Demeter, I implemented a method in Map, called initiateBattle which basically runs the battle method for component Game class in Map. So Player calls the initiateBattle method in Map, and Map calls battle in Game, thus removing the violation altogether. 
 
-[Merge Request 2](/put/links/here)
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/11
 
 - Having a look at class Game, the method battle also violates the Law of Demeter as it calls a method in BattleStatistics, called getHealth(). BattleStatistics is not a component class of class Game. 
 - To address this Law of Demeter issue, a public boolean method called isAlive() was implemented in Battleable Interface, as this method is a feature of both Enemy and Player class, and is only a concern if the entity is Battleable. The method has the same implementation in Enemy and Player. The method in question calls the getHealth method of the local battleStatistics component class located within either Enemy or Player, and compares it with the value of 0. The method itself is just one line, checking to see if getHealth() returns an integer greater than 0 or not.
