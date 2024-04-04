@@ -193,6 +193,12 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 - Since the code is the exact same for both Enemy and Player, an inheritance approach was considered, where it could have been placed within Entity instead, but Entity does not have access to a BattleStatistics class, nor does it make sense for an Entity in general to have health, as most entities were not capable of life.
 
 
+- onOverlap method in Enemy violated the Law of Demeter. Same issue as in Player, where the method was trying to call a method in class Game, but Enemy does not keep Game as a component.
+- Used the already set method of initiateBattle in Map to be called by onOverlap in Enemy.
+
+
+
+
 Add all other changes you made in the same format here:
 
 ## Task 2) Evolution of Requirements 👽
