@@ -177,13 +177,19 @@ This also forced me to alter the constructors that are used in GoalFactory.
 
 ### f) Open Refactoring
 
-[Merge Request 1](/put/links/here)
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/10
 
-[Briefly explain what you did]
+
+- Revisited onOverlap method in Player which was originally changed to handle pickup of collectable entities.
+- Issue of a method that is too long (generally > 10 lines).
+- onOverlap in Player violates the Law of Demeter, by calling a method in a class called Game, to which Player has no direct access to. The class is only accessible through class Map, to which Player does have access to.
+- Nested sequence of if statement in Player in method onOverlap. 
+- To simplify the onOverlap method further, I extracted methods out of the onOverlap method. If entity paramater is instance of an Enemy, I simply check if the enemy is a mercenary and is allied in a private boolean method in Player, called mercenaryIsAllied, thereby reducing the if statement nesting. In addressing the violation of the Law of Demeter, I implemented a method in Map, called initiateBattle which basically runs the battle method for component Game class in Map. So Player calls the initiateBattle method in Map, and Map calls battle in Game, thus removing the violation altogether. 
 
 [Merge Request 2](/put/links/here)
 
-[Briefly explain what you did]
+- Having a look at class Game, the method battle also violates the Law of Demeter as it calls a method in BattleStatistics, called getHealth(). BattleStatistics is not a component class of class Game. 
+
 
 Add all other changes you made in the same format here:
 
