@@ -31,13 +31,12 @@ Original MVP Line coverage: 91.8%
 Test edge cases:
 Note: json goal is called "enemies" (must use in goalFactory)
 Basic goals
--   1)   Goal reached with defeating only ZombieToast and destroys ZombieToast Spawner
+-   1)   Goal reached with defeating only ZombieToast and destroys ZombieToast Spawner (done)
 -   2)  Goal reached defeating one spider (Done)
 -   3)  Goal reached with defeating only multiple Enemies (done)
--   4)  Goal reached when defeating only mercenaries
--   5)  Goal NOT reached when destroying enough ZombieToast without the spawner
--   6)  Goal NOT reached when destroyed spawner but not ZombieToast
--   7)  Goal NOT reached when not enough Zombies are destroyed (zombie toast destroyed)
+-   5)  Goal NOT reached when destroying enough ZombieToast without the spawner (dne)
+-   6)  Goal NOT reached when destroyed spawner but not ZombieToast (done)
+-   7)  Goal NOT reached when not enough Zombies are destroyed (zombie toast destroyed) (done)
 -   8)  Goal NOT reached when not enough spiders are destroyed (Done)
 Might need to test when goal is not reached since player died
 Also need to test bribing the mercenary, then continue killing other enemies until 
