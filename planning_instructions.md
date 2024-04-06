@@ -28,6 +28,7 @@ Original MVP Branch Coverage: 83.6%
 Original MVP Line coverage: 91.8%
 
 **Microevolution**
+
 Test edge cases:
 Note: json goal is called "enemies" (must use in goalFactory)
 Basic goals
@@ -45,12 +46,10 @@ Test player health if there is time
 Test swords/weapons to destroy enemies as well
 
 Complex goals
--   1) AND 1 boulder/switch
--   1) OR 1 boulder/switch  (1) first)
--   1) OR 1 boulder/switch (boulder first)
--   1) AND EXIT
--   1) OR EXIT (1) first)
--   1) OR EXIT (EXIT first)
+-   1) AND all (done)
+-   AND enemies (zombie and spawner), exit (done)
+-   1) OR EXIT (1) first) (done)
+
 Repeat the complex goals for 2), 3), 4), 5), 6) (if we're bored)
 **SunStone & More buildables**
 Test edge cases:

@@ -196,6 +196,7 @@ Add all other changes you made in the same format here:
 **Assumptions**
 
 [Any assumptions made]
+-   Assumed that there were no zombie_toast_spawners when enemy_goal == 0. 
 
 **Design**
 
