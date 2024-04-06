@@ -19,7 +19,7 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 
 ## Week 8
 
-- List the tasks you completed this week here
+- Started Task 1F, refactored onOverlap method in Player to address Law of Demeter issue and overly long method
 
 ## Week 9
 
