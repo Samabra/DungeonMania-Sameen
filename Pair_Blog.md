@@ -181,7 +181,6 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 
 
 - Revisited onOverlap method in Player which was originally changed to handle pickup of collectable entities.
-- Issue of a method that is too long (generally > 10 lines).
 - onOverlap in Player violates the Law of Demeter, where the Game object is returned by the getGame method and has its
 "battle" method invoked.
 The class is only accessible through class Map, to which Player does have access to.
