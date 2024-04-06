@@ -10,7 +10,7 @@
             "images/tileset/walls/wooden/wood_floor_2.png": 10,
             "images/tileset/walls/wooden/wood_floor_3.png": 2
         },
-        "resolution_px": 16,
+        "resolution_px": 30,
         "item_box": "images/ui/box.png",
         "text_color": "white"
     },
