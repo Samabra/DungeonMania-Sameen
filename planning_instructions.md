@@ -42,6 +42,7 @@ Might need to test when goal is not reached since player died
 Also need to test bribing the mercenary, then continue killing other enemies until 
 enemy_count is reached
 Test player health if there is time
+Test swords/weapons to destroy enemies as well
 
 Complex goals
 -   1) AND 1 boulder/switch

@@ -40,8 +40,8 @@
 //         DungeonManiaController dmc = new DungeonManiaController();
 //         DungeonResponse res = dmc.newGame("d_basicGoalsTest_threeEnemies", "c_basicGoalsTest_threeEnemies");
 
-//         DungeonResponse postBattleResponse = dmc.tick(Direction.RIGHT);
-//         List<EntityResponse> entities = postBattleResponse.getEntities();
+//         res = dmc.tick(Direction.RIGHT);
+//         List<EntityResponse> entities = res.getEntities();
 //         int spiderCount = TestUtils.countEntityOfType(entities, "spider");
 //         int zombieCount = TestUtils.countEntityOfType(entities, "zombie_toast");
 //         int mercCount = TestUtils.countEntityOfType(entities, "mercenary");
@@ -51,8 +51,8 @@
 
 //         assertTrue(TestUtils.getGoals(res).contains(":enemies"));
 
-//         postBattleResponse = dmc.tick(Direction.RIGHT);
-//         entities = postBattleResponse.getEntities();
+//         res = dmc.tick(Direction.RIGHT);
+//         entities = res.getEntities();
 //         spiderCount = TestUtils.countEntityOfType(entities, "spider");
 //         zombieCount = TestUtils.countEntityOfType(entities, "zombie_toast");
 //         mercCount = TestUtils.countEntityOfType(entities, "mercenary");
@@ -62,9 +62,9 @@
 
 //         assertTrue(TestUtils.getGoals(res).contains(":enemies"));
 
-//         postBattleResponse = dmc.tick(Direction.RIGHT);
-//         postBattleResponse = dmc.tick(Direction.RIGHT);
-//         entities = postBattleResponse.getEntities();
+//         res = dmc.tick(Direction.RIGHT);
+//         res = dmc.tick(Direction.RIGHT);
+//         entities = res.getEntities();
 //         spiderCount = TestUtils.countEntityOfType(entities, "spider");
 //         zombieCount = TestUtils.countEntityOfType(entities, "zombie_toast");
 //         mercCount = TestUtils.countEntityOfType(entities, "mercenary");
@@ -89,8 +89,8 @@
 
 //         // destroy zombie first
 //         // move player to the right
-//         DungeonResponse postBattleResponse = dmc.tick(Direction.RIGHT);
-//         List<EntityResponse> entities = postBattleResponse.getEntities();
+//         res = dmc.tick(Direction.RIGHT);
+//         List<EntityResponse> entities = res.getEntities();
 //         int zombieToastSpawnerCount = TestUtils.countEntityOfType(entities, "zombie_toast_spawner");
 //         int zombieCount = TestUtils.countEntityOfType(entities, "zombie_toast");
 //         assertEquals(1, zombieToastSpawnerCount);
@@ -100,8 +100,8 @@
 
 //         // destroy spawner
 //         // move player to the right
-//         postBattleResponse = dmc.tick(Direction.RIGHT);
-//         entities = postBattleResponse.getEntities();
+//         res = dmc.tick(Direction.RIGHT);
+//         entities = res.getEntities();
 //         zombieToastSpawnerCount = TestUtils.countEntityOfType(entities, "zombie_toast_spawner");
 //         zombieCount = TestUtils.countEntityOfType(entities, "zombie_toast");
 //         assertEquals(0, zombieToastSpawnerCount);
@@ -123,8 +123,8 @@
 
 //         // destroy spawner first
 //         // move player to the right
-//         DungeonResponse postBattleResponse = dmc.tick(Direction.RIGHT);
-//         List<EntityResponse> entities = postBattleResponse.getEntities();
+//         res = dmc.tick(Direction.RIGHT);
+//         List<EntityResponse> entities = res.getEntities();
 //         int zombieToastSpawnerCount = TestUtils.countEntityOfType(entities, "zombie_toast_spawner");
 //         int zombieCount = TestUtils.countEntityOfType(entities, "zombie_toast");
 //         assertEquals(0, zombieToastSpawnerCount);
@@ -134,8 +134,8 @@
 
 //         // destroy zombie
 //         // move player to the right
-//         postBattleResponse = dmc.tick(Direction.RIGHT);
-//         entities = postBattleResponse.getEntities();
+//         res = dmc.tick(Direction.RIGHT);
+//         entities = res.getEntities();
 //         zombieToastSpawnerCount = TestUtils.countEntityOfType(entities, "zombie_toast_spawner");
 //         zombieCount = TestUtils.countEntityOfType(entities, "zombie_toast");
 //         assertEquals(0, zombieToastSpawnerCount);
