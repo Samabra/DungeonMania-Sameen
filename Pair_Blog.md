@@ -229,13 +229,17 @@ Add all other changes you made in the same format here:
 
 [Any other notes]
 
-### Choice 1 (Insert choice)
+### Choice 1 (Task 2D)
 
 [Links to your merge requests](/put/links/here)
 
 **Assumptions**
 
-[Any assumptions made]
+[Assumptions made]
+- Sceptres can only be used once
+- Attacking Spawner has no effect on durability of weapon. 
+- Cannot mind control mercenary when mercenary already mind controlled
+- Cannot bribe an already bribed mercenary, but can mind control them
 
 **Design**
 
