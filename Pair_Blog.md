@@ -327,7 +327,7 @@ For complex Goals:
 
 ## Task 3) Investigation Task ⁉️
 
-[Merge Request 1](/put/links/here)
+[Merge Request 1](https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/13)
 
 [Briefly explain what you did]
 Looking at ZombieTest.java in the toastDestruction test, we can see 
