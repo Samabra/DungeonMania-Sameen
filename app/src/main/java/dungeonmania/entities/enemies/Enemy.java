@@ -35,7 +35,7 @@ public abstract class Enemy extends Entity implements Battleable, Destroyable, O
     public void onOverlap(GameMap map, Entity entity) {
         if (entity instanceof Player) {
             Player player = (Player) entity;
-            map.getGame().battle(player, this);
+            map.initiateBattle(player, this);
         }
     }
 
