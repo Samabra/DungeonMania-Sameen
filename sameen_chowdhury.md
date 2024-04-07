@@ -19,7 +19,17 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 
 ## Week 8
 
-- List the tasks you completed this week here
+- Started Task 1F, refactored onOverlap method in Player to address Law of Demeter issue and overly long method
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/10
+
+- Task 1F, refactored battle() in class Game, to address Law of Demeter.
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/11
+
+
+- Task 1F, refactored onOverlap in class Enemy to address Law of Demeter issue.
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/12
+
+
 
 ## Week 9
 

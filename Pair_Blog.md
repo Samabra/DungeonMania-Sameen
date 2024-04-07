@@ -145,9 +145,9 @@ Looking at GoalFactory.java first, this is a factory method, so the usage of swi
 statements are unavoidable (there is nothing wrong with it!). However, looking 
 at Goal.java, both the "achieved" and "toString" methods uses complex, large switch statements 
 which is a code smell. This does not comply with the open-closed principle since
-it is neither open for extention nor closed for modification, this makes it vulnerable
-to shotgun surgeries (i.e. original source code needs to be modified if new functionalities
-are added). In addition, there are conditions where the variables "target", goal1
+it is neither open for extension nor closed for modification, this makes it vulnerable
+to divergent change since all if and switch statements would need to be modified if a new
+feature is added. In addition, there are conditions where the variables "target", goal1
 and goal2 are unused which is partially dead code. This definitely would ask for a 
 change in design as this current design makes it difficult to maintain and extend. 
 
@@ -177,13 +177,30 @@ This also forced me to alter the constructors that are used in GoalFactory.
 
 ### f) Open Refactoring
 
-[Merge Request 1](/put/links/here)
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/10
 
-[Briefly explain what you did]
 
-[Merge Request 2](/put/links/here)
+- Revisited onOverlap method in Player which was originally changed to handle pickup of collectable entities.
+- onOverlap in Player violates the Law of Demeter, where the Game object is returned by the getGame method and has its
+"battle" method invoked.
+The class is only accessible through class Map, to which Player does have access to.
+- Nested sequence of if statement in Player in method onOverlap. 
+- To simplify the onOverlap method further, I extracted methods out of the onOverlap method. If entity paramater is instance of an Enemy, I simply check if the enemy is a mercenary and is allied in a private boolean method in Player, called mercenaryIsAllied, thereby reducing the if statement nesting. In addressing the violation of the Law of Demeter, I implemented a method in Map, called initiateBattle which basically runs the battle method for component Game class in Map. So Player calls the initiateBattle method in Map, and Map calls battle in Game, thus removing the violation altogether. 
 
-[Briefly explain what you did]
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/11
+
+- Having a look at class Game, the method battle also violates the Law of Demeter as it calls a method in BattleStatistics, called getHealth(). BattleStatistics is not a component class of class Game. 
+- To address this Law of Demeter issue, a public boolean method called isAlive() was implemented in Battleable Interface, as this method is a feature of both Enemy and Player class, and is only a concern if the entity is Battleable. The method has the same implementation in Enemy and Player. The method in question calls the getHealth method of the local battleStatistics component class located within either Enemy or Player, and compares it with the value of 0. The method itself is just one line, checking to see if getHealth() returns an integer greater than 0 or not.
+- Since the code is the exact same for both Enemy and Player, an inheritance approach was considered, where it could have been placed within Entity instead, but Entity does not have access to a BattleStatistics class, nor does it make sense for an Entity in general to have health, as most entities were not capable of life.
+
+
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/12
+
+- onOverlap method in Enemy violated the Law of Demeter. Same issue as in Player, where the method was trying to call a method in class Game, but Enemy does not keep Game as a component.
+- Used the already set method of initiateBattle in Map to be called by onOverlap in Enemy.
+
+
+
 
 Add all other changes you made in the same format here:
 

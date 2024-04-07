@@ -256,6 +256,9 @@ public class GameMap {
         return getEntities().stream().filter(type::isInstance).map(type::cast).collect(Collectors.toList());
     }
 
+    public void initiateBattle(Player player, Enemy enemy) {
+        game.battle(player, enemy);
+    }
     public Player getPlayer() {
         return player;
     }

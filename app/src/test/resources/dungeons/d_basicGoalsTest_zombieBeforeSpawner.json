@@ -41,12 +41,12 @@
           "y": 1
         },
         {
-          "type": "zombie_toast_spawner",
+          "type": "sword",
           "x": 2,
           "y": 1
         },
         {
-          "type": "wall",
+          "type": "zombie_toast_spawner",
           "x": 3,
           "y": 1
         },
