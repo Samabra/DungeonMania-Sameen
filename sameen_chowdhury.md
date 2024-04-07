@@ -29,6 +29,7 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 - Task 1F, refactored onOverlap in class Enemy to address Law of Demeter issue.
 https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/12
 
+- Planned tests for Task 2D
 
 
 ## Week 9
