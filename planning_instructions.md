@@ -35,6 +35,17 @@ Test edge cases:
 **SunStone & More buildables**
 Test edge cases:
 
+Test for sun stone :
+-   Test sun stone can be successfully picked up by player
+-   Test sun stone can be used for both as a treasure and key
+-   Use stone to open doors (decrease stone count) and retain after use (increase stone count)
+    Same scenario for when using the stone to replace material
+    FIXME: Might need to check if the inventory actually decreases stone count
+-   Test use other treasures first if there is enough of those, then use sun stone if not enough
+-   Test when used in crafting the stone is consumed
+-   Test cannot be used to bribe mercenaries or assassins
+-   Test stone counts towards treasure goal
+
 Tests for public DungeonResponse build (String build) throw InvalidActionException
 - Test: invalid 'buildable' parameter; If not bow, shield, sceptre or midnight armour -> throw IllegalArgumentException
 - Test: insufficient items to build buildable entity -> throw InvalidActionException
