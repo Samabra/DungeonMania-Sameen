@@ -177,4 +177,9 @@ public class Player extends Entity implements Battleable, Overlappable {
         return origin;
     }
 
+    @Override
+    public boolean isAlive() {
+        return battleStatistics.getHealth() > 0;
+    }
+
 }
