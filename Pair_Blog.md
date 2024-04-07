@@ -208,7 +208,8 @@ Add all other changes you made in the same format here:
 
 ### a) Microevolution - Enemy Goal
 
-[Links to your merge requests](/put/links/here)
+[Links to your merge requests](https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/13
+)
 
 **Assumptions**
 
@@ -220,14 +221,31 @@ Add all other changes you made in the same format here:
 **Design**
 
 [Design]
+Stuck with the original  design from the MVP, where EnemyGoal implemented the Goal interface.
 
 **Changes after review**
 
 [Design review/Changes made]
+-   Introduced a few wrapper methods to get spawn count and enemy kill count
+    so that Law of Demeter is not violated
+-   Implemented EnemiesGoal methods as required by its Goal interface, which had
+    "toString" and "achieved" methods
+-   "toString" method return "" if achieved, otherwise ":enemies" was returned
+-   "achieved" method returned true if both spawn count is zero and the zombieToast
+    target count was met.
+No changes to design! (tentative)
 
 **Test list**
 
 [Test List]
+For Basic Goals:
+-   Test achieving an enemy goal where there is only one spider
+-   Test achieving an enemy goal where there are multuple enemies
+-   Test achieving an enemy goal when zombieToast is destroyed before spawner
+-   Test achieving an enemy goal when spawner is destroyed before zombieToast
+
+For complex Goals:
+-   
 
 **Other notes**
 
