@@ -245,7 +245,9 @@ For Basic Goals:
 -   Test achieving an enemy goal when spawner is destroyed before zombieToast
 
 For complex Goals:
--   
+-   Testing a map with 4 conjunction goal
+-   Testing enemies and exit goal
+-   Test achieving enemies or exit goal
 
 **Other notes**
 
