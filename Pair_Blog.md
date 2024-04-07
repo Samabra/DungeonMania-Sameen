@@ -214,6 +214,8 @@ Add all other changes you made in the same format here:
 
 [Any assumptions made]
 -   Assumed that there were no zombie_toast_spawners when enemy_goal == 0. 
+-   Assumed that enemy_goal is NOT achieved when enemy_goal == 0 and there is 
+    no active player.
 
 **Design**
 
@@ -308,6 +310,15 @@ Add all other changes you made in the same format here:
 [Merge Request 1](/put/links/here)
 
 [Briefly explain what you did]
+Looking at ZombieTest.java in the toastDestruction test, we can see 
+that the zombieToastSpawner is adjacent to the player and there is an attempt
+of player-spawner interaction. However, the the spawner is stll present
+after the interation, when it should be destroyed. This obviously isn't 
+expected behaviour, so we can deduce that this is a bug. 
+Steps taken to fix this:
+-   Remove the instance of the zombieToastSpawner when "interact" is invoked.
+-   Modify the buggy test to assert that the zombieToastSpawner count was zero
+    after player interaction.
 
 [Merge Request 2](/put/links/here)
 

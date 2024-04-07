@@ -44,7 +44,7 @@
                 "goal": "AND",
                 "subgoals": [
                     {
-                        "goal": "boudlders"
+                        "goal": "boulders"
                     },
                     {
                         "goal": "enemies"

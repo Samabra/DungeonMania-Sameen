@@ -13,8 +13,13 @@
             "x": 3,
             "y": 1
         }, {
-            "type": "zombie_toast_spawner",
+            "type": "sword",
             "x": 4,
+            "y": 1
+        },
+        {
+            "type": "zombie_toast_spawner",
+            "x": 5,
             "y": 1
         }, {
             "type": "wall",
@@ -50,7 +55,7 @@
             "y": 2
         }
     ], 
-    "goal_condition": {
+    "goal-condition": {
         "goal": "AND",
         "subgoals": [
             {
