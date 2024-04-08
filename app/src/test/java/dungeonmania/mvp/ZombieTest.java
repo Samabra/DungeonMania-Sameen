@@ -52,6 +52,11 @@ public class ZombieTest {
         Position position = getZombies(res).get(0).getPosition();
         res = dmc.tick(Direction.UP);
         assertEquals(position, getZombies(res).get(0).getPosition());
+
+        // attempt to move through a door
+        res = dmc.tick(Direction.DOWN);
+        assertEquals(position, getZombies(res).get(0).getPosition());
+
     }
 
     @Test

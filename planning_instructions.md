@@ -51,6 +51,10 @@ Complex goals
 -   1) OR EXIT (1) first) (done)
 
 Repeat the complex goals for 2), 3), 4), 5), 6) (if we're bored)
+
+Stats After completing 2a)
+    - Branch Coverage: 83.6%
+    - Line Coverage: 92%
 **SunStone & More buildables**
 Test edge cases:
 **Logic Switches**
