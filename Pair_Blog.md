@@ -241,6 +241,8 @@ Add all other changes you made in the same format here:
 - Attacking Spawner has no effect on durability of weapon. 
 - Cannot mind control mercenary when mercenary already mind controlled
 - Cannot bribe an already bribed mercenary, but can mind control them
+- Armour effect reduce enemy damage so that enemyTotalAttack = enemyAttack - armour defence effect
+- Armour effect increasde player damage as playerTotalAttack = playerAttack + armour attack effect
 
 **Design**
 

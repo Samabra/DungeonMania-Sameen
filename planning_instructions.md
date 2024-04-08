@@ -39,12 +39,11 @@ Test for sun stone :
 -   Test sun stone can be successfully picked up by player (done)
 -   Test stone counts towards treasure goal (done)
 -   Test sun stone can be used for both as a treasure and key (done)
--   Use stone to open doors (decrease stone count) and retain after use (increase stone count)
+-   Use stone to open doors, must remain in inventory after
     Same scenario for when using the stone to replace material
-    FIXME: Might need to check if the inventory actually decreases stone count
 -   Test use other treasures first if there is enough of those, then use sun stone if not enough
 -   Test when used in crafting the stone is consumed (done)
--   Test cannot be used to bribe mercenaries or assassins
+-   Test cannot be used to bribe mercenaries or assassins (done)
 
 
 Tests for public DungeonResponse build (String build) throw InvalidActionException
