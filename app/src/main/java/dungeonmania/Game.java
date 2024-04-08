@@ -3,6 +3,7 @@ package dungeonmania;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import dungeonmania.battles.BattleFacade;
 import dungeonmania.entities.Entity;
@@ -12,6 +13,7 @@ import dungeonmania.entities.Player;
 import dungeonmania.entities.collectables.Bomb;
 import dungeonmania.entities.collectables.potions.Potion;
 import dungeonmania.entities.enemies.Enemy;
+import dungeonmania.entities.enemies.ZombieToastSpawner;
 import dungeonmania.exceptions.InvalidActionException;
 import dungeonmania.goals.Goal;
 import dungeonmania.map.GameMap;
@@ -82,6 +84,7 @@ public class Game {
         }
         if (!enemy.isAlive()) {
             map.destroyEntity(enemy);
+            player.incrementEnemiesKilledCount();
         }
     }
 
@@ -188,12 +191,25 @@ public class Game {
         return entityFactory;
     }
 
+    public void destroyEntity(Entity entity) {
+        map.destroyEntity(entity);
+    }
+
     public void setEntityFactory(EntityFactory factory) {
         entityFactory = factory;
     }
 
     public int getCollectedTreasureCount() {
         return player.getCollectedTreasureCount();
+    }
+
+    public int getEnemiesKilledCount() {
+        return player.getEnemiesKilledCount();
+    }
+
+    public int getSpawnerCount() {
+        return map.getEntities().stream().filter(entity -> entity instanceof ZombieToastSpawner)
+                .collect(Collectors.toList()).size();
     }
 
     public Player getPlayer() {

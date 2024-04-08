@@ -122,4 +122,5 @@ public class BasicGoalsTest {
         // assert goal met
         assertEquals("", TestUtils.getGoals(res));
     }
+
 }

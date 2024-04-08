@@ -208,23 +208,46 @@ Add all other changes you made in the same format here:
 
 ### a) Microevolution - Enemy Goal
 
-[Links to your merge requests](/put/links/here)
+[Links to your merge requests](https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/13
+)
 
 **Assumptions**
 
 [Any assumptions made]
+-   Assumed that there were no zombie_toast_spawners when enemy_goal == 0. 
+-   Assumed that enemy_goal is NOT achieved when enemy_goal == 0 and there is 
+    no active player.
 
 **Design**
 
 [Design]
+Stuck with the original  design from the MVP, where EnemyGoal implemented the Goal interface.
 
 **Changes after review**
 
 [Design review/Changes made]
+-   Introduced a few wrapper methods to get spawn count and enemy kill count
+    so that Law of Demeter is not violated
+-   Implemented EnemiesGoal methods as required by its Goal interface, which had
+    "toString" and "achieved" methods
+-   "toString" method return "" if achieved, otherwise ":enemies" was returned
+-   "achieved" method returned true if both spawn count is zero and the zombieToast
+    target count was met.
+No changes to design! (tentative)
 
 **Test list**
 
 [Test List]
+For Basic Goals:
+-   Test achieving an enemy goal where there is only one spider
+-   Test achieving an enemy goal where there are multuple enemies
+-   Test achieving an enemy goal when zombieToast is destroyed before spawner
+-   Test achieving an enemy goal when spawner is destroyed before zombieToast
+
+For complex Goals:
+-   Testing a map with 4 conjunction goal
+-   Testing enemies and exit goal
+-   Test achieving enemies or exit goal
 
 **Other notes**
 
@@ -304,9 +327,18 @@ Add all other changes you made in the same format here:
 
 ## Task 3) Investigation Task ⁉️
 
-[Merge Request 1](/put/links/here)
+[Merge Request 1](https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/13)
 
 [Briefly explain what you did]
+Looking at ZombieTest.java in the toastDestruction test, we can see 
+that the zombieToastSpawner is adjacent to the player and there is an attempt
+of player-spawner interaction. However, the the spawner is stll present
+after the interation, when it should be destroyed. This obviously isn't 
+expected behaviour, so we can deduce that this is a bug. 
+Steps taken to fix this:
+-   Remove the instance of the zombieToastSpawner when "interact" is invoked.
+-   Modify the buggy test to assert that the zombieToastSpawner count was zero
+    after player interaction.
 
 [Merge Request 2](/put/links/here)
 

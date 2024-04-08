@@ -52,6 +52,11 @@ public class ZombieTest {
         Position position = getZombies(res).get(0).getPosition();
         res = dmc.tick(Direction.UP);
         assertEquals(position, getZombies(res).get(0).getPosition());
+
+        // attempt to move through a door
+        res = dmc.tick(Direction.DOWN);
+        assertEquals(position, getZombies(res).get(0).getPosition());
+
     }
 
     @Test
@@ -168,7 +173,7 @@ public class ZombieTest {
         assertThrows(IllegalArgumentException.class, () -> dmc.interact("random_invalid_id"));
         // cardinally adjacent: true, has sword: true
         res = assertDoesNotThrow(() -> dmc.interact(spawnerId));
-        assertEquals(1, TestUtils.countType(res, "zombie_toast_spawner"));
+        assertEquals(0, TestUtils.countType(res, "zombie_toast_spawner"));
     }
 
     private List<EntityResponse> getZombies(DungeonResponse res) {
