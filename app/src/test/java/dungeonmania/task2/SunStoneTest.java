@@ -41,6 +41,7 @@ public class SunStoneTest {
         // TODO: need to ask if the type can be "sun_stone"?
         assertEquals(1, TestUtils.getEntities(res, "key").size());
         assertEquals(0, TestUtils.getInventory(res, "key").size());
+        assertEquals(1, TestUtils.getEntities(res, "sun stone").size());
 
         // pick up sun stone
         res = dmc.tick(Direction.RIGHT);
