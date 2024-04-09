@@ -61,10 +61,10 @@ Test edge cases:
 Test edge cases:
 
 Light Bulb
--   OR
--   AND
--   XOR
--   CO_AND
+-   OR (done)
+-   AND (done)
+-   XOR (done)
+-   CO_AND (done)
 
 switch door
 -   OR
@@ -77,5 +77,7 @@ Bomb
 -   AND
 -   XOR
 -   CO_AND
+
+- Test that switches and other entities are not conductive
 
 ## Task 3
