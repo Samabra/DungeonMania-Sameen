@@ -60,4 +60,22 @@ Test edge cases:
 **Logic Switches**
 Test edge cases:
 
+Light Bulb
+-   OR
+-   AND
+-   XOR
+-   CO_AND
+
+switch door
+-   OR
+-   AND
+-   XOR
+-   CO_AND
+
+Bomb
+-    OR
+-   AND
+-   XOR
+-   CO_AND
+
 ## Task 3
