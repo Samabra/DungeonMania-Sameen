@@ -2,6 +2,8 @@ package dungeonmania.entities;
 
 import dungeonmania.Game;
 import dungeonmania.entities.buildables.Bow;
+import dungeonmania.entities.buildables.MidnightArmour;
+import dungeonmania.entities.buildables.Sceptre;
 import dungeonmania.entities.buildables.Shield;
 import dungeonmania.entities.collectables.*;
 import dungeonmania.entities.collectables.Sword;
@@ -120,6 +122,16 @@ public class EntityFactory {
         int shieldDurability = config.optInt("shield_durability");
         double shieldDefence = config.optInt("shield_defence");
         return new Shield(shieldDurability, shieldDefence);
+    }
+
+    public Sceptre buildSceptre() {
+        return new Sceptre();
+    }
+
+    public MidnightArmour buildMidnightArmour() {
+        double attack = config.optInt("midnight_armour_attack");
+        double defence = config.optInt("midnight_armour_defence");
+        return new MidnightArmour(attack, defence);
     }
 
     private Entity constructEntity(JSONObject jsonEntity, JSONObject config) {

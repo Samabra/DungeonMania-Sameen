@@ -2,7 +2,7 @@ package dungeonmania.entities.buildables;
 
 public class Sceptre extends Buildable{
     
-    public Sceptre(){
+    public Sceptre() {
         super(null);
     }
     

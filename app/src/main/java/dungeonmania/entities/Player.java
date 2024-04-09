@@ -61,11 +61,11 @@ public class Player extends Entity implements Battleable, Overlappable {
     public void weaponUse(Game game) {
         BattleItem weapon = getWeapon();
         if (weapon instanceof Durable) {
-            weapon.use(game);
+            ((Durable) weapon).use(game);
         }
     }
 
-    public BattleItem getWeapon() {
+    private BattleItem getWeapon() {
         return inventory.getWeapon();
     }
 

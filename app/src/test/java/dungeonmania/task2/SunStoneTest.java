@@ -39,15 +39,8 @@ public class SunStoneTest {
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_sunStoneTest_sunStoneAsKey", "c_sunStoneTest_sunStoneAsKey");
 
-<<<<<<< HEAD
-        // TODO: need to ask if the type can be "sun_stone"?
-        assertEquals(1, TestUtils.getEntities(res, "key").size());
-        assertEquals(0, TestUtils.getInventory(res, "key").size());
-        assertEquals(1, TestUtils.getEntities(res, "sun stone").size());
-=======
         assertEquals(1, TestUtils.getEntities(res, "sun_stone").size());
         assertEquals(0, TestUtils.getInventory(res, "sun_stone").size());
->>>>>>> 8aa877b5cab181a64126fa6a047f29767fbe667b
 
         // pick up sun stone
         res = dmc.tick(Direction.RIGHT);
