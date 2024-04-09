@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import dungeonmania.DungeonManiaController;
+import dungeonmania.exceptions.InvalidActionException;
 import dungeonmania.mvp.TestUtils;
 import dungeonmania.response.models.DungeonResponse;
 import dungeonmania.util.Direction;
@@ -38,10 +39,15 @@ public class SunStoneTest {
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_sunStoneTest_sunStoneAsKey", "c_sunStoneTest_sunStoneAsKey");
 
+<<<<<<< HEAD
         // TODO: need to ask if the type can be "sun_stone"?
         assertEquals(1, TestUtils.getEntities(res, "key").size());
         assertEquals(0, TestUtils.getInventory(res, "key").size());
         assertEquals(1, TestUtils.getEntities(res, "sun stone").size());
+=======
+        assertEquals(1, TestUtils.getEntities(res, "sun_stone").size());
+        assertEquals(0, TestUtils.getInventory(res, "sun_stone").size());
+>>>>>>> 8aa877b5cab181a64126fa6a047f29767fbe667b
 
         // pick up sun stone
         res = dmc.tick(Direction.RIGHT);
@@ -53,7 +59,7 @@ public class SunStoneTest {
         // assert player position should be equal to door position
         assertEquals(playerPos, doorPos);
         // assert that sun stone stays in inventory
-        assertEquals(1, TestUtils.getInventory(res, "key").size());
+        assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
     }
 
     @Test
@@ -75,7 +81,7 @@ public class SunStoneTest {
         res = dmc.tick(Direction.RIGHT);
         // pick up wood
         res = dmc.tick(Direction.RIGHT);
-        assertEquals(1, TestUtils.getInventory(res, "sunStone").size());
+        assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
         assertEquals(1, TestUtils.getInventory(res, "treasure").size());
         assertEquals(1, TestUtils.getInventory(res, "wood").size());
 
@@ -85,45 +91,95 @@ public class SunStoneTest {
         assertEquals(1, TestUtils.getInventory(res, "sceptre").size());
 
         // sun stone is consumed
-        assertEquals(0, TestUtils.getInventory(res, "sunStone").size());
-        // FIXME: double check since the spec say that material is retained after use when building entities
-        // if the sunstone is treated as a treasure
-        // is it implying that when building a sceptre for instance, if there is
+        assertEquals(0, TestUtils.getInventory(res, "sun_stone").size());
     }
 
     @Test
     @Tag("3-4")
-    @DisplayName("Test sun stone is not used if there is other preferred materials")
-    public void sunStoneAsBackUpMaterial() {
+    @DisplayName("Test sun stone is not used if there is other preferred materials (Sceptre)")
+    public void sunStoneAsBackUpMaterialSceptre() {
         DungeonManiaController dmc = new DungeonManiaController();
-        DungeonResponse res = dmc.newGame("d_sunStoneTest_sunStoneAsBackUpMaterial",
-                "c_sunStoneTest_sunStoneAsBackUpMaterial");
+        DungeonResponse res = dmc.newGame("d_sunStoneTest_sunStoneAsBackUpMaterialSceptre",
+                "c_sunStoneTest_sunStoneAsBackUpMaterialSceptre");
 
         // pick up 2 x sun stone, wood and treasure
         res = dmc.tick(Direction.RIGHT);
         res = dmc.tick(Direction.RIGHT);
         res = dmc.tick(Direction.RIGHT);
         res = dmc.tick(Direction.RIGHT);
-        assertEquals(2, TestUtils.getInventory(res, "sunStone").size());
-        assertEquals(0, TestUtils.getInventory(res, "sceptre").size());
-        assertEquals(0, TestUtils.getInventory(res, "sceptre").size());
+        assertEquals(2, TestUtils.getInventory(res, "sun_stone").size());
+        assertEquals(1, TestUtils.getInventory(res, "wood").size());
+        assertEquals(1, TestUtils.getInventory(res, "treasure").size());
         assertEquals(0, TestUtils.getInventory(res, "sceptre").size());
 
         // Build sceptre
-        assertEquals(0, TestUtils.getInventory(res, "sceptre").size());
         res = assertDoesNotThrow(() -> dmc.build("sceptre"));
         assertEquals(1, TestUtils.getInventory(res, "sceptre").size());
+
+        assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
+        assertEquals(0, TestUtils.getInventory(res, "wood").size());
+        assertEquals(0, TestUtils.getInventory(res, "treasure").size());
 
     }
 
     @Test
     @Tag("3-5")
+    @DisplayName("Test sun stone is not used if there is other preferred materials (Shield)")
+    public void sunStoneAsBackUpMaterialShield() {
+        DungeonManiaController dmc = new DungeonManiaController();
+        DungeonResponse res = dmc.newGame("d_sunStoneTest_sunStoneAsBackUpMaterialSheild",
+                "c_sunStoneTest_sunStoneAsBackUpMaterialShield");
+
+        // pick up sun stone, 2 x wood and treasure
+        res = dmc.tick(Direction.RIGHT);
+        res = dmc.tick(Direction.RIGHT);
+        res = dmc.tick(Direction.RIGHT);
+        res = dmc.tick(Direction.RIGHT);
+        assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
+        assertEquals(2, TestUtils.getInventory(res, "wood").size());
+        assertEquals(1, TestUtils.getInventory(res, "treasure").size());
+        assertEquals(0, TestUtils.getInventory(res, "shield").size());
+
+        // Build shield
+        res = assertDoesNotThrow(() -> dmc.build("shield"));
+        assertEquals(1, TestUtils.getInventory(res, "shield").size());
+
+        assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
+        assertEquals(0, TestUtils.getInventory(res, "wood").size());
+        assertEquals(0, TestUtils.getInventory(res, "treasure").size());
+
+        // collect 2 x wood
+        res = dmc.tick(Direction.RIGHT);
+        res = dmc.tick(Direction.RIGHT);
+        assertEquals(2, TestUtils.getInventory(res, "wood").size());
+        assertEquals(0, TestUtils.getInventory(res, "treasure").size());
+        assertEquals(0, TestUtils.getInventory(res, "key").size());
+
+        // Build shield
+        // where sun stone substitutes for key/treasure
+        res = assertDoesNotThrow(() -> dmc.build("shield"));
+        assertEquals(2, TestUtils.getInventory(res, "shield").size());
+        // does not consume sun stone
+        assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
+
+    }
+
+    @Test
+    @Tag("3-6")
     @DisplayName("Test sun stone is used as a bribe")
     public void sunStoneAsBribe() {
         DungeonManiaController dmc = new DungeonManiaController();
-        DungeonResponse res = dmc.newGame("d_sunStoneTest_sunStoneBribe", "c_sunStoneTest_sunStoneAsBribe");
+        DungeonResponse res = dmc.newGame("d_sunStoneTest_sunStoneAsBribe", "c_sunStoneTest_sunStoneAsBribe");
 
-        // FIXME: do this later
+        // pick up sunStone
+        res = dmc.tick(Direction.RIGHT);
+        assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
+
+        // attempt bribe
+        String mercId = TestUtils.getEntitiesStream(res, "mercenary").findFirst().get().getId();
+        // cannot bribe with sunStone
+        assertThrows(InvalidActionException.class, () -> dmc.interact(mercId));
+        assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
     }
 
 }

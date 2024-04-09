@@ -21,17 +21,40 @@ Also as a side note: always constantly git pull origin  master to be on top of t
     file if possible. i.e. a brief dot point describing what the test emulates
 
 ## Task 1
-a)
-b)
-c)
-d)
-e)
-f)
+
 
 ## Task 2
+Original MVP Branch Coverage: 83.6%
+Original MVP Line coverage: 91.8%
 
 **Microevolution**
+
 Test edge cases:
+Note: json goal is called "enemies" (must use in goalFactory)
+Basic goals
+-   1)   Goal reached with defeating only ZombieToast and destroys ZombieToast Spawner (done)
+-   2)  Goal reached defeating one spider (Done)
+-   3)  Goal reached with defeating only multiple Enemies (done)
+-   5)  Goal NOT reached when destroying enough ZombieToast without the spawner (done)
+-   6)  Goal NOT reached when destroyed spawner but not ZombieToast (done)
+-   7)  Goal NOT reached when not enough Zombies are destroyed (zombie toast destroyed) (done)
+-   8)  Goal NOT reached when not enough spiders are destroyed (Done)
+Might need to test when goal is not reached since player died
+Also need to test bribing the mercenary, then continue killing other enemies until 
+enemy_count is reached
+Test player health if there is time
+Test swords/weapons to destroy enemies as well
+
+Complex goals
+-   1) AND all (done)
+-   AND enemies (zombie and spawner), exit (done)
+-   1) OR EXIT (1) first) (done)
+
+Repeat the complex goals for 2), 3), 4), 5), 6) (if we're bored)
+
+Stats After completing 2a)
+    - Branch Coverage: 83.6%
+    - Line Coverage: 92%
 **SunStone & More buildables**
 Test edge cases:
 
@@ -39,12 +62,11 @@ Test for sun stone :
 -   Test sun stone can be successfully picked up by player (done)
 -   Test stone counts towards treasure goal (done)
 -   Test sun stone can be used for both as a treasure and key (done)
--   Use stone to open doors (decrease stone count) and retain after use (increase stone count)
+-   Use stone to open doors, must remain in inventory after
     Same scenario for when using the stone to replace material
-    FIXME: Might need to check if the inventory actually decreases stone count
 -   Test use other treasures first if there is enough of those, then use sun stone if not enough
 -   Test when used in crafting the stone is consumed (done)
--   Test cannot be used to bribe mercenaries or assassins
+-   Test cannot be used to bribe mercenaries or assassins (done)
 
 
 Tests for public DungeonResponse build (String build) throw InvalidActionException

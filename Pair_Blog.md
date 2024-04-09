@@ -199,6 +199,9 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 - onOverlap method in Enemy violated the Law of Demeter. Same issue as in Player, where the method was trying to call a method in class Game, but Enemy does not keep Game as a component.
 - Used the already set method of initiateBattle in Map to be called by onOverlap in Enemy.
 
+- Law of Demeter issue in zombieToastSpawner. The interact method calls a method in Player, which returns Inventory, and then tries to access Inventory method, directly, when there is no direct access to Inventory. Through this method, it tries to call a method in an instance of a BattleItem, to whcih again it has no direct access to.
+- To fix this issue, I implemented a method in Player called weaponUse(Game game), that takes in the parameter game from interact method in zombieToastSpawner.
+The weaponUse method in Player calls the getWeapon method in Player (the method has now been made private), which returns an instance of a BattleItem. If the BattleItem has a durability limit (defined by interface Durable), then the weapon is going to get used, or simply, its durability is going to decrease. 
 
 
 
@@ -208,23 +211,46 @@ Add all other changes you made in the same format here:
 
 ### a) Microevolution - Enemy Goal
 
-[Links to your merge requests](/put/links/here)
+[Links to your merge requests](https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/13
+)
 
 **Assumptions**
 
 [Any assumptions made]
+-   Assumed that there were no zombie_toast_spawners when enemy_goal == 0. 
+-   Assumed that enemy_goal is NOT achieved when enemy_goal == 0 and there is 
+    no active player.
 
 **Design**
 
 [Design]
+Stuck with the original  design from the MVP, where EnemyGoal implemented the Goal interface.
 
 **Changes after review**
 
 [Design review/Changes made]
+-   Introduced a few wrapper methods to get spawn count and enemy kill count
+    so that Law of Demeter is not violated
+-   Implemented EnemiesGoal methods as required by its Goal interface, which had
+    "toString" and "achieved" methods
+-   "toString" method return "" if achieved, otherwise ":enemies" was returned
+-   "achieved" method returned true if both spawn count is zero and the zombieToast
+    target count was met.
+No changes to design! (tentative)
 
 **Test list**
 
 [Test List]
+For Basic Goals:
+-   Test achieving an enemy goal where there is only one spider
+-   Test achieving an enemy goal where there are multuple enemies
+-   Test achieving an enemy goal when zombieToast is destroyed before spawner
+-   Test achieving an enemy goal when spawner is destroyed before zombieToast
+
+For complex Goals:
+-   Testing a map with 4 conjunction goal
+-   Testing enemies and exit goal
+-   Test achieving enemies or exit goal
 
 **Other notes**
 
@@ -241,6 +267,8 @@ Add all other changes you made in the same format here:
 - Attacking Spawner has no effect on durability of weapon. 
 - Cannot mind control mercenary when mercenary already mind controlled
 - Cannot bribe an already bribed mercenary, but can mind control them
+- Armour effect reduce enemy damage so that enemyTotalAttack = enemyAttack - armour defence effect
+- Armour effect increasde player damage as playerTotalAttack = playerAttack + armour attack effect
 
 **Design**
 
@@ -248,7 +276,11 @@ Add all other changes you made in the same format here:
 
 **Changes after review**
 
-[Design review/Changes made]
+- Added buildables class Midnight Armour
+- Added buildables class Sceptre
+- Added new collectable class SunStone
+-
+
 
 **Test list**
 
@@ -308,9 +340,18 @@ Add all other changes you made in the same format here:
 
 ## Task 3) Investigation Task ⁉️
 
-[Merge Request 1](/put/links/here)
+[Merge Request 1](https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/13)
 
 [Briefly explain what you did]
+Looking at ZombieTest.java in the toastDestruction test, we can see 
+that the zombieToastSpawner is adjacent to the player and there is an attempt
+of player-spawner interaction. However, the the spawner is stll present
+after the interation, when it should be destroyed. This obviously isn't 
+expected behaviour, so we can deduce that this is a bug. 
+Steps taken to fix this:
+-   Remove the instance of the zombieToastSpawner when "interact" is invoked.
+-   Modify the buggy test to assert that the zombieToastSpawner count was zero
+    after player interaction.
 
 [Merge Request 2](/put/links/here)
 

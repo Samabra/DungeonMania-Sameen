@@ -18,6 +18,8 @@ import dungeonmania.entities.playerState.PlayerState;
 import dungeonmania.map.GameMap;
 import dungeonmania.util.Direction;
 import dungeonmania.util.Position;
+import dungeonmania.Game;
+
 
 public class Player extends Entity implements Battleable, Overlappable {
     public static final double DEFAULT_ATTACK = 5.0;
@@ -29,6 +31,7 @@ public class Player extends Entity implements Battleable, Overlappable {
     private int nextTrigger = 0;
 
     private int collectedTreasureCount = 0;
+    private int enemiesKilledCount = 0;
 
     private PlayerState state;
 
@@ -44,8 +47,22 @@ public class Player extends Entity implements Battleable, Overlappable {
         return collectedTreasureCount;
     }
 
+    public int getEnemiesKilledCount() {
+        return enemiesKilledCount;
+    }
+
+    public void incrementEnemiesKilledCount() {
+        enemiesKilledCount++;
+    }
+
     public boolean hasWeapon() {
         return inventory.hasWeapon();
+    }
+    public void weaponUse(Game game) {
+        BattleItem weapon = getWeapon();
+        if (weapon instanceof Durable) {
+            weapon.use(game);
+        }
     }
 
     public BattleItem getWeapon() {
@@ -99,8 +116,7 @@ public class Player extends Entity implements Battleable, Overlappable {
     }
 
     private boolean mercenaryIsAllied(Enemy enemy) {
-        return enemy instanceof Mercenary
-                && ((Mercenary) enemy).isAllied();
+        return enemy instanceof Mercenary && ((Mercenary) enemy).isAllied();
     }
 
     public Inventory getInventory() {
