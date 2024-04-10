@@ -67,17 +67,20 @@ Light Bulb
 -   CO_AND (done)
 
 switch door
--   OR
--   AND
--   XOR
--   CO_AND
+-   OR (done)
+-   AND (done)
+-   XOR (done)
+-   CO_AND (done)
 
 Bomb
--    OR
--   AND
--   XOR
--   CO_AND
+-    OR (done)
+-   AND (done)
+-   XOR (done)
+-   CO_AND (done)
 
-- Test that switches and other entities are not conductive
+- not activated switch not conductive
+- logic bomb not conductive
+- switch door not conductive
+- light bulb not conductive
 
 ## Task 3

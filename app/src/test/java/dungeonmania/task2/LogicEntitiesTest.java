@@ -22,14 +22,14 @@ public class LogicEntitiesTest {
     public void orLightBulb() {
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_orLightBulb", "c_logicEntitiesTest_orLightBulb");
-        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off"));
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
 
         // light bulb is not turned on
-        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on"));
+        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
 
         // activate switch
         res = dmc.tick(Direction.RIGHT);
-        assertEquals(1, TestUtils.getEntities(res, "light_bulb_on"));
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_on").size());
 
     }
 
@@ -39,20 +39,20 @@ public class LogicEntitiesTest {
     public void andLightBulb() {
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_andLightBulb", "c_logicEntitiesTest_andLightBulb");
-        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off"));
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
 
         // light bulb is not turned on
-        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on"));
+        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
 
         // activate switch
         res = dmc.tick(Direction.RIGHT);
-        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on"));
+        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
 
         // activate other switch
         res = dmc.tick(Direction.LEFT);
         res = dmc.tick(Direction.DOWN);
         res = dmc.tick(Direction.RIGHT);
-        assertEquals(1, TestUtils.getEntities(res, "light_bulb_on"));
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_on").size());
 
     }
 
@@ -62,22 +62,22 @@ public class LogicEntitiesTest {
     public void xorLightBulbPass() {
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_xorLightBulb", "c_logicEntitiesTest_xorLightBulb");
-        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off"));
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
 
         // light bulb is not turned on
-        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on"));
+        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
 
         // activate switch to turn on light bulb
         res = dmc.tick(Direction.RIGHT);
-        assertEquals(1, TestUtils.getEntities(res, "light_bulb_on"));
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_on").size());
 
         // activate other switch
         res = dmc.tick(Direction.LEFT);
         res = dmc.tick(Direction.DOWN);
         res = dmc.tick(Direction.RIGHT);
         // lightbulb turns off
-        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on"));
-        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off"));
+        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
     }
 
     @Test
@@ -86,15 +86,15 @@ public class LogicEntitiesTest {
     public void xorLightBulbFail() {
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_xorLightBulbFail", "c_logicEntitiesTest_coandLightBulb");
-        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off"));
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
 
         // light bulb is not turned on
-        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on"));
+        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
 
         // activate switch to turn on light bulb
         // does not turn on if 2 there are 2 cardinally adjacent switches
         res = dmc.tick(Direction.RIGHT);
-        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on"));
+        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
     }
 
     @Test
@@ -103,14 +103,14 @@ public class LogicEntitiesTest {
     public void coandLightBulbPass() {
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandLightBulb", "c_logicEntitiesTest_coandLightBulb");
-        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off"));
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
 
         // light bulb is not turned on
-        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on"));
+        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
 
         // activate switch to turn on light bulb
         res = dmc.tick(Direction.RIGHT);
-        assertEquals(1, TestUtils.getEntities(res, "light_bulb_on"));
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_on").size());
     }
 
     @Test
@@ -119,17 +119,17 @@ public class LogicEntitiesTest {
     public void coandLightBulbFail() {
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandLightBulb", "c_logicEntitiesTest_coandLightBulb");
-        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off"));
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
 
         // light bulb is not turned on
-        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on"));
+        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
 
         // activate first switch
         res = dmc.tick(Direction.LEFT);
         res = dmc.tick(Direction.LEFT);
         res = dmc.tick(Direction.UP);
         res = dmc.tick(Direction.RIGHT);
-        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on"));
+        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
 
         // activate second switch
         res = dmc.tick(Direction.LEFT);
@@ -137,7 +137,7 @@ public class LogicEntitiesTest {
         res = dmc.tick(Direction.DOWN);
         res = dmc.tick(Direction.RIGHT);
         // cannot turn on light bulb even if both switches are activated
-        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on"));
+        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
 
     }
 
@@ -148,11 +148,11 @@ public class LogicEntitiesTest {
     public void orBomb() {
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_orBomb", "c_logicEntitiesTest_orBomb");
-        assertEquals(1, TestUtils.getEntities(res, "bomb"));
+        assertEquals(1, TestUtils.getEntities(res, "bomb").size());
 
         // activate switch -> bomb detonated
         res = dmc.tick(Direction.RIGHT);
-        assertEquals(0, TestUtils.getEntities(res, "bomb"));
+        assertEquals(0, TestUtils.getEntities(res, "bomb").size());
 
     }
 
@@ -162,18 +162,18 @@ public class LogicEntitiesTest {
     public void andBomb() {
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_andBomb", "c_logicEntitiesTest_andBomb");
-        assertEquals(1, TestUtils.getEntities(res, "bomb"));
+        assertEquals(1, TestUtils.getEntities(res, "bomb").size());
 
         // activate switch
         res = dmc.tick(Direction.RIGHT);
-        assertEquals(1, TestUtils.getEntities(res, "bomb"));
+        assertEquals(1, TestUtils.getEntities(res, "bomb").size());
 
         // activate other switch
         res = dmc.tick(Direction.LEFT);
         res = dmc.tick(Direction.DOWN);
         res = dmc.tick(Direction.RIGHT);
         // bomb detonates
-        assertEquals(0, TestUtils.getEntities(res, "bomb"));
+        assertEquals(0, TestUtils.getEntities(res, "bomb").size());
 
     }
 
@@ -183,11 +183,11 @@ public class LogicEntitiesTest {
     public void xorBomb() {
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_xorBomb", "c_logicEntitiesTest_xorBomb");
-        assertEquals(1, TestUtils.getEntities(res, "bomb"));
+        assertEquals(1, TestUtils.getEntities(res, "bomb").size());
 
         // activate switch to detonate bomb
         res = dmc.tick(Direction.RIGHT);
-        assertEquals(0, TestUtils.getEntities(res, "bomb"));
+        assertEquals(0, TestUtils.getEntities(res, "bomb").size());
 
     }
 
@@ -197,11 +197,11 @@ public class LogicEntitiesTest {
     public void coandBombPass() {
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandBomb", "c_logicEntitiesTest_coandBomb");
-        assertEquals(1, TestUtils.getEntities(res, "bomb"));
+        assertEquals(1, TestUtils.getEntities(res, "bomb").size());
 
         // activate switch to detonate bomb
         res = dmc.tick(Direction.RIGHT);
-        assertEquals(0, TestUtils.getEntities(res, "bomb"));
+        assertEquals(0, TestUtils.getEntities(res, "bomb").size());
     }
 
     @Test
@@ -210,14 +210,14 @@ public class LogicEntitiesTest {
     public void coandBombFail() {
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandBomb", "c_logicEntitiesTest_coandBomb");
-        assertEquals(1, TestUtils.getEntities(res, "bomb"));
+        assertEquals(1, TestUtils.getEntities(res, "bomb").size());
 
         // activate first switch
         res = dmc.tick(Direction.LEFT);
         res = dmc.tick(Direction.LEFT);
         res = dmc.tick(Direction.UP);
         res = dmc.tick(Direction.RIGHT);
-        assertEquals(1, TestUtils.getEntities(res, "bomb"));
+        assertEquals(1, TestUtils.getEntities(res, "bomb").size());
 
         // activate second switch
         res = dmc.tick(Direction.LEFT);
@@ -225,7 +225,7 @@ public class LogicEntitiesTest {
         res = dmc.tick(Direction.DOWN);
         res = dmc.tick(Direction.RIGHT);
         // cannot detonate even if both switches are activated
-        assertEquals(1, TestUtils.getEntities(res, "bomb"));
+        assertEquals(1, TestUtils.getEntities(res, "bomb").size());
 
     }
 
@@ -238,7 +238,7 @@ public class LogicEntitiesTest {
         //  P
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_orSwitchDoor", "c_logicEntitiesTest_orSwitchDoor");
-        assertEquals(1, TestUtils.getEntities(res, "switch_door"));
+        assertEquals(1, TestUtils.getEntities(res, "switch_door").size());
 
         // activate switch and open door
         res = dmc.tick(Direction.UP);
@@ -260,7 +260,7 @@ public class LogicEntitiesTest {
         //  P
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_orSwitchDoor", "c_logicEntitiesTest_orSwitchDoor");
-        assertEquals(1, TestUtils.getEntities(res, "switch_door"));
+        assertEquals(1, TestUtils.getEntities(res, "switch_door").size());
 
         // activate switch and open door
         res = dmc.tick(Direction.RIGHT);
@@ -282,7 +282,7 @@ public class LogicEntitiesTest {
         //  P
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_andSwitchDoor", "c_logicEntitiesTest_andSwitchDoor");
-        assertEquals(1, TestUtils.getEntities(res, "switch_door"));
+        assertEquals(1, TestUtils.getEntities(res, "switch_door").size());
 
         // activate first switch
         res = dmc.tick(Direction.UP);
@@ -310,7 +310,7 @@ public class LogicEntitiesTest {
         //  P
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_andSwitchDoor", "c_logicEntitiesTest_andSwitchDoor");
-        assertEquals(1, TestUtils.getEntities(res, "switch_door"));
+        assertEquals(1, TestUtils.getEntities(res, "switch_door").size());
 
         // activate first switch
         res = dmc.tick(Direction.UP);
@@ -333,7 +333,7 @@ public class LogicEntitiesTest {
         //  P
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_xorSwitchDoor", "c_logicEntitiesTest_xorSwitchDoor");
-        assertEquals(1, TestUtils.getEntities(res, "switch_door"));
+        assertEquals(1, TestUtils.getEntities(res, "switch_door").size());
 
         // activate first switch
         res = dmc.tick(Direction.UP);
@@ -375,7 +375,7 @@ public class LogicEntitiesTest {
         //      P
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandSwitchDoor", "c_logicEntitiesTest_coandSwitchDoor");
-        assertEquals(1, TestUtils.getEntities(res, "switch_door"));
+        assertEquals(1, TestUtils.getEntities(res, "switch_door").size());
 
         // activate both switches in the same tick
         res = dmc.tick(Direction.UP);
@@ -393,7 +393,7 @@ public class LogicEntitiesTest {
 
     @Test
     @Tag("5-17")
-    @DisplayName("Test AND switch door (Fail)")
+    @DisplayName("Test CO_AND switch door (Fail)")
     public void coandSwitchDoorFail() {
         //  S   SD  S
         //  B       B
@@ -401,7 +401,7 @@ public class LogicEntitiesTest {
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandSwitchDoorFail",
                 "c_logicEntitiesTest_andSwitchDoor");
-        assertEquals(1, TestUtils.getEntities(res, "switch_door"));
+        assertEquals(1, TestUtils.getEntities(res, "switch_door").size());
 
         // activate first switch
         res = dmc.tick(Direction.UP);
@@ -418,6 +418,82 @@ public class LogicEntitiesTest {
         res = dmc.tick(Direction.UP);
         // position should be the same as before
         assertEquals(pos, TestUtils.getEntities(res, "player").get(0).getPosition());
+    }
+
+    ////////////// will use the same config file from here on, because I'm lazy
+    @Test
+    @Tag("5-18")
+    @DisplayName("Test non-activated switch is not conductive")
+    public void nonActivatedSwitchConductiveTest() {
+        //  P   B   S   S   LB
+
+        DungeonManiaController dmc = new DungeonManiaController();
+        DungeonResponse res = dmc.newGame("d_logicEntitiesTest_nonActivatedSwitch",
+                "c_logicEntitiesTest_andSwitchDoor");
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
+
+        // activate first switch
+        res = dmc.tick(Direction.RIGHT);
+
+        // light bulb should remain off
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
+        res = dmc.tick(Direction.RIGHT);
+        // light bulb should turn on
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_on").size());
+    }
+
+    @Test
+    @Tag("5-19")
+    @DisplayName("Test logic bomb is not conductive")
+    public void logicBombConductiveTest() {
+        //  P   Boulder   S   Bomb   LB
+
+        DungeonManiaController dmc = new DungeonManiaController();
+        DungeonResponse res = dmc.newGame("d_logicEntitiesTest_logicBombNotConductive",
+                "c_logicEntitiesTest_andSwitchDoor");
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
+
+        // activate first switch
+        res = dmc.tick(Direction.RIGHT);
+
+        // light bulb should remain off
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
+    }
+
+    @Test
+    @Tag("5-19")
+    @DisplayName("Test switch door is not conductive")
+    public void switchDoorConductiveTest() {
+        //  P   B   S   SD   LB
+
+        DungeonManiaController dmc = new DungeonManiaController();
+        DungeonResponse res = dmc.newGame("d_logicEntitiesTest_switchDoorNotConductive",
+                "c_logicEntitiesTest_andSwitchDoor");
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
+
+        // activate first switch
+        res = dmc.tick(Direction.RIGHT);
+
+        // light bulb should remain off
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
+    }
+
+    @Test
+    @Tag("5-20")
+    @DisplayName("Test light bulb is not conductive")
+    public void lightBulbConductiveTest() {
+        //  P   B   S   LB   LB
+
+        DungeonManiaController dmc = new DungeonManiaController();
+        DungeonResponse res = dmc.newGame("d_logicEntitiesTest_lightBulbNotConductive",
+                "c_logicEntitiesTest_andSwitchDoor");
+        assertEquals(2, TestUtils.getEntities(res, "light_bulb_off").size());
+
+        // activate first switch
+        res = dmc.tick(Direction.RIGHT);
+
+        // last light bulb should remain off
+        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
     }
 
 }
