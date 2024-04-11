@@ -5,6 +5,7 @@ import dungeonmania.battles.BattleStatistics;
 import dungeonmania.entities.Entity;
 import dungeonmania.entities.Interactable;
 import dungeonmania.entities.Player;
+import dungeonmania.entities.buildables.Sceptre;
 import dungeonmania.entities.collectables.Treasure;
 import dungeonmania.entities.enemies.enemyMovement.MoveMercenary;
 import dungeonmania.map.GameMap;
@@ -98,6 +99,9 @@ public class Mercenary extends Enemy implements Interactable {
 
     @Override
     public boolean isInteractable(Player player) {
+        if (player.getInventory().itemExists(Sceptre.class)) {
+            return true;
+        }
         int x = getPosition().getX();
         int y = getPosition().getY();
         for (int i = x - bribeRadius; i <= x + bribeRadius; i++) {

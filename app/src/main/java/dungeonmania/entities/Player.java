@@ -129,6 +129,7 @@ public class Player extends Entity implements Battleable, Overlappable {
         if (entity instanceof Mercenary) {
             if (inventory.itemExists(Sceptre.class) && !((Mercenary) entity).isAllied()) {
                 Sceptre sceptre = inventory.getFirst(Sceptre.class);
+                inventory.remove(sceptre);
                 ((Mercenary) entity).mindControl(sceptre.getMindControlDuration());
             } else if (((Mercenary) entity).isInteractable(this) && !((Mercenary) entity).isAllied()) {
                 ((Mercenary) entity).bribe(this);
