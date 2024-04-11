@@ -11,10 +11,13 @@ import dungeonmania.entities.collectables.potions.InvincibilityPotion;
 import dungeonmania.entities.collectables.potions.Potion;
 import dungeonmania.entities.enemies.Enemy;
 import dungeonmania.entities.enemies.Mercenary;
+import dungeonmania.entities.enemies.ZombieToastSpawner;
 import dungeonmania.entities.inventory.Inventory;
 import dungeonmania.entities.inventory.InventoryItem;
 import dungeonmania.entities.playerState.BaseState;
 import dungeonmania.entities.playerState.PlayerState;
+import dungeonmania.entities.buildables.Sceptre;
+import dungeonmania.exceptions.InvalidActionException;
 import dungeonmania.map.GameMap;
 import dungeonmania.util.Direction;
 import dungeonmania.util.Position;
@@ -73,8 +76,16 @@ public class Player extends Entity implements Battleable, Overlappable {
         return inventory.getBuildables();
     }
 
-    public boolean build(String entity, EntityFactory factory) {
-        InventoryItem item = inventory.checkBuildCriteria(this, true, entity.equals("shield"), factory);
+    public boolean build(String buildable, EntityFactory factory, GameMap map) throws InvalidActionException {
+        List<String> buildables = getBuildables();
+        if (!buildables.contains(buildable)) {
+            throw new InvalidActionException(String.format("%s cannot be built", buildable));
+        }
+        if (buildable.equals("midnight_armour")
+            && map.getZombies()) {
+            throw new InvalidActionException(String.format("%s cannot be built", buildable));
+        }
+        InventoryItem item = inventory.checkBuildCriteria(this, true, buildable.equals("shield"), factory);
         if (item == null)
             return false;
         return inventory.add(item);
@@ -116,11 +127,41 @@ public class Player extends Entity implements Battleable, Overlappable {
     }
 
     private boolean mercenaryIsAllied(Enemy enemy) {
-        return enemy instanceof Mercenary && ((Mercenary) enemy).isAllied();
+        return enemy instanceof Mercenary && (((Mercenary) enemy).isAllied()
+                || ((Mercenary) enemy).isMindControlled());
     }
 
     public Inventory getInventory() {
         return inventory;
+    }
+
+    public Game interact(String entityId, GameMap map, Game game)  throws IllegalArgumentException, InvalidActionException {
+        Entity e = map.getEntity(entityId);
+        if (e == null || !(e instanceof Interactable))
+            throw new IllegalArgumentException("Entity cannot be interacted");
+        if (e instanceof Mercenary) {
+            if (inventory.itemExists(Sceptre.class)
+                && !((Mercenary) e).isMindControlled()) {
+                Sceptre sceptre = inventory.getFirst(Sceptre.class);
+                ((Mercenary) e).mindControl(sceptre.getMindControlDuration());
+            } else if (((Mercenary) e).isInteractable(this)
+                        && !((Mercenary) e).isAllied()) {
+                ((Mercenary) e).bribe(this);
+            } else {
+                throw new InvalidActionException("Entity cannot be interacted");
+            }
+        } if (e instanceof ZombieToastSpawner
+                    && ((ZombieToastSpawner) e).isInteractable(this)) {
+            weaponUse(game);
+            map.destroyEntity(e);
+        } else {
+            throw new InvalidActionException("Entity cannot be interacted");
+        }
+        return game;
+    }
+
+    public boolean comparePosition(Position newPosition) {
+        return getPosition().equals(newPosition);
     }
 
     public Potion getEffectivePotion() {

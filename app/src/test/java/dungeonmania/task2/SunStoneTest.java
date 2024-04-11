@@ -49,6 +49,7 @@ public class SunStoneTest {
         res = dmc.tick(Direction.RIGHT);
         Position playerPos = TestUtils.getEntities(res, "player").get(0).getPosition();
         Position doorPos = TestUtils.getEntities(res, "door").get(0).getPosition();
+        
         // assert player position should be equal to door position
         assertEquals(playerPos, doorPos);
         // assert that sun stone stays in inventory
@@ -120,7 +121,7 @@ public class SunStoneTest {
     @DisplayName("Test sun stone is not used if there is other preferred materials (Shield)")
     public void sunStoneAsBackUpMaterialShield() {
         DungeonManiaController dmc = new DungeonManiaController();
-        DungeonResponse res = dmc.newGame("d_sunStoneTest_sunStoneAsBackUpMaterialSheild",
+        DungeonResponse res = dmc.newGame("d_sunStoneTest_sunStoneAsBackUpMaterialShield",
                 "c_sunStoneTest_sunStoneAsBackUpMaterialShield");
 
         // pick up sun stone, 2 x wood and treasure

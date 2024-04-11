@@ -47,6 +47,7 @@ public class SceptreTest {
         String id = playerEntity.get(0).getId();
         res = assertDoesNotThrow(() -> dmc.interact(id));
         assertEquals(0, TestUtils.getInventory(res, "sceptre").size());
+
         // Mind control takes effect for two ticks
         // Starts in current tick, and continues for next tick
         res = dmc.tick(Direction.DOWN);
@@ -61,6 +62,9 @@ public class SceptreTest {
         // Mercenary should still be alive
         assertEquals(1, TestUtils.getEntities(res, "mercenary").size());
 
+        // No battle should occur
+        assertEquals(0, res.getBattles().size());
+
         // Mind control effect now wears off
         // Player cannot move down so they're forced to stay in the same spot
         res = dmc.tick(Direction.DOWN);
@@ -69,8 +73,19 @@ public class SceptreTest {
         // Battle will now start with Mercenary and Player
         // Mercenary should no longer be on the map
         List<EntityResponse> entities = res.getEntities();
-        assertTrue(TestUtils.countEntityOfType(entities, "mercenary") == 0);
 
-    
+        // There should now be an instance of a battle
+        assertEquals(1, res.getBattles().size());
+        assertTrue(TestUtils.countEntityOfType(entities, "mercenary") == 0);
+    }
+
+    @Test
+    @Tag("4-2")
+    @DisplayName("Sceptre cannot be built due to insufficient materials - no Sun Stone")
+    public void SceptreInsufficientIngredients() {
+        DungeonManiaController dmc = new DungeonManiaController();
+        DungeonResponse res = dmc.newGame("d_sceptreMindControlsMercenary", "c_sceptreMindControlsMercenary");
+
+        
     }
 }

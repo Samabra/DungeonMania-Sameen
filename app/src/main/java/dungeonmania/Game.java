@@ -89,23 +89,27 @@ public class Game {
     }
 
     public Game build(String buildable) throws InvalidActionException {
-        List<String> buildables = player.getBuildables();
-        if (!buildables.contains(buildable)) {
-            throw new InvalidActionException(String.format("%s cannot be built", buildable));
-        }
-        registerOnce(() -> player.build(buildable, entityFactory), PLAYER_MOVEMENT, "playerBuildsItem");
+        registerOnce(() -> {
+            try {
+                player.build(buildable, entityFactory, map);
+            } catch (InvalidActionException e) {
+                System.err.println("Caught InvalidActionException: " + e.getMessage());
+            }
+        }, PLAYER_MOVEMENT, "playerBuildsItem");
         tick();
         return this;
     }
 
     public Game interact(String entityId) throws IllegalArgumentException, InvalidActionException {
-        Entity e = map.getEntity(entityId);
-        if (e == null || !(e instanceof Interactable))
-            throw new IllegalArgumentException("Entity cannot be interacted");
-        if (!((Interactable) e).isInteractable(player)) {
-            throw new InvalidActionException("Entity cannot be interacted");
-        }
-        registerOnce(() -> ((Interactable) e).interact(player, this), PLAYER_MOVEMENT, "playerInteracts");
+        registerOnce(() -> {
+            try {
+                player.interact(entityId, map, this);
+            } catch (InvalidActionException e) {
+                System.err.println("Caught InvalidActionException: " + e.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.err.println("Caught IllegalArgumentException: " + e.getMessage());
+            }
+        }, PLAYER_MOVEMENT, "playerInteracts");
         tick();
         return this;
     }

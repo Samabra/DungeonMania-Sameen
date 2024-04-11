@@ -1,5 +1,7 @@
 package dungeonmania.entities.enemies;
 
+import java.util.List;
+
 import dungeonmania.Game;
 import dungeonmania.entities.Destroyable;
 import dungeonmania.entities.Entity;
@@ -25,15 +27,16 @@ public class ZombieToastSpawner extends Entity implements Interactable, Destroya
         g.unsubscribe(getId());
     }
 
-    @Override
-    public void interact(Player player, Game game) {
-        player.weaponUse(game);
-        game.destroyEntity(this);
-    }
 
     @Override
     public boolean isInteractable(Player player) {
-        return Position.isAdjacent(player.getPosition(), getPosition()) && player.hasWeapon();
+        List<Position> positions = getPosition().getAdjacentPositions();
+        for (Position place: positions) {
+            if(place.equals(player.getPosition())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

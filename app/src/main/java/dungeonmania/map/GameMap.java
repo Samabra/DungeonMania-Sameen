@@ -17,6 +17,7 @@ import dungeonmania.entities.Portal;
 import dungeonmania.entities.Switch;
 import dungeonmania.entities.collectables.Bomb;
 import dungeonmania.entities.enemies.Enemy;
+import dungeonmania.entities.enemies.ZombieToast;
 import dungeonmania.entities.enemies.ZombieToastSpawner;
 import dungeonmania.entities.inventory.InventoryItem;
 import dungeonmania.util.Direction;
@@ -70,6 +71,11 @@ public class GameMap {
         });
     }
 
+    public boolean getZombies() {
+        List<ZombieToast> zombies = getEntities(ZombieToast.class);
+        return zombies.size() >= 1;
+    }
+    
     private void initRegisterMovables() {
         List<Enemy> enemies = getEntities(Enemy.class);
         enemies.forEach(e -> {

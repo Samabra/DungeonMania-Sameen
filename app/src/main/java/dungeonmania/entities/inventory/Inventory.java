@@ -45,7 +45,7 @@ public class Inventory {
         } if ((wood >= 1 || arrows >= 2)
             && ((treasure >= 1 || keys >= 1) || sunStones >= 1)
             && sunStones >= 1) {
-            result.add("sun_stone");
+            result.add("sceptre");
         } if (swords >= 1 && sunStones >= 1) {
             result.add("midnight_armour");
         }
@@ -69,7 +69,7 @@ public class Inventory {
             }
             return factory.buildBow();
 
-        } else if (wood.size() >= 2 && ((treasure.size() >= 1 || keys.size() >= 1) || sunStone.size() > 1)) {
+        } else if (wood.size() >= 2 && ((treasure.size() >= 1 || keys.size() >= 1) || sunStone.size() >= 1)) {
             if (remove) {
                 items.remove(wood.get(0));
                 items.remove(wood.get(1));
@@ -105,6 +105,10 @@ public class Inventory {
             return factory.buildMidnightArmour();
         }
         return null;
+    }
+
+    public <T extends InventoryItem> boolean itemExists(Class<T> itemType) {
+        return getFirst(itemType) != null;
     }
 
     public <T extends InventoryItem> T getFirst(Class<T> itemType) {
