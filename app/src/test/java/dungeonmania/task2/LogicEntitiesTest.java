@@ -110,6 +110,9 @@ public class LogicEntitiesTest {
     @Tag("5-4")
     @DisplayName("Test CO_AND Light Bulb (success)")
     public void coandLightBulbPass() {
+        //      B   S   W   W   W
+        //          P   B   S   LB
+        //      B   S   W   W   W
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandLightBulb", "c_logicEntitiesTest_coandLightBulb");
         assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
@@ -126,6 +129,10 @@ public class LogicEntitiesTest {
     @Tag("5-5")
     @DisplayName("Test CO_AND Light Bulb (fail)")
     public void coandLightBulbFail() {
+        //      B   S   W   W   W
+        //          P   B   S   LB
+        //      B   S   W   W   W
+
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandLightBulb", "c_logicEntitiesTest_coandLightBulb");
         assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
@@ -140,14 +147,19 @@ public class LogicEntitiesTest {
         res = dmc.tick(Direction.RIGHT);
         assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
 
-        // activate second switch
-        res = dmc.tick(Direction.LEFT);
-        res = dmc.tick(Direction.DOWN);
+        // activate middle switch
         res = dmc.tick(Direction.DOWN);
         res = dmc.tick(Direction.RIGHT);
+        res = dmc.tick(Direction.RIGHT);
+
+        // // activate second switch
+        // res = dmc.tick(Direction.LEFT);
+        // res = dmc.tick(Direction.DOWN);
+        // res = dmc.tick(Direction.DOWN);
+        // res = dmc.tick(Direction.RIGHT);
+
         // cannot turn on light bulb even if both switches are activated
         assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
-
     }
 
     // bomb tests

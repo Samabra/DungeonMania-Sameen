@@ -8,7 +8,7 @@ import dungeonmania.util.Position;
 
 public class OrActivate implements ActivateStrategy {
     @Override
-    public boolean apply(GameMap map, List<Logic> logicEntities, Position currPos) {
+    public synchronized boolean apply(GameMap map, List<Logic> logicEntities, Position currPos) {
         boolean isActivated = false;
         for (Logic entity : logicEntities) {
             isActivated = isActivated || entity.isActivated(map, currPos);

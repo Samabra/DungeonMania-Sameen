@@ -23,7 +23,7 @@ public class LightBulb extends Entity implements Logic {
     }
 
     @Override
-    public boolean isActivated(GameMap map, Position prevPos) {
+    public synchronized boolean isActivated(GameMap map, Position prevPos) {
         List<Position> adjPosList = getPosition().getCardinallyAdjacentPositions();
         adjPosList.remove(null);
         // should only store wires and switches

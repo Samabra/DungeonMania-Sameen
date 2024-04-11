@@ -54,7 +54,7 @@ public class Switch extends Entity implements Movable, Overlappable, Logic {
         }
     }
 
-    public void searchEntity(GameMap map, Position prevPos) {
+    public synchronized void searchEntity(GameMap map, Position prevPos) {
 
         List<Logic> logicEntities = new ArrayList<>();
         List<Position> adjPosList = getPosition().getCardinallyAdjacentPositions();

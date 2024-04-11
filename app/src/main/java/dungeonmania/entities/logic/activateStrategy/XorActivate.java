@@ -10,7 +10,7 @@ import dungeonmania.util.Position;
 
 public class XorActivate implements ActivateStrategy {
     @Override
-    public boolean apply(GameMap map, List<Logic> logicEntities, Position currPos) {
+    public synchronized boolean apply(GameMap map, List<Logic> logicEntities, Position currPos) {
 
         int activatedCount = 0;
         for (Logic entity : logicEntities) {
