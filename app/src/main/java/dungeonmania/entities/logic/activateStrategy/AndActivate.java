@@ -11,7 +11,6 @@ import dungeonmania.util.Position;
 public class AndActivate implements ActivateStrategy {
     @Override
     public synchronized boolean apply(GameMap map, List<Logic> logicEntities, Position currPos) {
-        System.out.println(logicEntities.size());
         if (logicEntities.size() < 2)
             return false;
 

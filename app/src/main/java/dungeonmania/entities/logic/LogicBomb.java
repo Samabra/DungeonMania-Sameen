@@ -53,6 +53,7 @@ public class LogicBomb extends Entity implements InventoryItem, Logic {
         return activated;
     }
 
+    // FIXME: need to add behaviour when putting down in player.java
     public void onPutDown(GameMap map, Position p) {
         translate(Position.calculatePositionBetween(getPosition(), p));
         map.addEntity(this);

@@ -10,9 +10,10 @@ import dungeonmania.entities.logic.activateStrategy.ActivateStrategy;
 import dungeonmania.map.GameMap;
 import dungeonmania.util.Position;
 
-public class Wire extends Entity implements Logic {
+public class Wire extends Entity implements Logic, Conductor {
     private ActivateStrategy activateStrategy;
-    // private List<Logic> adjEntities = new ArrayList<>();
+    private boolean prevActivated = false;
+    private boolean activated = false;
 
     public Wire(Position pos) {
         super(pos);
@@ -28,14 +29,15 @@ public class Wire extends Entity implements Logic {
 
         adjPosList.stream().forEach(node -> {
             // there should only be one logical entity per tile
-            List<Entity> entities = map.getEntities(node).stream()
-                    .filter(e -> (e instanceof Wire || e instanceof Switch)).collect(Collectors.toList());
+            List<Entity> entities = map.getEntities(node).stream().filter(e -> (e instanceof Conductor))
+                    .collect(Collectors.toList());
             if (entities.size() != 0) {
                 adjEntities.add((Logic) entities.get(0));
             }
         });
-
-        return activateStrategy.apply(map, adjEntities, getPosition());
+        prevActivated = activated;
+        activated = activateStrategy.apply(map, adjEntities, getPosition());
+        return activated;
     }
 
     public synchronized void searchEntity(GameMap map, Position prevPos) {
@@ -62,5 +64,14 @@ public class Wire extends Entity implements Logic {
                 enitity.isActivated(map, getPosition());
             }
         });
+    }
+
+    public boolean isActivated() {
+        return this.activated;
+    }
+
+    @Override
+    public boolean prevActivated() {
+        return prevActivated;
     }
 }
