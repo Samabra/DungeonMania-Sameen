@@ -11,7 +11,6 @@ import dungeonmania.entities.Player;
 import dungeonmania.entities.collectables.Treasure;
 import dungeonmania.entities.enemies.enemyMovement.MoveMercenary;
 import dungeonmania.map.GameMap;
-import dungeonmania.entities.buildables.Sceptre;
 import dungeonmania.util.Position;
 
 public class Mercenary extends Enemy implements Interactable {
@@ -26,7 +25,6 @@ public class Mercenary extends Enemy implements Interactable {
     private double allyAttack;
     private double allyDefence;
     private boolean allied = false;
-    private boolean mindControl = false;
     private int mindControlDuration;
     private boolean isAdjacentToPlayer = false;
 
@@ -44,25 +42,18 @@ public class Mercenary extends Enemy implements Interactable {
         return allied;
     }
 
-    public boolean isMindControlled() {
-        return mindControl;
-    }
-
     public void mindControl(int duration) {
         mindControlDuration = duration;
-        mindControl = true;
+        allied = true;
     }
 
     public void onTickMindControl() {
         mindControlDuration--;
-        if (mindControl && mindControlDuration == 0) {
-            changeMindState();
+        if (allied && mindControlDuration == 0) {
+            allied = false;
         }
     }
 
-    private void changeMindState() {
-        mindControl = false;
-    }
 
     @Override
     public void onOverlap(GameMap map, Entity entity) {
@@ -124,7 +115,7 @@ public class Mercenary extends Enemy implements Interactable {
 
     @Override
     public BattleStatistics getBattleStatistics() {
-        if (!allied || !mindControl)
+        if (!allied)
             return super.getBattleStatistics();
         return new BattleStatistics(0, allyAttack, allyDefence, 1, 1);
     }

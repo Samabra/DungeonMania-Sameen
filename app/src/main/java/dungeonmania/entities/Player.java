@@ -76,15 +76,7 @@ public class Player extends Entity implements Battleable, Overlappable {
         return inventory.getBuildables();
     }
 
-    public boolean build(String buildable, EntityFactory factory, GameMap map) throws InvalidActionException {
-        List<String> buildables = getBuildables();
-        if (!buildables.contains(buildable)) {
-            throw new InvalidActionException(String.format("%s cannot be built", buildable));
-        }
-        if (buildable.equals("midnight_armour")
-            && map.getZombies()) {
-            throw new InvalidActionException(String.format("%s cannot be built", buildable));
-        }
+    public boolean build(String buildable, EntityFactory factory, GameMap map) {
         InventoryItem item = inventory.checkBuildCriteria(this, true, buildable.equals("shield"), factory);
         if (item == null)
             return false;
@@ -128,36 +120,28 @@ public class Player extends Entity implements Battleable, Overlappable {
 
     private boolean mercenaryIsAllied(Enemy enemy) {
         return enemy instanceof Mercenary && (((Mercenary) enemy).isAllied()
-                || ((Mercenary) enemy).isMindControlled());
+                || ((Mercenary) enemy).isAllied());
     }
 
     public Inventory getInventory() {
         return inventory;
     }
 
-    public Game interact(String entityId, GameMap map, Game game)  throws IllegalArgumentException, InvalidActionException {
-        Entity e = map.getEntity(entityId);
-        if (e == null || !(e instanceof Interactable))
-            throw new IllegalArgumentException("Entity cannot be interacted");
-        if (e instanceof Mercenary) {
+    public void interact(Entity entity, GameMap map, Game game) {
+        if (entity instanceof Mercenary) {
             if (inventory.itemExists(Sceptre.class)
-                && !((Mercenary) e).isMindControlled()) {
+                && !((Mercenary) entity).isAllied()) {
                 Sceptre sceptre = inventory.getFirst(Sceptre.class);
-                ((Mercenary) e).mindControl(sceptre.getMindControlDuration());
-            } else if (((Mercenary) e).isInteractable(this)
-                        && !((Mercenary) e).isAllied()) {
-                ((Mercenary) e).bribe(this);
-            } else {
-                throw new InvalidActionException("Entity cannot be interacted");
+                ((Mercenary) entity).mindControl(sceptre.getMindControlDuration());
+            } else if (((Mercenary) entity).isInteractable(this)
+                        && !((Mercenary) entity).isAllied()) {
+                ((Mercenary) entity).bribe(this);
             }
-        } if (e instanceof ZombieToastSpawner
-                    && ((ZombieToastSpawner) e).isInteractable(this)) {
+        } if (entity instanceof ZombieToastSpawner
+                    && ((ZombieToastSpawner) entity).isInteractable(this)) {
             weaponUse(game);
-            map.destroyEntity(e);
-        } else {
-            throw new InvalidActionException("Entity cannot be interacted");
+            map.destroyEntity(entity);
         }
-        return game;
     }
 
     public boolean comparePosition(Position newPosition) {
