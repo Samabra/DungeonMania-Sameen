@@ -1,13 +1,14 @@
 package dungeonmania.entities.buildables;
 
 public class Sceptre extends Buildable {
-    private static final int MIND_CONTROL_DURATION = 2;
+    private int duration;
 
-    public Sceptre() {
+    public Sceptre(int duration) {
         super(null);
+        this.duration = duration;
     }
 
     public int getMindControlDuration() {
-        return MIND_CONTROL_DURATION;
+        return duration;
     }
 }
