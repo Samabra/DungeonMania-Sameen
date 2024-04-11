@@ -29,9 +29,10 @@ public class ZombieToastSpawner extends Entity implements Interactable, Destroya
 
     @Override
     public boolean isInteractable(Player player) {
-        List<Position> positions = getPosition().getAdjacentPositions();
+
+        List<Position> positions = getPosition().getCardinallyAdjacentPositions();
         for (Position place : positions) {
-            if (place.equals(player.getPosition())) {
+            if (place.equals(player.getPosition()) && player.hasWeapon()) {
                 return true;
             }
         }
