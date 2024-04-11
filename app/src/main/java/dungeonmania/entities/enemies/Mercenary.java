@@ -8,10 +8,12 @@ import dungeonmania.battles.BattleStatistics;
 import dungeonmania.entities.Entity;
 import dungeonmania.entities.Interactable;
 import dungeonmania.entities.Player;
+import dungeonmania.entities.buildables.Sceptre;
 import dungeonmania.entities.collectables.Treasure;
 import dungeonmania.entities.enemies.enemyMovement.MoveMercenary;
 import dungeonmania.map.GameMap;
 import dungeonmania.util.Position;
+import dungeonmania.entities.inventory.Inventory;
 
 public class Mercenary extends Enemy implements Interactable {
     public static final int DEFAULT_BRIBE_AMOUNT = 1;
@@ -67,7 +69,13 @@ public class Mercenary extends Enemy implements Interactable {
      * @param player
      * @return
      */
-    public boolean canBeBribed(Player player, GameMap map) {
+
+    @Override
+    public boolean isInteractable(Player player) {
+        Inventory inventory = player.getInventory();
+        if (inventory.itemExists(Sceptre.class)) {
+            return true;
+        }
         int x = getPosition().getX();
         int y = getPosition().getY();
         for (int i = x - bribeRadius; i <= x + bribeRadius; i++) {
@@ -78,7 +86,7 @@ public class Mercenary extends Enemy implements Interactable {
                 }
             }
         }
-        return false;
+        return true;
         //return bribeRadius >= 0 && player.countEntityOfType(Treasure.class) >= bribeAmount;
     }
 
@@ -98,20 +106,6 @@ public class Mercenary extends Enemy implements Interactable {
         getEnemyMovement().apply(game, this);
     }
 
-    @Override
-    public boolean isInteractable(Player player) {
-        int x = getPosition().getX();
-        int y = getPosition().getY();
-        for (int i = x - bribeRadius; i <= x + bribeRadius; i++) {
-            for (int j = y - bribeRadius; j <= y + bribeRadius; j++) {
-                if (player.comparePosition(new Position(i, j))) {
-                    return player.countEntityOfType(Treasure.class) >= bribeAmount
-                            && !allied;
-                }
-            }
-        }
-        return false;
-    }
 
     @Override
     public BattleStatistics getBattleStatistics() {
