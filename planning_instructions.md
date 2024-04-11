@@ -78,9 +78,10 @@ Bomb
 -   XOR (done)
 -   CO_AND (done)
 
-- not activated switch not conductive
-- logic bomb not conductive
-- switch door not conductive
-- light bulb not conductive
+- not activated switch not conductive (done)
+- logic bomb not conductive (done)
+- switch door not conductive (done)
+- light bulb not conductive (done)
 
+// TODO: need to test whether logic bomb can be picked up
 ## Task 3

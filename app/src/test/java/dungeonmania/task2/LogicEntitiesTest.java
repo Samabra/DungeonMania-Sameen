@@ -14,6 +14,11 @@ import dungeonmania.util.Direction;
 import dungeonmania.util.Position;
 
 public class LogicEntitiesTest {
+    // @Test
+    // public void random() {
+    //     List<Integer> list = new ArrayList<>();
+    //     System.out.println(list.remove(null));
+    // }
 
     // Light bulb tests
     @Test
@@ -37,6 +42,9 @@ public class LogicEntitiesTest {
     @Tag("5-2")
     @DisplayName("Test AND Light Bulb")
     public void andLightBulb() {
+        //  P   B   S   W
+        //      B   S   LB
+
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_andLightBulb", "c_logicEntitiesTest_andLightBulb");
         assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
@@ -52,6 +60,7 @@ public class LogicEntitiesTest {
         res = dmc.tick(Direction.LEFT);
         res = dmc.tick(Direction.DOWN);
         res = dmc.tick(Direction.RIGHT);
+        System.out.println("OFF LB " + TestUtils.getEntities(res, "light_bulb_on").size());
         assertEquals(1, TestUtils.getEntities(res, "light_bulb_on").size());
 
     }
@@ -148,6 +157,7 @@ public class LogicEntitiesTest {
     public void orBomb() {
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_orBomb", "c_logicEntitiesTest_orBomb");
+        System.out.println(TestUtils.getEntities(res));
         assertEquals(1, TestUtils.getEntities(res, "bomb").size());
 
         // activate switch -> bomb detonated
@@ -206,7 +216,7 @@ public class LogicEntitiesTest {
 
     @Test
     @Tag("5-10")
-    @DisplayName("Test CO_AND Light Bulb (fail)")
+    @DisplayName("Test CO_AND Bomb (fail)")
     public void coandBombFail() {
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandBomb", "c_logicEntitiesTest_coandBomb");
