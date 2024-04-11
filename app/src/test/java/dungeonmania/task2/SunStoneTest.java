@@ -44,14 +44,16 @@ public class SunStoneTest {
 
         // pick up sun stone
         res = dmc.tick(Direction.RIGHT);
+        assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
 
         // go through door
         res = dmc.tick(Direction.RIGHT);
         Position playerPos = TestUtils.getEntities(res, "player").get(0).getPosition();
         Position doorPos = TestUtils.getEntities(res, "door").get(0).getPosition();
-        
+
         // assert player position should be equal to door position
         assertEquals(playerPos, doorPos);
+
         // assert that sun stone stays in inventory
         assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
     }

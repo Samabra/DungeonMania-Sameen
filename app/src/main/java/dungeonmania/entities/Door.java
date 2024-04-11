@@ -27,6 +27,7 @@ public class Door extends Entity implements Overlappable {
 
     @Override
     public void onOverlap(GameMap map, Entity entity) {
+        System.out.println("HELLO");
         if (!(entity instanceof Player))
             return;
 
@@ -36,10 +37,9 @@ public class Door extends Entity implements Overlappable {
             Key key = inventory.getFirst(Key.class);
             inventory.remove(key);
             open();
-        } if (hasSunStone(player)) {
-            Inventory inventory = player.getInventory();
-            SunStone stone = inventory.getFirst(SunStone.class);
-            inventory.remove(stone);
+        }
+        if (hasSunStone(player)) {
+            System.out.println("DOOR: " + open);
             open();
         }
     }

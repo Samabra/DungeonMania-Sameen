@@ -17,12 +17,10 @@ import dungeonmania.entities.inventory.InventoryItem;
 import dungeonmania.entities.playerState.BaseState;
 import dungeonmania.entities.playerState.PlayerState;
 import dungeonmania.entities.buildables.Sceptre;
-import dungeonmania.exceptions.InvalidActionException;
 import dungeonmania.map.GameMap;
 import dungeonmania.util.Direction;
 import dungeonmania.util.Position;
 import dungeonmania.Game;
-
 
 public class Player extends Entity implements Battleable, Overlappable {
     public static final double DEFAULT_ATTACK = 5.0;
@@ -61,6 +59,7 @@ public class Player extends Entity implements Battleable, Overlappable {
     public boolean hasWeapon() {
         return inventory.hasWeapon();
     }
+
     public void weaponUse(Game game) {
         BattleItem weapon = getWeapon();
         if (weapon instanceof Durable) {
@@ -119,8 +118,7 @@ public class Player extends Entity implements Battleable, Overlappable {
     }
 
     private boolean mercenaryIsAllied(Enemy enemy) {
-        return enemy instanceof Mercenary && (((Mercenary) enemy).isAllied()
-                || ((Mercenary) enemy).isAllied());
+        return enemy instanceof Mercenary && (((Mercenary) enemy).isAllied() || ((Mercenary) enemy).isAllied());
     }
 
     public Inventory getInventory() {
@@ -129,16 +127,14 @@ public class Player extends Entity implements Battleable, Overlappable {
 
     public void interact(Entity entity, GameMap map, Game game) {
         if (entity instanceof Mercenary) {
-            if (inventory.itemExists(Sceptre.class)
-                && !((Mercenary) entity).isAllied()) {
+            if (inventory.itemExists(Sceptre.class) && !((Mercenary) entity).isAllied()) {
                 Sceptre sceptre = inventory.getFirst(Sceptre.class);
                 ((Mercenary) entity).mindControl(sceptre.getMindControlDuration());
-            } else if (((Mercenary) entity).isInteractable(this)
-                        && !((Mercenary) entity).isAllied()) {
+            } else if (((Mercenary) entity).isInteractable(this) && !((Mercenary) entity).isAllied()) {
                 ((Mercenary) entity).bribe(this);
             }
-        } if (entity instanceof ZombieToastSpawner
-                    && ((ZombieToastSpawner) entity).isInteractable(this)) {
+        }
+        if (entity instanceof ZombieToastSpawner && ((ZombieToastSpawner) entity).isInteractable(this)) {
             weaponUse(game);
             map.destroyEntity(entity);
         }

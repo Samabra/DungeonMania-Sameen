@@ -40,13 +40,14 @@ public class Inventory {
 
         if (wood >= 1 && arrows >= 3) {
             result.add("bow");
-        } if (wood >= 2 && ((treasure >= 1 || keys >= 1) || sunStones >= 1)) {
+        }
+        if (wood >= 2 && ((treasure >= 1 || keys >= 1) || sunStones >= 1)) {
             result.add("shield");
-        } if ((wood >= 1 || arrows >= 2)
-            && ((treasure >= 1 || keys >= 1) || sunStones >= 1)
-            && sunStones >= 1) {
+        }
+        if ((wood >= 1 || arrows >= 2) && ((treasure >= 1 || keys >= 1) || sunStones >= 1) && sunStones >= 1) {
             result.add("sceptre");
-        } if (swords >= 1 && sunStones >= 1) {
+        }
+        if (swords >= 1 && sunStones >= 1) {
             result.add("midnight_armour");
         }
         return result;
@@ -75,23 +76,26 @@ public class Inventory {
                 items.remove(wood.get(1));
                 if (treasure.size() >= 1) {
                     items.remove(treasure.get(0));
-                } if (keys.size() >= 1) {
+                }
+                if (keys.size() >= 1) {
                     items.remove(keys.get(0));
                 }
             }
             return factory.buildShield();
-        } else if ((wood.size() >= 1 || arrows.size() >= 2) 
-                    && ((treasure.size() >= 1 || keys.size() >= 1) || sunStone.size() > 1)
-                    && sunStone.size() >= 1) {
+        } else if ((wood.size() >= 1 || arrows.size() >= 2)
+                && ((treasure.size() >= 1 || keys.size() >= 1) || sunStone.size() > 1) && sunStone.size() >= 1) {
             if (remove) {
                 if (wood.size() >= 1) {
                     items.remove(wood.get(0));
-                } if (arrows.size() >= 2) {
+                }
+                if (arrows.size() >= 2) {
                     items.remove(arrows.get(0));
                     items.remove(arrows.get(1));
-                } if (treasure.size() >= 1) {
+                }
+                if (treasure.size() >= 1) {
                     items.remove(treasure.get(0));
-                } if (keys.size() >= 1) {
+                }
+                if (keys.size() >= 1) {
                     items.remove(keys.get(0));
                 }
                 items.remove(sunStone.get(0));

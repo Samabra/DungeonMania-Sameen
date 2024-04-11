@@ -75,7 +75,7 @@ public class GameMap {
         List<ZombieToast> zombies = getEntities(ZombieToast.class);
         return zombies.size() >= 1;
     }
-    
+
     private void initRegisterMovables() {
         List<Enemy> enemies = getEntities(Enemy.class);
         enemies.forEach(e -> {
@@ -127,10 +127,14 @@ public class GameMap {
         List<Runnable> overlapCallbacks = new ArrayList<>();
         List<Entity> collectableEntities = new ArrayList<>();
         getEntities(entity.getPosition()).forEach(e -> {
-            if (e != entity && e instanceof Overlappable)
+            if (e != entity && e instanceof Overlappable) {
+                System.out.println("HELLO");
                 overlapCallbacks.add(() -> ((Overlappable) e).onOverlap(this, entity));
-            if (entity instanceof Player && e != entity && e instanceof InventoryItem)
+            }
+            if (entity instanceof Player && e != entity && e instanceof InventoryItem) {
                 collectableEntities.add(e);
+                System.out.println("PLAYER: " + (entity instanceof Player));
+            }
         });
         overlapCallbacks.forEach(callback -> {
             callback.run();

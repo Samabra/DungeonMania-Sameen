@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 
-import javax.management.InvalidApplicationException;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -57,8 +55,8 @@ public class MidnightArmourTest {
         // obtain sunStone, sword
         res = dmc.tick(Direction.RIGHT);
         res = dmc.tick(Direction.RIGHT);
-        assertEquals(0, TestUtils.getInventory(res, "sun_stone").size());
-        assertEquals(0, TestUtils.getInventory(res, "sword").size());
+        assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
+        assertEquals(1, TestUtils.getInventory(res, "sword").size());
         assertEquals(0, TestUtils.getInventory(res, "midnight_armour").size());
 
         // can't build midnight armour
@@ -80,24 +78,24 @@ public class MidnightArmourTest {
         assertEquals(1, TestUtils.getInventory(res, "midnight_armour").size());
 
     }
-    
+
     @Test
     @Tag("5-3")
     @DisplayName("Test midnight armour unsatisfactory build criteria- No Sword")
     public void buildArmourWithNoSword() {
         DungeonManiaController dmc = new DungeonManiaController();
-        DungeonResponse res = dmc.newGame("d_midnightArmourTest_noSword",
-                "c_midnightArmourTest_noSword");
+        DungeonResponse res = dmc.newGame("d_midnightArmourTest_noSword", "c_midnightArmourTest_noSword");
 
         // Pick up wood
         res = dmc.tick(Direction.UP);
-        
+
         // Pick up sun stone
         res = dmc.tick(Direction.UP);
         assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
-        assertEquals(0, TestUtils.getInventory(res, "sword"));
+        assertEquals(0, TestUtils.getInventory(res, "sword").size());
+
         assertThrows(InvalidActionException.class, () -> dmc.build("midnight_armour"));
-        assertEquals(1, TestUtils.getInventory(res, "sun_stone"));
+        assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
 
         // No midnight armour should appear in inventory
         assertEquals(0, TestUtils.getInventory(res, "midnight_armour").size());
@@ -108,17 +106,16 @@ public class MidnightArmourTest {
     @DisplayName("Test midnight armour unsatisfactory build criteria - No Sunstone")
     public void buildArmourWithNoSunstone() {
         DungeonManiaController dmc = new DungeonManiaController();
-        DungeonResponse res = dmc.newGame("d_midnightArmourTest_noSunstone",
-                                        "c_midnightArmourTest_noSunstone");
+        DungeonResponse res = dmc.newGame("d_midnightArmourTest_noSunstone", "c_midnightArmourTest_noSunstone");
         // Pick up wood
         res = dmc.tick(Direction.UP);
-        
+
         // Pick up sword
         res = dmc.tick(Direction.UP);
         assertEquals(1, TestUtils.getInventory(res, "sword").size());
-        assertEquals(0, TestUtils.getInventory(res, "sun_stone"));
+        assertEquals(0, TestUtils.getInventory(res, "sun_stone").size());
         assertThrows(InvalidActionException.class, () -> dmc.build("midnight_armour"));
-        assertEquals(1, TestUtils.getInventory(res, "sword"));
+        assertEquals(1, TestUtils.getInventory(res, "sword").size());
 
         // No midnight armour should be present
         assertEquals(0, TestUtils.getInventory(res, "midnight_armour").size());
@@ -129,21 +126,20 @@ public class MidnightArmourTest {
     @DisplayName("Test midnight armour unsatisfactory build criteria - No key ingredients")
     public void buildArmourWithNothing() {
         DungeonManiaController dmc = new DungeonManiaController();
-        DungeonResponse res = dmc.newGame("d_midnightArmourTest_noIngredients",
-                                        "c_midnightArmourTest_noIngredients");
+        DungeonResponse res = dmc.newGame("d_midnightArmourTest_noIngredients", "c_midnightArmourTest_noIngredients");
         // Pick up treasure
         res = dmc.tick(Direction.LEFT);
-        
+
         // Pick up treasure
         res = dmc.tick(Direction.LEFT);
 
         // Pick up arrow
         res = dmc.tick(Direction.LEFT);
 
-        assertEquals(2, TestUtils.getInventory(res, "treasure"));
-        assertEquals(1, TestUtils.getInventory(res, "arrow"));
-        assertEquals(0, TestUtils.getInventory(res, "sword"));
-        assertEquals(0, TestUtils.getInventory(res, "sun_stone"));
+        assertEquals(2, TestUtils.getInventory(res, "treasure").size());
+        assertEquals(1, TestUtils.getInventory(res, "arrow").size());
+        assertEquals(0, TestUtils.getInventory(res, "sword").size());
+        assertEquals(0, TestUtils.getInventory(res, "sun_stone").size());
 
         assertThrows(InvalidActionException.class, () -> dmc.build("midnight_armour"));
 
@@ -156,26 +152,25 @@ public class MidnightArmourTest {
     @DisplayName("Test midnight armour unsatisfactory build criteria - No ingredients remaining")
     public void buildArmourWithNoLeftOvers() {
         DungeonManiaController dmc = new DungeonManiaController();
-        DungeonResponse res = dmc.newGame("d_midnightArmourTest_noLeftOvers",
-                                        "c_midnightArmourTest_noLeftOvers");
+        DungeonResponse res = dmc.newGame("d_midnightArmourTest_noLeftOver", "c_midnightArmourTest_noLeftOver");
         // Pick up treasure
         res = dmc.tick(Direction.LEFT);
-        
+
         // Pick up treasure
         res = dmc.tick(Direction.LEFT);
 
         // Move to the left
         res = dmc.tick(Direction.LEFT);
 
-        assertEquals(1, TestUtils.getInventory(res, "sun_stone"));
-        assertEquals(1, TestUtils.getInventory(res, "sword"));
+        assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
+        assertEquals(1, TestUtils.getInventory(res, "sword").size());
 
         // Should successfully build midnight armour
         res = assertDoesNotThrow(() -> dmc.build("midnight_armour"));
 
         // Nothing should be in inventory
-        assertEquals(0, TestUtils.getInventory(res, "sword"));
-        assertEquals(0, TestUtils.getInventory(res, "sun_stone"));
+        assertEquals(0, TestUtils.getInventory(res, "sword").size());
+        assertEquals(0, TestUtils.getInventory(res, "sun_stone").size());
 
         // Cannot build another midnight armour due to insufficient items
         assertThrows(InvalidActionException.class, () -> dmc.build("midnight_armour"));
@@ -228,6 +223,5 @@ public class MidnightArmourTest {
         assertEquals(enemyExpectedDamage, -firstRound.getDeltaEnemyHealth(), 0.001);
 
     }
-
 
 }
