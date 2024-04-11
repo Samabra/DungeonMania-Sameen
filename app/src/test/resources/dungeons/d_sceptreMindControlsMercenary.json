@@ -48,9 +48,10 @@
         }, {
             "type": "key",
             "x": 2,
-            "y": 5
+            "y": 5,
+            "key": 1
         }, {
-            "type": "sun stone",
+            "type": "sun_stone",
             "x": 3,
             "y": 5
         }, {
@@ -59,11 +60,11 @@
             "y": 5
         }, {
             "type": "mercenary",
-            "x": 8,
+            "x": 9,
             "y": 5
         }, {
             "type": "wall",
-            "x": 9,
+            "x": 10,
             "y": 5
         }, {
             "type": "wall",

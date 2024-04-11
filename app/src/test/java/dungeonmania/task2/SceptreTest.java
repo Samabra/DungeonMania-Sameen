@@ -13,11 +13,11 @@ import dungeonmania.mvp.TestUtils;
 import dungeonmania.response.models.DungeonResponse;
 import dungeonmania.util.Direction;
 import dungeonmania.util.Position;
-public class SceptreTest {
 
+public class SceptreTest {
     @Test
     @Tag("4-1")
-    @DisplayName ("Sceptre mind controls mercenary")
+    @DisplayName("Sceptre mind controls mercenary")
     public void sceptreMindControls() {
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_sceptreMindControlsMercenary", "c_sceptreMindControlsMercenary");
@@ -25,26 +25,30 @@ public class SceptreTest {
         // Ingredients to build sceptre in Map
         assertEquals(1, TestUtils.getEntities(res, "wood").size());
         assertEquals(1, TestUtils.getEntities(res, "key").size());
-        assertEquals(1, TestUtils.getEntities(res, "sun stone").size());
+        assertEquals(1, TestUtils.getEntities(res, "sun_stone").size());
+        assertEquals(1, TestUtils.getEntities(res, "mercenary").size());
 
-        // pick up key 
+        // pick up key
         res = dmc.tick(Direction.RIGHT);
         // pick up sun stone
         res = dmc.tick(Direction.RIGHT);
         // pick up wood
         res = dmc.tick(Direction.RIGHT);
-        assertEquals(1, TestUtils.getInventory(res, "sun stone").size());
+        assertEquals(1, TestUtils.getInventory(res, "sun_stone").size());
         assertEquals(1, TestUtils.getInventory(res, "key").size());
         assertEquals(1, TestUtils.getInventory(res, "wood").size());
 
         // Build sceptre
         assertEquals(0, TestUtils.getInventory(res, "sceptre").size());
         res = assertDoesNotThrow(() -> dmc.build("sceptre"));
+        // FIXME: WHY DOES MERCENARY DIE WHEN SCEPTRE IS BUILT
+        assertEquals(1, TestUtils.getEntities(res, "mercenary").size());
         assertEquals(1, TestUtils.getInventory(res, "sceptre").size());
 
         // Use sceptre to mind control mercenary
-        List <EntityResponse> playerEntity = TestUtils.getEntities(res, "player");
-        String id = playerEntity.get(0).getId();
+
+        List<EntityResponse> mercenaryEntity = TestUtils.getEntities(res, "mercenary");
+        String id = mercenaryEntity.get(0).getId();
         res = assertDoesNotThrow(() -> dmc.interact(id));
         assertEquals(0, TestUtils.getInventory(res, "sceptre").size());
 
@@ -82,10 +86,9 @@ public class SceptreTest {
     @Test
     @Tag("4-2")
     @DisplayName("Sceptre cannot be built due to insufficient materials - no Sun Stone")
-    public void SceptreInsufficientIngredients() {
+    public void sceptreInsufficientIngredients() {
         DungeonManiaController dmc = new DungeonManiaController();
         DungeonResponse res = dmc.newGame("d_sceptreMindControlsMercenary", "c_sceptreMindControlsMercenary");
 
-        
     }
 }
