@@ -290,14 +290,14 @@ For complex Goals:
 
 [Any other notes]
 
-### Choice 2 (Insert choice)
+### Choice 2 (Logic Switches)
 
 [Links to your merge requests](/put/links/here)
 
 **Assumptions**
 
 [Any assumptions made]
-
+// FIXME: TODO later
 **Design**
 
 [Design]
@@ -305,10 +305,17 @@ For complex Goals:
 **Changes after review**
 
 [Design review/Changes made]
-
+-   No design change to the original mvp
+New changes include:
+-  Making a new Logic interface that all Logical entities implement including wires and switches 
+-  A conductor interface for switches and wires
+-  The above changes were made so that a composite pattern could be implemented to evualute whether the logic was satisfied to activate/turn on the logical entity. Where the compound nodes were the logical entities and leaf nodes were Switches. The wires were simply another compound node in a sense, but it's purpose was just to branch out the search.
+-  The logical evaluations were all implemented using a Strategy pattern with the "ActivateStrategy" interface for OR, AND, XOR and CO_AND
+-  The idea for the above was so that I could have a searching mechanism that was called when the Switch changed states i.e. from activated to deactivated. This would search for any Logical Entity and also changed their state. 
 **Test list**
 
 [Test List]
+// FIXME: TODO later.
 
 **Other notes**
 

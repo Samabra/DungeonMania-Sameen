@@ -45,7 +45,7 @@ public class BattleFacade {
 
         List<Mercenary> mercs = game.getMap().getEntities(Mercenary.class);
         for (Mercenary merc : mercs) {
-            if (!merc.isAllied() && !merc.isMindControlled()) continue;
+            if (!merc.isAllied()) continue;
             playerBuff = BattleStatistics.applyBuff(playerBuff, merc.getBattleStatistics());
         }
 
