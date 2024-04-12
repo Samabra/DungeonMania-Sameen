@@ -33,13 +33,13 @@ public class BattleFacade {
         Potion effectivePotion = player.getEffectivePotion();
         if (effectivePotion != null) {
             playerBuff = player.applyBuff(playerBuff);
-        } else {
-            for (BattleItem item : player.getInventory().getEntities(BattleItem.class)) {
-                if (item instanceof Potion)
-                    continue;
-                playerBuff = item.applyBuff(playerBuff);
-                battleItems.add(item);
-            }
+
+        }
+        for (BattleItem item : player.getInventory().getEntities(BattleItem.class)) {
+            if (item instanceof Potion)
+                continue;
+            playerBuff = item.applyBuff(playerBuff);
+            battleItems.add(item);
         }
 
         List<Mercenary> mercs = game.getMap().getEntities(Mercenary.class);
