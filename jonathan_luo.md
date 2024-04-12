@@ -27,3 +27,5 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 ## Week 9
 
 - List the tasks you completed this week here
+- Added to 1f 
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/16
