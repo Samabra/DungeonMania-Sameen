@@ -370,5 +370,13 @@ Steps taken to fix this:
 [Merge Request 2](/put/links/here)
 
 [Briefly explain what you did]
+Looking at BattleTest.java, there was an unused/untested variables with shield
+effect and the post battle response with how much health the player lost.
+Therefore, we decided to investigate further into whether this was an issue.
+In BattleFacade.java, it seemed like only multiplicative buffs were applied to only
+potions and shields/armours and their additive buffs were not accounted for.
+Steps to fix this:
+-   Add additive buffs for battle items
+-   Modify BattleTest.java to use these unused variables.
 
 Add all other changes you made in the same format here:

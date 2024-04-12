@@ -48,7 +48,7 @@ public class SunStoneTest {
 
         // go through door
         res = dmc.tick(Direction.RIGHT);
-        
+
         Position playerPos = TestUtils.getEntities(res, "player").get(0).getPosition();
         Position doorPos = TestUtils.getEntities(res, "door").get(0).getPosition();
 
