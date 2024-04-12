@@ -211,15 +211,21 @@ public class MidnightArmourTest {
 
         // Assumption: Armour effect calculation to reduce damage makes enemyAttack =
         // enemyAttack - shield effect
-        int enemyAttack = Integer.parseInt(TestUtils.getValueFromConfigFile("spider_attack", config));
-        int armourDefenceEffect = Integer.parseInt(TestUtils.getValueFromConfigFile("midnight_armour_defence", config));
-        int playerExpectedDamage = (enemyAttack - armourDefenceEffect) / 10;
+        double enemyAttack = Integer.parseInt(TestUtils.getValueFromConfigFile("spider_attack", config));
+        double armourDefenceEffect = Integer
+                .parseInt(TestUtils.getValueFromConfigFile("midnight_armour_defence", config));
+        assertEquals(2, armourDefenceEffect);
+        assertEquals(12, enemyAttack);
+        double playerExpectedDamage = (enemyAttack - armourDefenceEffect) / 10.0;
         // Delta health is negative so take negative here
+        System.out.println(enemyAttack);
+        System.out.println(armourDefenceEffect);
         assertEquals(playerExpectedDamage, -firstRound.getDeltaCharacterHealth(), 0.001);
 
-        int armourAttackEffect = Integer.parseInt(TestUtils.getValueFromConfigFile("midnight_armour_attack", config));
-        int playerAttack = Integer.parseInt(TestUtils.getValueFromConfigFile("player_attack", config));
-        int enemyExpectedDamage = (playerAttack + armourAttackEffect) / 5;
+        double armourAttackEffect = Integer
+                .parseInt(TestUtils.getValueFromConfigFile("midnight_armour_attack", config));
+        double playerAttack = Integer.parseInt(TestUtils.getValueFromConfigFile("player_attack", config));
+        double enemyExpectedDamage = (playerAttack + armourAttackEffect) / 5.0;
         assertEquals(enemyExpectedDamage, -firstRound.getDeltaEnemyHealth(), 0.001);
 
     }

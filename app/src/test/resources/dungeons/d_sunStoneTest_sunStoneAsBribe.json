@@ -34,5 +34,5 @@
             "y": 2
         }
     ],
-    "goal-condition": { "goals": "exit" }
+    "goal-condition": { "goal": "exit" }
 }

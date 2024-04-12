@@ -22,13 +22,12 @@ public class Door extends Entity implements Overlappable {
         if (open || entity instanceof Spider) {
             return true;
         }
-        return (entity instanceof Player
-                && (hasKey((Player) entity) || hasSunStone((Player) entity)));
+
+        return (entity instanceof Player && (hasKey((Player) entity) || hasSunStone((Player) entity)));
     }
 
     @Override
     public void onOverlap(GameMap map, Entity entity) {
-        System.out.println("HELLO");
         if (!(entity instanceof Player))
             return;
 
