@@ -134,8 +134,8 @@ public class EntityFactory {
     }
 
     public MidnightArmour buildMidnightArmour() {
-        double attack = config.optInt("midnight_armour_attack");
-        double defence = config.optInt("midnight_armour_defence");
+        double attack = config.optDouble("midnight_armour_attack");
+        double defence = config.optDouble("midnight_armour_defence");
         return new MidnightArmour(attack, defence);
     }
 

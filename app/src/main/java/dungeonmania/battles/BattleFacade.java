@@ -9,6 +9,7 @@ import dungeonmania.entities.BattleItem;
 import dungeonmania.entities.Durable;
 import dungeonmania.entities.Entity;
 import dungeonmania.entities.Player;
+import dungeonmania.entities.buildables.MidnightArmour;
 import dungeonmania.entities.collectables.potions.Potion;
 import dungeonmania.entities.enemies.Enemy;
 import dungeonmania.entities.enemies.Mercenary;
@@ -33,9 +34,12 @@ public class BattleFacade {
         Potion effectivePotion = player.getEffectivePotion();
         if (effectivePotion != null) {
             playerBuff = player.applyBuff(playerBuff);
-        } 
+
+        }
+
         for (BattleItem item : player.getInventory().getEntities(BattleItem.class)) {
-            if (item instanceof Potion) continue;
+            if (item instanceof Potion)
+                continue;
             playerBuff = item.applyBuff(playerBuff);
             battleItems.add(item);
         }

@@ -15,6 +15,7 @@ public class MidnightArmour extends Buildable implements BattleItem {
 
     @Override
     public BattleStatistics applyBuff(BattleStatistics origin) {
-        return BattleStatistics.applyBuff(origin, new BattleStatistics(0, attack, defence, 0, 0));
+        return BattleStatistics.applyBuff(origin, new BattleStatistics(0, attack, defence, 1, 1));
     }
+
 }
