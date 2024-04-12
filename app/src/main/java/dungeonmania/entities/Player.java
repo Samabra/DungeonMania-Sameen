@@ -134,6 +134,7 @@ public class Player extends Entity implements Battleable, Overlappable {
             } else if (((Mercenary) entity).isInteractable(this) && !((Mercenary) entity).isAllied()) {
                 ((Mercenary) entity).bribe(this);
             }
+            ((Mercenary) entity).adjacentToPlayer(this);
         }
         if (entity instanceof ZombieToastSpawner && ((ZombieToastSpawner) entity).isInteractable(this)) {
             weaponUse(game);

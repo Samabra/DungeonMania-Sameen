@@ -87,7 +87,12 @@ public class Mercenary extends Enemy implements Interactable {
         }
         return false;
     }
-
+    
+    public void adjacentToPlayer(Player player) {
+        if (!isAdjacentToPlayer && Position.isAdjacent(player.getPosition(), getPosition())) {
+            isAdjacentToPlayer = true;
+        }
+    }
     /**
      * bribe the merc
      */
