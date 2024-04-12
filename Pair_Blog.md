@@ -199,8 +199,13 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 - onOverlap method in Enemy violated the Law of Demeter. Same issue as in Player, where the method was trying to call a method in class Game, but Enemy does not keep Game as a component.
 - Used the already set method of initiateBattle in Map to be called by onOverlap in Enemy.
 
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/16
 
-
+-   PlayerStates were redundant, its only functionality was to return whether 
+    the player was Invincible or Invisible. In general if it can be better 
+    represented as instance variables, then it should be so, instead of using states
+    just to return boolean values. Hence a fix for this was to simply remove the 
+    state pattern implemented. 
 
 Add all other changes you made in the same format here:
 
