@@ -11,13 +11,16 @@ import dungeonmania.entities.collectables.potions.InvincibilityPotion;
 import dungeonmania.entities.collectables.potions.Potion;
 import dungeonmania.entities.enemies.Enemy;
 import dungeonmania.entities.enemies.Mercenary;
+import dungeonmania.entities.enemies.ZombieToastSpawner;
 import dungeonmania.entities.inventory.Inventory;
 import dungeonmania.entities.inventory.InventoryItem;
 import dungeonmania.entities.playerState.BaseState;
 import dungeonmania.entities.playerState.PlayerState;
+import dungeonmania.entities.buildables.Sceptre;
 import dungeonmania.map.GameMap;
 import dungeonmania.util.Direction;
 import dungeonmania.util.Position;
+import dungeonmania.Game;
 
 public class Player extends Entity implements Battleable, Overlappable {
     public static final double DEFAULT_ATTACK = 5.0;
@@ -57,7 +60,14 @@ public class Player extends Entity implements Battleable, Overlappable {
         return inventory.hasWeapon();
     }
 
-    public BattleItem getWeapon() {
+    public void weaponUse(Game game) {
+        BattleItem weapon = getWeapon();
+        if (weapon instanceof Durable) {
+            ((Durable) weapon).use(game);
+        }
+    }
+
+    private BattleItem getWeapon() {
         return inventory.getWeapon();
     }
 
@@ -65,8 +75,8 @@ public class Player extends Entity implements Battleable, Overlappable {
         return inventory.getBuildables();
     }
 
-    public boolean build(String entity, EntityFactory factory) {
-        InventoryItem item = inventory.checkBuildCriteria(this, true, entity.equals("shield"), factory);
+    public boolean build(String buildable, EntityFactory factory, GameMap map) {
+        InventoryItem item = inventory.checkBuildCriteria(this, true, buildable.equals("shield"), factory);
         if (item == null)
             return false;
         return inventory.add(item);
@@ -113,6 +123,27 @@ public class Player extends Entity implements Battleable, Overlappable {
 
     public Inventory getInventory() {
         return inventory;
+    }
+
+    public void interact(Entity entity, GameMap map, Game game) {
+        if (entity instanceof Mercenary) {
+            if (inventory.itemExists(Sceptre.class) && !((Mercenary) entity).isAllied()) {
+                Sceptre sceptre = inventory.getFirst(Sceptre.class);
+                inventory.remove(sceptre);
+                ((Mercenary) entity).mindControl(sceptre.getMindControlDuration());
+            } else if (((Mercenary) entity).isInteractable(this) && !((Mercenary) entity).isAllied()) {
+                ((Mercenary) entity).bribe(this);
+            }
+            ((Mercenary) entity).adjacentToPlayer(this);
+        }
+        if (entity instanceof ZombieToastSpawner && ((ZombieToastSpawner) entity).isInteractable(this)) {
+            weaponUse(game);
+            map.destroyEntity(entity);
+        }
+    }
+
+    public boolean comparePosition(Position newPosition) {
+        return getPosition().equals(newPosition);
     }
 
     public Potion getEffectivePotion() {

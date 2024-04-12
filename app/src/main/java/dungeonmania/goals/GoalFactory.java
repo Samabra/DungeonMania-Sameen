@@ -25,7 +25,7 @@ public class GoalFactory {
         case "enemies":
             // default enemy_goal is 0
             int enemyGoal = config.optInt("enemy_goal", 0);
-            return new EnemiesGoal(enemyGoal);
+            new EnemiesGoal(enemyGoal);
         default:
             return null;
         }

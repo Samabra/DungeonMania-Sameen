@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import dungeonmania.Game;
 import dungeonmania.entities.BattleItem;
+import dungeonmania.entities.Durable;
 import dungeonmania.entities.Entity;
 import dungeonmania.entities.Player;
 import dungeonmania.entities.collectables.potions.Potion;
@@ -44,8 +45,8 @@ public class BattleFacade {
 
         List<Mercenary> mercs = game.getMap().getEntities(Mercenary.class);
         for (Mercenary merc : mercs) {
-            if (!merc.isAllied()) continue;
-            playerBuff = BattleStatistics.applyBuff(playerBuff, merc.getBattleStatistics());
+            if (merc.isAllied())
+                playerBuff = BattleStatistics.applyBuff(playerBuff, merc.getBattleStatistics());
         }
 
         // 2. Battle the two stats
@@ -63,8 +64,8 @@ public class BattleFacade {
 
         // 4. call to decrease durability of items
         for (BattleItem item : battleItems) {
-            if (item instanceof InventoryItem)
-                item.use(game);
+            if (item instanceof Durable)
+                ((Durable)item).use(game);
         }
 
         // 5. Log the battle - solidate it to be a battle response

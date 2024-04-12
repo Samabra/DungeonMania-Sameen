@@ -199,6 +199,9 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 - onOverlap method in Enemy violated the Law of Demeter. Same issue as in Player, where the method was trying to call a method in class Game, but Enemy does not keep Game as a component.
 - Used the already set method of initiateBattle in Map to be called by onOverlap in Enemy.
 
+- Law of Demeter issue in zombieToastSpawner. The interact method calls a method in Player, which returns Inventory, and then tries to access Inventory method, directly, when there is no direct access to Inventory. Through this method, it tries to call a method in an instance of a BattleItem, to whcih again it has no direct access to.
+- To fix this issue, I implemented a method in Player called weaponUse(Game game), that takes in the parameter game from interact method in zombieToastSpawner.
+The weaponUse method in Player calls the getWeapon method in Player (the method has now been made private), which returns an instance of a BattleItem. If the BattleItem has a durability limit (defined by interface Durable), then the weapon is going to get used, or simply, its durability is going to decrease. 
 
 
 
@@ -273,7 +276,11 @@ For complex Goals:
 
 **Changes after review**
 
-[Design review/Changes made]
+- Added buildables class Midnight Armour
+- Added buildables class Sceptre
+- Added new collectable class SunStone
+-
+
 
 **Test list**
 
@@ -283,14 +290,14 @@ For complex Goals:
 
 [Any other notes]
 
-### Choice 2 (Insert choice)
+### Choice 2 (Logic Switches)
 
 [Links to your merge requests](/put/links/here)
 
 **Assumptions**
 
 [Any assumptions made]
-
+// FIXME: TODO later
 **Design**
 
 [Design]
@@ -298,10 +305,17 @@ For complex Goals:
 **Changes after review**
 
 [Design review/Changes made]
-
+-   No design change to the original mvp
+New changes include:
+-  Making a new Logic interface that all Logical entities implement including wires and switches 
+-  A conductor interface for switches and wires
+-  The above changes were made so that a composite pattern could be implemented to evualute whether the logic was satisfied to activate/turn on the logical entity. Where the compound nodes were the logical entities and leaf nodes were Switches. The wires were simply another compound node in a sense, but it's purpose was just to branch out the search.
+-  The logical evaluations were all implemented using a Strategy pattern with the "ActivateStrategy" interface for OR, AND, XOR and CO_AND
+-  The idea for the above was so that I could have a searching mechanism that was called when the Switch changed states i.e. from activated to deactivated. This would search for any Logical Entity and also changed their state. 
 **Test list**
 
 [Test List]
+// FIXME: TODO later.
 
 **Other notes**
 
