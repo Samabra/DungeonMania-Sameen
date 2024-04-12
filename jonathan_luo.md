@@ -30,7 +30,11 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 - wrote tests for sun stone and midnight armour
 - Fixed 2d
 - Made a task 3 edit for defence buff (for both implementation and test)
+<<<<<<< HEAD
 - completed 2f
 - Implemented 2f
 - Added to 1f 
 https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/16
+=======
+- completed 2f
+>>>>>>> 4e3dfe247ff0e2445d46d020058c182c5845696f
