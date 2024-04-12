@@ -127,7 +127,8 @@ public class LogicEntitiesTest {
     //     //      B   S   W   W   W
 
     //     DungeonManiaController dmc = new DungeonManiaController();
-    //     DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandLightBulb", "c_logicEntitiesTest_coandLightBulb");
+    //     DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandLightBulb",
+    //  "c_logicEntitiesTest_coandLightBulb");
     //     assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
 
     //     // light bulb is not turned on
@@ -383,7 +384,8 @@ public class LogicEntitiesTest {
     //     //      B
     //     //      P
     //     DungeonManiaController dmc = new DungeonManiaController();
-    //     DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandSwitchDoor", "c_logicEntitiesTest_coandSwitchDoor");
+    //     DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandSwitchDoor",
+    //      "c_logicEntitiesTest_coandSwitchDoor");
     //     assertEquals(1, TestUtils.getEntities(res, "switch_door").size());
 
     //     // activate both switches in the same tick
