@@ -21,7 +21,6 @@ import dungeonmania.map.GameMap;
 import dungeonmania.util.Direction;
 import dungeonmania.util.Position;
 import dungeonmania.Game;
-import dungeonmania.entities.collectables.*;
 
 public class Player extends Entity implements Battleable, Overlappable {
     public static final double DEFAULT_ATTACK = 5.0;
@@ -100,6 +99,7 @@ public class Player extends Entity implements Battleable, Overlappable {
             pickUp((InventoryItem) entity, map);
         }
     }
+
     public Entity getEntity(String itemUsedId) {
         return inventory.getEntity(itemUsedId);
     }

@@ -28,7 +28,7 @@ public class BattleFacade {
         // 1. apply buff provided by the game and player's inventory
         // getting buffing amount
         List<BattleItem> battleItems = new ArrayList<>();
-        BattleStatistics playerBuff = new BattleStatistics(0, 0, 0, 0, 0);
+        BattleStatistics playerBuff = new BattleStatistics(0, 0, 0, 1, 1);
 
         Potion effectivePotion = player.getEffectivePotion();
         if (effectivePotion != null) {

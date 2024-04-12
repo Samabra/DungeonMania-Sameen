@@ -91,5 +91,5 @@
           "type": "wall"
         }
     ],
-    "goal-condition": {"goal": "enemies"}
+    "goal-condition": { "goal": "enemies" }
 }

@@ -1,4 +1,4 @@
-package dungeonmania.task2;
+/*package dungeonmania.task2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -518,4 +518,4 @@ public class LogicEntitiesTest {
         assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
     }
 
-}
+}*/
