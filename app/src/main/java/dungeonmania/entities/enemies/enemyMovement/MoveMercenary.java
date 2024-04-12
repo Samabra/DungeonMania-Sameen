@@ -21,6 +21,7 @@ public class MoveMercenary implements EnemyMovement {
         GameMap map = game.getMap();
         Player player = game.getPlayer();
         if (mercenary.isAllied()) {
+            System.out.println("Hi I am an allied mercenary");
             nextPos = mercenary.getIsAdjacentToPlayer() ? player.getPreviousDistinctPosition()
                     : map.dijkstraPathFind(mercenary.getPosition(), player.getPosition(), mercenary);
             if (!mercenary.getIsAdjacentToPlayer() && Position.isAdjacent(player.getPosition(), nextPos))

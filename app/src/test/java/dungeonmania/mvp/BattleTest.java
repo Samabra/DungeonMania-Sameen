@@ -8,7 +8,6 @@ import dungeonmania.response.models.RoundResponse;
 import dungeonmania.response.models.EntityResponse;
 import dungeonmania.util.Direction;
 import dungeonmania.util.Position;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -470,6 +469,12 @@ public class BattleTest {
         assertNotEquals(0, firstBattle.getBattleItems().size());
         assertTrue(firstBattle.getBattleItems().get(0).getType().startsWith("shield"));
 
+        BattleResponse battle = res.getBattles().get(0);
+        RoundResponse firstRound = battle.getRounds().get(0);
+        double playerExpectedDamage = (enemyAttack - shieldEffect) / 10.0;
+        // Delta health is negative so take negative here
+        assertEquals(playerExpectedDamage, -firstRound.getDeltaCharacterHealth(), 0.001);
+
         BattleResponse lastBattle = battles.get(battles.size() - 1);
 
         // the shield is not used
@@ -552,12 +557,14 @@ public class BattleTest {
         res = controller.tick(Direction.RIGHT);
         entities = res.getEntities();
         assertEquals(0, TestUtils.countEntityOfType(entities, "treasure"));
+        assertEquals(1, TestUtils.getInventory(res, "treasure").size());
 
         res = controller.interact(TestUtils.getEntityAtPos(res, "mercenary", new Position(3, 1)).get().getId());
         assertEquals(0, res.getInventory().size());
 
         res = controller.tick(Direction.RIGHT);
         res = controller.tick(Direction.RIGHT);
+
         assertTrue(res.getBattles().size() != 0);
 
         List<BattleResponse> battles = res.getBattles();

@@ -185,7 +185,7 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 "battle" method invoked.
 The class is only accessible through class Map, to which Player does have access to.
 - Nested sequence of if statement in Player in method onOverlap. 
-- To simplify the onOverlap method further, I extracted methods out of the onOverlap method. If entity paramater is instance of an Enemy, I simply check if the enemy is a mercenary and is allied in a private boolean method in Player, called mercenaryIsAllied, thereby reducing the if statement nesting. In addressing the violation of the Law of Demeter, I implemented a method in Map, called initiateBattle which basically runs the battle method for component Game class in Map. So Player calls the initiateBattle method in Map, and Map calls battle in Game, thus removing the violation altogether. 
+- To simplify the onOverlap method further, I extracted methods out of the onOverlap method. If entity parameter is instance of an Enemy, I simply check if the enemy is a mercenary and is allied in a private boolean method in Player, called mercenaryIsAllied, thereby reducing the if statement nesting. In addressing the violation of the Law of Demeter, I implemented a method in Map, called initiateBattle which basically runs the battle method for component Game class in Map. So Player calls the initiateBattle method in Map, and Map calls battle in Game, thus removing the violation altogether. 
 
 https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/11
 
@@ -199,11 +199,23 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 - onOverlap method in Enemy violated the Law of Demeter. Same issue as in Player, where the method was trying to call a method in class Game, but Enemy does not keep Game as a component.
 - Used the already set method of initiateBattle in Map to be called by onOverlap in Enemy.
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+- Law of Demeter issue in zombieToastSpawner. The interact method calls a method in Player, which returns Inventory, and then tries to access Inventory method, directly, when there is no direct access to Inventory. Through this method, it tries to call a method in an instance of a BattleItem, to whcih again it has no direct access to.
+- To fix this issue, I implemented a method in Player called weaponUse(Game game), that takes in the parameter game from interact method in zombieToastSpawner.
+The weaponUse method in Player calls the getWeapon method in Player (the method has now been made private), which returns an instance of a BattleItem. If the BattleItem has a durability limit (defined by interface Durable), then the weapon is going to get used, or simply, its durability is going to decrease. 
+=======
 https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/18
 -   Removed all deprecated methods as required, since it may break backwards compatibility.
     Also, they are compiler generator error messages that are not good style to keep in
+>>>>>>> 3326be978d70615f9cf9d783aede102f993fcb37
 
 https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/16
+=======
+- Law of Demeter issue in zombieToastSpawner. The interact method calls a method in Player, which returns Inventory, and then tries to access Inventory method, directly, when there is no direct access to Inventory. Through this method, it tries to call a method in an instance of a BattleItem, to whcih again it has no direct access to.
+- To fix this issue, I implemented a method in Player called weaponUse(Game game), that takes in the parameter game from interact method in zombieToastSpawner.
+The weaponUse method in Player calls the getWeapon method in Player (the method has now been made private), which returns an instance of a BattleItem. If the BattleItem has a durability limit (defined by interface Durable), then the weapon is going to get used, or simply, its durability is going to decrease. 
+>>>>>>> 4e3dfe247ff0e2445d46d020058c182c5845696f
 
 -   PlayerStates were redundant, its only functionality was to return whether 
     the player was Invincible or Invisible. In general if it can be better 
@@ -262,13 +274,19 @@ For complex Goals:
 
 [Any other notes]
 
-### Choice 1 (Insert choice)
+### Choice 1 (Task 2D)
 
-[Links to your merge requests](/put/links/here)
+[Links to your merge requests](https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/17)
 
 **Assumptions**
 
-[Any assumptions made]
+[Assumptions made]
+- Sceptres can only be used once
+- Attacking Spawner has no effect on durability of weapon. 
+- Cannot mind control mercenary when mercenary already allied
+- Cannot bribe an already allied mercenary
+- Armour effect reduce enemy damage so that enemyTotalAttack = enemyAttack - armour defence effect
+- Armour effect increasde player damage as playerTotalAttack = playerAttack + armour attack effect
 
 **Design**
 
@@ -276,7 +294,18 @@ For complex Goals:
 
 **Changes after review**
 
-[Design review/Changes made]
+- Added buildables class Midnight Armour
+- Added buildables class Sceptre
+- Added new collectable class SunStone
+- Game.java does the error handling for Game.build and Game.interact method
+- Player does the interacting after no errors passed
+- Player checks if passed in entity is either an instance of Mercenary or ZombieToastSpawner. Mind control with sceptre is preferred, then bribing.
+- First instance of a weapon is used to destroy spawner, with a decrease in durability to weapon.
+- Interactable interface does not have an abstract interact method anymore, as this is now handled in Player and not the entities that are being interacted with,
+to not violate the Single Responsibility Principle.
+- Added more build criteria to account for the creation of new buildables. 
+
+
 
 **Test list**
 
@@ -293,6 +322,7 @@ For complex Goals:
 **Assumptions**
 
 [Any assumptions made]
+
 -   Assumed player can stand on lightbulb without collecting it
 -   
 **Design**
@@ -312,12 +342,16 @@ New changes include:
 **Test list**
 
 [Test List]
+<<<<<<< HEAD
+// FIXME: TODO later.
+=======
 -   CO_AND
 -   OR
 -   AND
 -   XOR
 And the above tests were all repeated for lightbulb, switch doors and logic bombs
 
+>>>>>>> 3326be978d70615f9cf9d783aede102f993fcb37
 
 **Other notes**
 Unfortunately, co_and tests did not pass so we had to comment them out
@@ -355,7 +389,7 @@ Unfortunately, co_and tests did not pass so we had to comment them out
 Looking at ZombieTest.java in the toastDestruction test, we can see 
 that the zombieToastSpawner is adjacent to the player and there is an attempt
 of player-spawner interaction. However, the the spawner is stll present
-after the interation, when it should be destroyed. This obviously isn't 
+after the interaction, when it should be destroyed. This obviously isn't 
 expected behaviour, so we can deduce that this is a bug. 
 Steps taken to fix this:
 -   Remove the instance of the zombieToastSpawner when "interact" is invoked.
@@ -365,5 +399,13 @@ Steps taken to fix this:
 [Merge Request 2](/put/links/here)
 
 [Briefly explain what you did]
+Looking at BattleTest.java, there was an unused/untested variables with shield
+effect and the post battle response with how much health the player lost.
+Therefore, we decided to investigate further into whether this was an issue.
+In BattleFacade.java, it seemed like only multiplicative buffs were applied to only
+potions and shields/armours and their additive buffs were not accounted for.
+Steps to fix this:
+-   Add additive buffs for battle items
+-   Modify BattleTest.java to use these unused variables.
 
 Add all other changes you made in the same format here:

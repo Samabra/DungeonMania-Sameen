@@ -46,7 +46,6 @@ public class LogicBomb extends Entity implements InventoryItem, Logic {
         });
 
         boolean activated = activateStrategy.apply(map, adjEntities, getPosition());
-
         if (activated)
             explode(map);
         return activated;

@@ -6,6 +6,8 @@ import dungeonmania.entities.collectables.Key;
 import dungeonmania.entities.enemies.Spider;
 import dungeonmania.entities.inventory.Inventory;
 import dungeonmania.util.Position;
+import dungeonmania.entities.collectables.SunStone;
+
 
 public class Door extends Entity implements Overlappable {
     private boolean open = false;
@@ -21,7 +23,8 @@ public class Door extends Entity implements Overlappable {
         if (open || entity instanceof Spider) {
             return true;
         }
-        return (entity instanceof Player && hasKey((Player) entity));
+
+        return (entity instanceof Player && (hasKey((Player) entity) || hasSunStone((Player) entity)));
     }
 
     @Override
@@ -30,11 +33,13 @@ public class Door extends Entity implements Overlappable {
             return;
 
         Player player = (Player) entity;
-        Inventory inventory = player.getInventory();
-        Key key = inventory.getFirst(Key.class);
-
         if (hasKey(player)) {
+            Inventory inventory = player.getInventory();
+            Key key = inventory.getFirst(Key.class);
             inventory.remove(key);
+            open();
+        }
+        if (hasSunStone(player)) {
             open();
         }
     }
@@ -46,6 +51,12 @@ public class Door extends Entity implements Overlappable {
         return (key != null && key.getnumber() == number);
     }
 
+    private boolean hasSunStone(Player player) {
+        Inventory inventory = player.getInventory();
+        SunStone stone = inventory.getFirst(SunStone.class);
+        return stone != null;
+    }
+
     public boolean isOpen() {
         return open;
     }
@@ -53,5 +64,10 @@ public class Door extends Entity implements Overlappable {
     public void open() {
         open = true;
     }
+
+    public int getNumber() {
+        return this.number;
+    }
+
 
 }

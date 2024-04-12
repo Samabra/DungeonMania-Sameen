@@ -13,6 +13,7 @@ import dungeonmania.entities.Player;
 import dungeonmania.entities.collectables.Bomb;
 import dungeonmania.entities.collectables.potions.Potion;
 import dungeonmania.entities.enemies.Enemy;
+import dungeonmania.entities.enemies.Mercenary;
 import dungeonmania.entities.enemies.ZombieToastSpawner;
 import dungeonmania.exceptions.InvalidActionException;
 import dungeonmania.goals.Goal;
@@ -93,7 +94,11 @@ public class Game {
         if (!buildables.contains(buildable)) {
             throw new InvalidActionException(String.format("%s cannot be built", buildable));
         }
-        registerOnce(() -> player.build(buildable, entityFactory), PLAYER_MOVEMENT, "playerBuildsItem");
+        if (buildable.equals("midnight_armour") && map.getZombies()) {
+            throw new InvalidActionException(String.format("%s cannot be built", buildable));
+        }
+
+        registerOnce(() -> player.build(buildable, entityFactory, map), PLAYER_MOVEMENT, "playerBuildsItem");
         tick();
         return this;
     }
@@ -105,7 +110,7 @@ public class Game {
         if (!((Interactable) e).isInteractable(player)) {
             throw new InvalidActionException("Entity cannot be interacted");
         }
-        registerOnce(() -> ((Interactable) e).interact(player, this), PLAYER_MOVEMENT, "playerInteracts");
+        registerOnce(() -> player.interact(e, map, this), PLAYER_MOVEMENT, "playerInteracts");
         tick();
         return this;
     }
@@ -156,6 +161,11 @@ public class Game {
         addingSub = new PriorityQueue<>();
         sub = nextTickSub;
         tickCount++;
+
+        // decrement mind control duration, if mind controlled
+        for (Mercenary entity : map.getEntities(Mercenary.class)) {
+            entity.onTickMindControl();
+        }
         return tickCount;
     }
 

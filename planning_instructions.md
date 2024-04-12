@@ -57,6 +57,44 @@ Stats After completing 2a)
     - Line Coverage: 92%
 **SunStone & More buildables**
 Test edge cases:
+
+Test for sun stone :
+-   Test sun stone can be successfully picked up by player (done)
+-   Test stone counts towards treasure goal (done)
+-   Test sun stone can be used for both as a treasure and key (done)
+-   Use stone to open doors, must remain in inventory after
+    Same scenario for when using the stone to replace material
+-   Test use other treasures first if there is enough of those, then use sun stone if not enough
+-   Test when used in crafting the stone is consumed (done)
+-   Test cannot be used to bribe mercenaries or assassins (done)
+
+
+Tests for public DungeonResponse build (String build) throw InvalidActionException
+- Test: invalid 'buildable' parameter; If not bow, shield, sceptre or midnight armour -> throw IllegalArgumentException
+- Test: insufficient items to build buildable entity -> throw InvalidActionException
+- Test: Shield made with 2 wood + 1 Sun Stone when no treasure or key; Sun Stone still retained in inventory -> Pass
+- Test: Shield made with 2 wood + 1 Treasure or Key when 1 or more treasure or key exists -> Pass
+- Test: Sceptre crafted with 1 wood or 2 arrows + 1 key or treasure + 1 Sun Stone (when 1 or more treasure or key); 1 Sun Stone removed from inventory -> Pass
+- Test: Sceptre crafted with 1 wood or 2 arrows + 1 Sun Stone (replacement) + 1 Sun Stone when no treasure or key; Only 1 Sun Stone removed from inventory -> Pass
+- Test: Midnight Armour has sufficient items to be built but zombies in dungeon -> throw InvalidActionException
+- Test: Midnight Armour has sufficient items to be built and no zombies in dungeon; 1 Sun Stone removed from inventory -> Pass
+- Test: Midnight Armour is being built with 1 Sword + 1 Treasure or Key -> throw InvalidActionException
+
+Tests for public DungeonResponse interact (String entityId) throws IllegalArgumentException
+Test: invalid entityId -> throw IllegalArgumentException
+Test: Player not within bribing radius of mercenary -> throw InvalidActionException 
+Test: Player does not have enough gold to bribe mercenary -> throw InvalidActionException
+Test: Player does not have sceptre to mind control mercenary -> throw InvalidActionException
+Test: Player has sceptre and enough gold; Mind control mercenary and remove sceptre from inventory as sceptre becomes obsolete -> Pass
+Test Player has sceptre and not enough gold; Mind control mercenary and remove sceptre from inventory -> Pass
+Test: Player has enough gold and no sceptre; Bribe mercenary -> Pass
+Test: If mercenary already mind controlled, mercenary cannot be bribed or mind controlled by a new sceptre -> throw InvalidActionException
+Test: If mercenary is bribed, but Player builds sceptre, mercenary is now mind controlled and gold is returned to Player -> Pass
+Test: If mercenary is bribed, Player can no longer bribe mercenary -> throw InvalidActionException
+Test: After mind control period, Player can only bribe the specific mercenary or use a new Sceptre for mind control -> Pass
+Test: Zombie Spawner not cardinally adjacent to Player -> throw InvalidActionException
+Test: Player does not possess a weapon when attacking Zombie Spawner -> throw InvalidActionException
+Test: Player cardinally adjacent to Zombie Spawner and Player has a weapon; Spawner destroyed -> Pass
 **Logic Switches**
 Test edge cases:
 
