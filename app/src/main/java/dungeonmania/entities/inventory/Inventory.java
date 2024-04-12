@@ -8,6 +8,7 @@ import dungeonmania.entities.BattleItem;
 import dungeonmania.entities.Entity;
 import dungeonmania.entities.EntityFactory;
 import dungeonmania.entities.Player;
+import dungeonmania.entities.Sceptre;
 import dungeonmania.entities.buildables.Bow;
 import dungeonmania.entities.collectables.Arrow;
 import dungeonmania.entities.collectables.Key;
@@ -111,8 +112,8 @@ public class Inventory {
         return null;
     }
 
-    public <T extends InventoryItem> boolean itemExists(Class<T> itemType) {
-        return getFirst(itemType) != null;
+    public <T extends InventoryItem> boolean itemExists(Class<Sceptre> class1) {
+        return getFirst(class1) != null;
     }
 
     public <T extends InventoryItem> T getFirst(Class<T> itemType) {

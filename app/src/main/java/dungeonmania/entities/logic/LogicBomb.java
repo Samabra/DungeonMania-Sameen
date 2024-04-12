@@ -52,7 +52,7 @@ public class LogicBomb extends Entity implements InventoryItem, Logic {
     }
 
     public void onPutDown(GameMap map, Position p) {
-        translate(Position.calculatePositionBetween(getPosition(), p));
+        setPosition(p);
         map.addEntity(this);
         this.state = State.PLACED;
         if (isActivated(map, p)) {

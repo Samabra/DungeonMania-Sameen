@@ -14,9 +14,7 @@ import dungeonmania.entities.enemies.Mercenary;
 import dungeonmania.entities.enemies.ZombieToastSpawner;
 import dungeonmania.entities.inventory.Inventory;
 import dungeonmania.entities.inventory.InventoryItem;
-import dungeonmania.entities.playerState.BaseState;
-import dungeonmania.entities.playerState.PlayerState;
-import dungeonmania.entities.buildables.Sceptre;
+
 import dungeonmania.map.GameMap;
 import dungeonmania.util.Direction;
 import dungeonmania.util.Position;
@@ -33,15 +31,14 @@ public class Player extends Entity implements Battleable, Overlappable {
 
     private int collectedTreasureCount = 0;
     private int enemiesKilledCount = 0;
-
-    private PlayerState state;
+    private boolean isInvincible = false;
+    private boolean isInvisible = false;
 
     public Player(Position position, double health, double attack) {
         super(position);
         battleStatistics = new BattleStatistics(health, attack, 0, BattleStatistics.DEFAULT_DAMAGE_MAGNIFIER,
                 BattleStatistics.DEFAULT_PLAYER_DAMAGE_REDUCER);
         inventory = new Inventory();
-        state = new BaseState(this);
     }
 
     public int getCollectedTreasureCount() {
@@ -164,21 +161,22 @@ public class Player extends Entity implements Battleable, Overlappable {
     public void triggerNext(int currentTick) {
         if (queue.isEmpty()) {
             inEffective = null;
-            state.transitionBase();
+            isInvincible = false;
+            isInvisible = false;
             return;
         }
         inEffective = queue.remove();
         if (inEffective instanceof InvincibilityPotion) {
-            state.transitionInvincible();
+            isInvincible = true;
         } else {
-            state.transitionInvisible();
+            isInvisible = true;
         }
         nextTrigger = currentTick + inEffective.getDuration();
     }
 
-    public void changeState(PlayerState playerState) {
-        state = playerState;
-    }
+    // public void changeState(PlayerState playerState) {
+    //     state = playerState;
+    // }
 
     public void use(Potion potion, int tick) {
         inventory.remove(potion);
@@ -208,9 +206,9 @@ public class Player extends Entity implements Battleable, Overlappable {
     }
 
     public BattleStatistics applyBuff(BattleStatistics origin) {
-        if (state.isInvincible()) {
+        if (isInvincible) {
             return BattleStatistics.applyBuff(origin, new BattleStatistics(0, 0, 0, 1, 1, true, true));
-        } else if (state.isInvisible()) {
+        } else if (isInvisible) {
             return BattleStatistics.applyBuff(origin, new BattleStatistics(0, 0, 0, 1, 1, false, false));
         }
         return origin;

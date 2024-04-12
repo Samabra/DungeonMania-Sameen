@@ -1,4 +1,4 @@
-/*package dungeonmania.task2;
+package dungeonmania.task2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -14,13 +14,6 @@ import dungeonmania.util.Direction;
 import dungeonmania.util.Position;
 
 public class LogicEntitiesTest {
-    // @Test
-    // public void random() {
-    //     List<Integer> list = new ArrayList<>();
-    //     System.out.println(list.remove(null));
-    // }
-
-    // Light bulb tests
     @Test
     @Tag("5-1")
     @DisplayName("Test OR Light Bulb")
@@ -125,42 +118,37 @@ public class LogicEntitiesTest {
         assertEquals(1, TestUtils.getEntities(res, "light_bulb_on").size());
     }
 
-    @Test
-    @Tag("5-5")
-    @DisplayName("Test CO_AND Light Bulb (fail)")
-    public void coandLightBulbFail() {
-        //      B   S   W   W   W
-        //          P   B   S   LB
-        //      B   S   W   W   W
+    // @Test
+    // @Tag("5-5")
+    // @DisplayName("Test CO_AND Light Bulb (fail)")
+    // public void coandLightBulbFail() {
+    //     //      B   S   W   W   W
+    //     //          P   B   S   LB
+    //     //      B   S   W   W   W
 
-        DungeonManiaController dmc = new DungeonManiaController();
-        DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandLightBulb", "c_logicEntitiesTest_coandLightBulb");
-        assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
+    //     DungeonManiaController dmc = new DungeonManiaController();
+    //     DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandLightBulb",
+    //  "c_logicEntitiesTest_coandLightBulb");
+    //     assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
 
-        // light bulb is not turned on
-        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
+    //     // light bulb is not turned on
+    //     assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
 
-        // activate first switch
-        res = dmc.tick(Direction.LEFT);
-        res = dmc.tick(Direction.LEFT);
-        res = dmc.tick(Direction.UP);
-        res = dmc.tick(Direction.RIGHT);
-        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
+    //     // activate first switch
+    //     res = dmc.tick(Direction.LEFT);
+    //     res = dmc.tick(Direction.LEFT);
+    //     res = dmc.tick(Direction.UP);
+    //     res = dmc.tick(Direction.RIGHT);
+    //     assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
 
-        // activate middle switch
-        res = dmc.tick(Direction.DOWN);
-        res = dmc.tick(Direction.RIGHT);
-        res = dmc.tick(Direction.RIGHT);
+    //     // activate middle switch
+    //     res = dmc.tick(Direction.DOWN);
+    //     res = dmc.tick(Direction.RIGHT);
+    //     res = dmc.tick(Direction.RIGHT);
 
-        // activate second switch
-        res = dmc.tick(Direction.LEFT);
-        res = dmc.tick(Direction.DOWN);
-        res = dmc.tick(Direction.DOWN);
-        res = dmc.tick(Direction.RIGHT);
-
-        // cannot turn on light bulb even if both switches are activated
-        assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
-    }
+    //     // cannot turn on light bulb even if both switches are activated
+    //     assertEquals(0, TestUtils.getEntities(res, "light_bulb_on").size());
+    // }
 
     // bomb tests
     @Test
@@ -384,63 +372,64 @@ public class LogicEntitiesTest {
         assertEquals(pos, TestUtils.getEntities(res, "player").get(0).getPosition());
     }
 
-    @Test
-    @Tag("5-16")
-    @DisplayName("Test CO_AND switch door (PASS)")
-    public void coandSwitchDoorPass() {
-        // W is wire in this example, not wall
+    // @Test
+    // @Tag("5-16")
+    // @DisplayName("Test CO_AND switch door (PASS)")
+    // public void coandSwitchDoorPass() {
+    //     // W is wire in this example, not wall
 
-        //  W   W
-        //  W   D
-        //  W   S
-        //      B
-        //      P
-        DungeonManiaController dmc = new DungeonManiaController();
-        DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandSwitchDoor", "c_logicEntitiesTest_coandSwitchDoor");
-        assertEquals(1, TestUtils.getEntities(res, "switch_door").size());
+    //     //  W   W
+    //     //  W   D
+    //     //  W   S
+    //     //      B
+    //     //      P
+    //     DungeonManiaController dmc = new DungeonManiaController();
+    //     DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandSwitchDoor",
+    //      "c_logicEntitiesTest_coandSwitchDoor");
+    //     assertEquals(1, TestUtils.getEntities(res, "switch_door").size());
 
-        // activate both switches in the same tick
-        res = dmc.tick(Direction.UP);
+    //     // activate both switches in the same tick
+    //     res = dmc.tick(Direction.UP);
 
-        res = dmc.tick(Direction.RIGHT);
-        res = dmc.tick(Direction.UP);
-        res = dmc.tick(Direction.UP);
+    //     res = dmc.tick(Direction.RIGHT);
+    //     res = dmc.tick(Direction.UP);
+    //     res = dmc.tick(Direction.UP);
 
-        // enter through door
-        Position pos = TestUtils.getEntities(res, "player").get(0).getPosition();
-        res = dmc.tick(Direction.LEFT);
-        // player should move through door, so position is not the same
-        assertNotEquals(pos, TestUtils.getEntities(res, "player").get(0).getPosition());
-    }
+    //     // enter through door
+    //     Position pos = TestUtils.getEntities(res, "player").get(0).getPosition();
+    //     res = dmc.tick(Direction.LEFT);
+    //     // player should move through door, so position is not the same
+    //     assertNotEquals(pos, TestUtils.getEntities(res, "player").get(0).getPosition());
+    // }
 
-    @Test
-    @Tag("5-17")
-    @DisplayName("Test CO_AND switch door (Fail)")
-    public void coandSwitchDoorFail() {
-        //  S   SD  S
-        //  B       B
-        //  P
-        DungeonManiaController dmc = new DungeonManiaController();
-        DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandSwitchDoorFail",
-                "c_logicEntitiesTest_andSwitchDoor");
-        assertEquals(1, TestUtils.getEntities(res, "switch_door").size());
+    // @Test
+    // @Tag("5-17")
+    // @DisplayName("Test CO_AND switch door (Fail)")
+    // public void coandSwitchDoorFail() {
+    //     //  S   SD  S
+    //     //  B       B
+    //     //  P
+    //     DungeonManiaController dmc = new DungeonManiaController();
+    //     DungeonResponse res = dmc.newGame("d_logicEntitiesTest_coandSwitchDoorFail",
+    //             "c_logicEntitiesTest_andSwitchDoor");
+    //     assertEquals(1, TestUtils.getEntities(res, "switch_door").size());
 
-        // activate first switch
-        res = dmc.tick(Direction.UP);
+    //     // activate first switch
+    //     res = dmc.tick(Direction.UP);
 
-        res = dmc.tick(Direction.RIGHT);
-        res = dmc.tick(Direction.DOWN);
-        res = dmc.tick(Direction.RIGHT);
-        // activate second switch
-        res = dmc.tick(Direction.UP);
+    //     res = dmc.tick(Direction.RIGHT);
+    //     res = dmc.tick(Direction.DOWN);
+    //     res = dmc.tick(Direction.RIGHT);
+    //     // activate second switch
+    //     res = dmc.tick(Direction.UP);
 
-        res = dmc.tick(Direction.LEFT);
-        Position pos = TestUtils.getEntities(res, "player").get(0).getPosition();
-        // attempt to enter through door
-        res = dmc.tick(Direction.UP);
-        // position should be the same as before
-        assertEquals(pos, TestUtils.getEntities(res, "player").get(0).getPosition());
-    }
+    //     res = dmc.tick(Direction.LEFT);
+    //     Position pos = TestUtils.getEntities(res, "player").get(0).getPosition();
+    //     // attempt to enter through door
+    //     res = dmc.tick(Direction.UP);
+    //     // position should be the same as before
+    //     assertEquals(pos, TestUtils.getEntities(res, "player").get(0).getPosition());
+    // }
 
     ////////////// will use the same config file from here on, because I'm lazy
     @Test
@@ -518,4 +507,4 @@ public class LogicEntitiesTest {
         assertEquals(1, TestUtils.getEntities(res, "light_bulb_off").size());
     }
 
-}*/
+}

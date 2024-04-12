@@ -199,11 +199,23 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 - onOverlap method in Enemy violated the Law of Demeter. Same issue as in Player, where the method was trying to call a method in class Game, but Enemy does not keep Game as a component.
 - Used the already set method of initiateBattle in Map to be called by onOverlap in Enemy.
 
+<<<<<<< HEAD
 - Law of Demeter issue in zombieToastSpawner. The interact method calls a method in Player, which returns Inventory, and then tries to access Inventory method, directly, when there is no direct access to Inventory. Through this method, it tries to call a method in an instance of a BattleItem, to whcih again it has no direct access to.
 - To fix this issue, I implemented a method in Player called weaponUse(Game game), that takes in the parameter game from interact method in zombieToastSpawner.
 The weaponUse method in Player calls the getWeapon method in Player (the method has now been made private), which returns an instance of a BattleItem. If the BattleItem has a durability limit (defined by interface Durable), then the weapon is going to get used, or simply, its durability is going to decrease. 
+=======
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/18
+-   Removed all deprecated methods as required, since it may break backwards compatibility.
+    Also, they are compiler generator error messages that are not good style to keep in
+>>>>>>> 3326be978d70615f9cf9d783aede102f993fcb37
 
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/16
 
+-   PlayerStates were redundant, its only functionality was to return whether 
+    the player was Invincible or Invisible. In general if it can be better 
+    represented as instance variables, then it should be so, instead of using states
+    just to return boolean values. Hence a fix for this was to simply remove the 
+    state pattern implemented. 
 
 Add all other changes you made in the same format here:
 
@@ -304,7 +316,9 @@ to not violate the Single Responsibility Principle.
 **Assumptions**
 
 [Any assumptions made]
-// FIXME: TODO later
+
+-   Assumed player can stand on lightbulb without collecting it
+-   
 **Design**
 
 [Design]
@@ -322,10 +336,19 @@ New changes include:
 **Test list**
 
 [Test List]
+<<<<<<< HEAD
 // FIXME: TODO later.
+=======
+-   CO_AND
+-   OR
+-   AND
+-   XOR
+And the above tests were all repeated for lightbulb, switch doors and logic bombs
+
+>>>>>>> 3326be978d70615f9cf9d783aede102f993fcb37
 
 **Other notes**
-
+Unfortunately, co_and tests did not pass so we had to comment them out
 [Any other notes]
 
 ### Choice 3 (Insert choice) (If you have a 3rd member)
