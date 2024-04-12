@@ -216,8 +216,6 @@ public class MidnightArmourTest {
                 .parseInt(TestUtils.getValueFromConfigFile("midnight_armour_defence", config));
         double playerExpectedDamage = (enemyAttack - armourDefenceEffect) / 10.0;
         // Delta health is negative so take negative here
-        System.out.println(enemyAttack);
-        System.out.println(armourDefenceEffect);
         assertEquals(playerExpectedDamage, -firstRound.getDeltaCharacterHealth(), 0.001);
 
         double armourAttackEffect = Integer
