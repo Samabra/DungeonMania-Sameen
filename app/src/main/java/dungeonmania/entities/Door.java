@@ -8,6 +8,7 @@ import dungeonmania.entities.inventory.Inventory;
 import dungeonmania.util.Position;
 import dungeonmania.entities.collectables.SunStone;
 
+
 public class Door extends Entity implements Overlappable {
     private boolean open = false;
     private int number;
@@ -67,5 +68,6 @@ public class Door extends Entity implements Overlappable {
     public int getNumber() {
         return this.number;
     }
+
 
 }

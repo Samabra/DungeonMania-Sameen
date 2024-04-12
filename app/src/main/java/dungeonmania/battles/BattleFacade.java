@@ -12,7 +12,6 @@ import dungeonmania.entities.Player;
 import dungeonmania.entities.collectables.potions.Potion;
 import dungeonmania.entities.enemies.Enemy;
 import dungeonmania.entities.enemies.Mercenary;
-import dungeonmania.entities.inventory.InventoryItem;
 import dungeonmania.response.models.BattleResponse;
 import dungeonmania.response.models.ResponseBuilder;
 import dungeonmania.util.NameConverter;
@@ -26,18 +25,18 @@ public class BattleFacade {
         double initialEnemyHealth = enemy.getBattleStatistics().getHealth();
         String enemyString = NameConverter.toSnakeCase(enemy);
 
-
         // 1. apply buff provided by the game and player's inventory
         // getting buffing amount
         List<BattleItem> battleItems = new ArrayList<>();
-        BattleStatistics playerBuff = new BattleStatistics(0, 0, 0, 1, 1);
+        BattleStatistics playerBuff = new BattleStatistics(0, 0, 0, 0, 0);
 
         Potion effectivePotion = player.getEffectivePotion();
         if (effectivePotion != null) {
             playerBuff = player.applyBuff(playerBuff);
         } else {
             for (BattleItem item : player.getInventory().getEntities(BattleItem.class)) {
-                if (item instanceof Potion) continue;
+                if (item instanceof Potion)
+                    continue;
                 playerBuff = item.applyBuff(playerBuff);
                 battleItems.add(item);
             }
@@ -65,21 +64,15 @@ public class BattleFacade {
         // 4. call to decrease durability of items
         for (BattleItem item : battleItems) {
             if (item instanceof Durable)
-                ((Durable)item).use(game);
+                ((Durable) item).use(game);
         }
 
         // 5. Log the battle - solidate it to be a battle response
-        battleResponses.add(new BattleResponse(
-                enemyString,
-                rounds.stream()
-                    .map(ResponseBuilder::getRoundResponse)
-                    .collect(Collectors.toList()),
-                battleItems.stream()
-                        .map(Entity.class::cast)
-                        .map(ResponseBuilder::getItemResponse)
+        battleResponses.add(new BattleResponse(enemyString,
+                rounds.stream().map(ResponseBuilder::getRoundResponse).collect(Collectors.toList()),
+                battleItems.stream().map(Entity.class::cast).map(ResponseBuilder::getItemResponse)
                         .collect(Collectors.toList()),
-                initialPlayerHealth,
-                initialEnemyHealth));
+                initialPlayerHealth, initialEnemyHealth));
     }
 
     public List<BattleResponse> getBattleResponses() {
