@@ -199,6 +199,10 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 - onOverlap method in Enemy violated the Law of Demeter. Same issue as in Player, where the method was trying to call a method in class Game, but Enemy does not keep Game as a component.
 - Used the already set method of initiateBattle in Map to be called by onOverlap in Enemy.
 
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/18
+-   Removed all deprecated methods as required, since it may break backwards compatibility.
+    Also, they are compiler generator error messages that are not good style to keep in
+
 https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/16
 
 -   PlayerStates were redundant, its only functionality was to return whether 
