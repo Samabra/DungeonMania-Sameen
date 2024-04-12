@@ -107,7 +107,7 @@ public class GameMap {
             return;
         triggerMovingAwayEvent(entity);
         removeNode(entity);
-        entity.translate(direction);
+        entity.setPosition(Position.translateBy(entity.getPosition(), direction));
         addEntity(entity);
         triggerOverlapEvent(entity);
     }
@@ -130,7 +130,8 @@ public class GameMap {
             if (e != entity && e instanceof Overlappable) {
                 System.out.println("HELLO");
                 overlapCallbacks.add(() -> ((Overlappable) e).onOverlap(this, entity));
-            } if (entity instanceof Player && e != entity && e instanceof InventoryItem) {
+            } 
+            if (entity instanceof Player && e != entity && e instanceof InventoryItem) {
                 collectableEntities.add(e);
                 System.out.println("PLAYER: " + (entity instanceof Player));
             }

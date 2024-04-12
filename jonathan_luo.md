@@ -27,7 +27,13 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 ## Week 9
 
 - List the tasks you completed this week here
+<<<<<<< HEAD
 - wrote tests for sun stone and midnight armour
 - Fixed 2d
 - Made a task 3 edit for defence buff (for both implementation and test)
 - completed 2f
+=======
+-   Implemented 2f
+- Added to 1f 
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/16
+>>>>>>> 3326be978d70615f9cf9d783aede102f993fcb37

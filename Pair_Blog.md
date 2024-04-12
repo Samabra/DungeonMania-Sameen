@@ -202,8 +202,17 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 - Law of Demeter issue in zombieToastSpawner. The interact method calls a method in Player, which returns Inventory, and then tries to access Inventory method, directly, when there is no direct access to Inventory. Through this method, it tries to call a method in an instance of a BattleItem, to whcih again it has no direct access to.
 - To fix this issue, I implemented a method in Player called weaponUse(Game game), that takes in the parameter game from interact method in zombieToastSpawner.
 The weaponUse method in Player calls the getWeapon method in Player (the method has now been made private), which returns an instance of a BattleItem. If the BattleItem has a durability limit (defined by interface Durable), then the weapon is going to get used, or simply, its durability is going to decrease. 
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/18
+-   Removed all deprecated methods as required, since it may break backwards compatibility.
+    Also, they are compiler generator error messages that are not good style to keep in
 
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/16
 
+-   PlayerStates were redundant, its only functionality was to return whether 
+    the player was Invincible or Invisible. In general if it can be better 
+    represented as instance variables, then it should be so, instead of using states
+    just to return boolean values. Hence a fix for this was to simply remove the 
+    state pattern implemented. 
 
 Add all other changes you made in the same format here:
 
@@ -286,12 +295,18 @@ For complex Goals:
 - Interactable interface does not have an abstract interact method anymore, as this is now handled in Player and not the entities that are being interacted with,
 to not violate the Single Responsibility Principle.
 - Added more build criteria to account for the creation of new buildables. 
+- isAllied in mercenary checks if either mercenary is bribed or mind controlled.
+- Implemented mind control to reduce duration after every tick
+- Added hasSunStone method to door to check that when Player moves onto instance of Door, that Door can be moved onto if Player has either an apropriate key or 
+sun stone.
+
 
 
 
 **Test list**
 
-[Test List]
+- All tests in Task2 folder
+
 
 **Other notes**
 

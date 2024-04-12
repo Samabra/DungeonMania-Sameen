@@ -9,7 +9,6 @@ import dungeonmania.entities.BattleItem;
 import dungeonmania.entities.Durable;
 import dungeonmania.entities.Entity;
 import dungeonmania.entities.Player;
-import dungeonmania.entities.buildables.MidnightArmour;
 import dungeonmania.entities.collectables.potions.Potion;
 import dungeonmania.entities.enemies.Enemy;
 import dungeonmania.entities.enemies.Mercenary;

@@ -46,17 +46,13 @@ public class LogicBomb extends Entity implements InventoryItem, Logic {
         });
 
         boolean activated = activateStrategy.apply(map, adjEntities, getPosition());
-        // FIXME: explode bomb??
-        // FIXME: need to do rest of implementation like bomb.java
         if (activated)
             explode(map);
         return activated;
     }
 
-    // FIXME: need to add behaviour when putting down in player.java
-    
     public void onPutDown(GameMap map, Position p) {
-        translate(Position.calculatePositionBetween(getPosition(), p));
+        setPosition(p);
         map.addEntity(this);
         this.state = State.PLACED;
         if (isActivated(map, p)) {

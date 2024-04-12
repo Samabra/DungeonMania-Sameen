@@ -46,21 +46,17 @@ public class CoandActivate implements ActivateStrategy {
                 activatedCounter++;
             }
         }
-        // System.out.println("1");
-        // System.out.println("ACTIVATED COUNTER " + activatedCounter);
+
         if (activatedCounter != 0 && activatedCounter < logicEntities.size()) {
             return false;
         }
-        // System.out.println("2");
 
         boolean isActivated = true;
         for (Logic entity : logicEntities) {
             if (entity instanceof Conductor) {
-                // System.out.println(entity.getClass() + " " + isActivated);
                 isActivated = isActivated && entity.isActivated(map, currPos);
             }
         }
-        // System.out.println("FINAL: " + isActivated);
 
         return isActivated;
     }
