@@ -552,6 +552,7 @@ public class BattleTest {
         res = controller.tick(Direction.RIGHT);
         entities = res.getEntities();
         assertEquals(0, TestUtils.countEntityOfType(entities, "treasure"));
+        assertEquals(1, TestUtils.getInventory(res, "treasure").size());
 
         res = controller.interact(TestUtils.getEntityAtPos(res, "mercenary", new Position(3, 1)).get().getId());
         assertEquals(0, res.getInventory().size());

@@ -58,7 +58,7 @@ public class Mercenary extends Enemy implements Interactable {
 
     @Override
     public void onOverlap(GameMap map, Entity entity) {
-        if (mindControlled || bribed)
+        if (isAllied())
             return;
         super.onOverlap(map, entity);
     }
@@ -78,14 +78,14 @@ public class Mercenary extends Enemy implements Interactable {
         int x = getPosition().getX();
         int y = getPosition().getY();
         for (int i = x - bribeRadius; i <= x + bribeRadius; i++) {
+
             for (int j = y - bribeRadius; j <= y + bribeRadius; j++) {
                 if (player.comparePosition(new Position(i, j))) {
-                    return player.countEntityOfType(Treasure.class) >= bribeAmount && !bribed && !mindControlled;
+                    return player.countEntityOfType(Treasure.class) >= bribeAmount && !(mindControlled || bribed);
                 }
             }
         }
-        return true;
-        //return bribeRadius >= 0 && player.countEntityOfType(Treasure.class) >= bribeAmount;
+        return false;
     }
 
     /**
@@ -106,7 +106,7 @@ public class Mercenary extends Enemy implements Interactable {
 
     @Override
     public BattleStatistics getBattleStatistics() {
-        if (!bribed && !mindControlled)
+        if (!isAllied())
             return super.getBattleStatistics();
         return new BattleStatistics(0, allyAttack, allyDefence, 1, 1);
     }

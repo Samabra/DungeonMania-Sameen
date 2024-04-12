@@ -118,7 +118,7 @@ public class Player extends Entity implements Battleable, Overlappable {
     }
 
     private boolean mercenaryIsAllied(Enemy enemy) {
-        return enemy instanceof Mercenary && (((Mercenary) enemy).isAllied() || ((Mercenary) enemy).isAllied());
+        return enemy instanceof Mercenary && ((Mercenary) enemy).isAllied();
     }
 
     public Inventory getInventory() {
