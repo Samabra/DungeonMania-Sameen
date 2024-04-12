@@ -289,7 +289,8 @@ For complex Goals:
 **Assumptions**
 
 [Any assumptions made]
-// FIXME: TODO later
+-   Assumed player can stand on lightbulb without collecting it
+-   
 **Design**
 
 [Design]
@@ -307,10 +308,15 @@ New changes include:
 **Test list**
 
 [Test List]
-// FIXME: TODO later.
+-   CO_AND
+-   OR
+-   AND
+-   XOR
+And the above tests were all repeated for lightbulb, switch doors and logic bombs
+
 
 **Other notes**
-
+Unfortunately, co_and tests did not pass so we had to comment them out
 [Any other notes]
 
 ### Choice 3 (Insert choice) (If you have a 3rd member)
