@@ -22,7 +22,8 @@ public class Door extends Entity implements Overlappable {
         if (open || entity instanceof Spider) {
             return true;
         }
-        return (entity instanceof Player && hasKey((Player) entity));
+        return (entity instanceof Player
+                && (hasKey((Player) entity) || hasSunStone((Player) entity)));
     }
 
     @Override
@@ -39,7 +40,6 @@ public class Door extends Entity implements Overlappable {
             open();
         }
         if (hasSunStone(player)) {
-            System.out.println("DOOR: " + open);
             open();
         }
     }
@@ -63,6 +63,10 @@ public class Door extends Entity implements Overlappable {
 
     public void open() {
         open = true;
+    }
+
+    public int getNumber() {
+        return this.number;
     }
 
 }

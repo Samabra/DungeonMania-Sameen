@@ -185,7 +185,7 @@ https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-i
 "battle" method invoked.
 The class is only accessible through class Map, to which Player does have access to.
 - Nested sequence of if statement in Player in method onOverlap. 
-- To simplify the onOverlap method further, I extracted methods out of the onOverlap method. If entity paramater is instance of an Enemy, I simply check if the enemy is a mercenary and is allied in a private boolean method in Player, called mercenaryIsAllied, thereby reducing the if statement nesting. In addressing the violation of the Law of Demeter, I implemented a method in Map, called initiateBattle which basically runs the battle method for component Game class in Map. So Player calls the initiateBattle method in Map, and Map calls battle in Game, thus removing the violation altogether. 
+- To simplify the onOverlap method further, I extracted methods out of the onOverlap method. If entity parameter is instance of an Enemy, I simply check if the enemy is a mercenary and is allied in a private boolean method in Player, called mercenaryIsAllied, thereby reducing the if statement nesting. In addressing the violation of the Law of Demeter, I implemented a method in Map, called initiateBattle which basically runs the battle method for component Game class in Map. So Player calls the initiateBattle method in Map, and Map calls battle in Game, thus removing the violation altogether. 
 
 https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/11
 
@@ -265,8 +265,8 @@ For complex Goals:
 [Assumptions made]
 - Sceptres can only be used once
 - Attacking Spawner has no effect on durability of weapon. 
-- Cannot mind control mercenary when mercenary already mind controlled
-- Cannot bribe an already bribed mercenary, but can mind control them
+- Cannot mind control mercenary when mercenary already allied
+- Cannot bribe an already allied mercenary
 - Armour effect reduce enemy damage so that enemyTotalAttack = enemyAttack - armour defence effect
 - Armour effect increasde player damage as playerTotalAttack = playerAttack + armour attack effect
 
@@ -279,7 +279,14 @@ For complex Goals:
 - Added buildables class Midnight Armour
 - Added buildables class Sceptre
 - Added new collectable class SunStone
--
+- Game.java does the error handling for Game.build and Game.interact method
+- Player does the interacting after no errors passed
+- Player checks if passed in entity is either an instance of Mercenary or ZombieToastSpawner. Mind control with sceptre is preferred, then bribing.
+- First instance of a weapon is used to destroy spawner, with a decrease in durability to weapon.
+- Interactable interface does not have an abstract interact method anymore, as this is now handled in Player and not the entities that are being interacted with,
+to not violate the Single Responsibility Principle.
+- Added more build criteria to account for the creation of new buildables. 
+
 
 
 **Test list**
@@ -353,7 +360,7 @@ New changes include:
 Looking at ZombieTest.java in the toastDestruction test, we can see 
 that the zombieToastSpawner is adjacent to the player and there is an attempt
 of player-spawner interaction. However, the the spawner is stll present
-after the interation, when it should be destroyed. This obviously isn't 
+after the interaction, when it should be destroyed. This obviously isn't 
 expected behaviour, so we can deduce that this is a bug. 
 Steps taken to fix this:
 -   Remove the instance of the zombieToastSpawner when "interact" is invoked.
