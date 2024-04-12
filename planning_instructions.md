@@ -60,4 +60,28 @@ Test edge cases:
 **Logic Switches**
 Test edge cases:
 
+Light Bulb
+-   OR (done)
+-   AND (done)
+-   XOR (done)
+-   CO_AND (done)
+
+switch door
+-   OR (done)
+-   AND (done)
+-   XOR (done)
+-   CO_AND (done)
+
+Bomb
+-    OR (done)
+-   AND (done)
+-   XOR (done)
+-   CO_AND (done)
+
+- not activated switch not conductive (done)
+- logic bomb not conductive (done)
+- switch door not conductive (done)
+- light bulb not conductive (done)
+
+// TODO: need to test whether logic bomb can be picked up
 ## Task 3
