@@ -258,7 +258,7 @@ For complex Goals:
 
 ### Choice 1 (Task 2D)
 
-[Links to your merge requests](/put/links/here)
+[Links to your merge requests](https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T1/teams/M11B_JUKEBOX/assignment-ii/-/merge_requests/17)
 
 **Assumptions**
 
