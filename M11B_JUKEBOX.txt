@@ -1,0 +1,561 @@
+Compilation passed
+
+Task 2a: Enemy Goal
+Task 2a-1: Test achieving a basic enemy goal kill spider
+SUCCESS
+DONE
+Task 2a-2: Test achieving a basic enemy goal kill zombie toast
+SUCCESS
+DONE
+Task 2a-3: Test achieving a basic enemy goal kill mercenary
+SUCCESS
+DONE
+Task 2a-4: Test achieving a basic enemy goal kill multiple enemies
+SUCCESS
+DONE
+Task 2a-5: Testing a map with 4 conjunction goal
+SUCCESS
+DONE
+Task 2a-6: Testing a map with 4 disjunction goal
+SUCCESS
+DONE
+Task 2a-7: Testing a map with mixed conjunction/disjunction goal
+SUCCESS
+DONE
+Task 2a-8: Testing achieving a basic enemy goal by destroying a spawner
+
+EnemyGoalTest > Testing achieving a basic enemy goal by destroying a spawner FAILED
+    org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+        at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+        at app//org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:40)
+        at app//org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:35)
+        at app//org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:179)
+        at app//dungeonmania.automarking.EnemyGoalTest.destroySpawner(EnemyGoalTest.java:206)
+FAILURE
+DONE
+Task 2a-9: Testing achieving an enemy goal by destroying multiple spawners
+
+EnemyGoalTest > Testing achieving an enemy goal by destroying multiple spawners FAILED
+    org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+        at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+        at app//org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:40)
+        at app//org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:35)
+        at app//org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:179)
+        at app//dungeonmania.automarking.EnemyGoalTest.destroyMultipleSpawner(EnemyGoalTest.java:231)
+FAILURE
+DONE
+Task 2a-10: Testing achieving an enemy goal by both killing enemies and destroying spawners
+SUCCESS
+DONE
+Your Enemy Goal mark is 13.0
+
+Task 2b: Bosses
+Task 2b-1: Testing an assassin in line with Player moves towards them
+
+BossTest > Testing an assassin in line with Player moves towards them FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.BossTest.assassinMovement(BossTest.java:24)
+FAILURE
+DONE
+Task 2b-2: Test assassins can not move through walls and closed doors
+
+BossTest > Test assassins can not move through walls and closed doors FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.BossTest.assassinDoorsAndWalls(BossTest.java:43)
+FAILURE
+DONE
+Task 2b-3: Testing bribing an assassin with 0 fail rate
+
+BossTest > Testing bribing an assassin with 0 fail rate FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.BossTest.testAssassinBribeSuccess(BossTest.java:62)
+FAILURE
+DONE
+Task 2b-4: Testing bribed assassin should act as an ally
+
+BossTest > Testing bribed assassin should act as an ally FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.BossTest.testAssassinAllied(BossTest.java:98)
+FAILURE
+DONE
+Task 2b-5: Testing bribing an assassin with 100% fail rate and no refund
+
+BossTest > Testing bribing an assassin with 100% fail rate, and no refund FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.BossTest.testAssassinBribeFail(BossTest.java:140)
+FAILURE
+DONE
+Task 2b-6: Test assassin moves towards the player using portals
+
+BossTest > Test assassin moves towards the player using portals FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.BossTest.assassinWithPortals(BossTest.java:180)
+FAILURE
+DONE
+Task 2b-7: Testing random bribing result should hopefully be different at least once in 30 runs
+
+BossTest > Testing random bribing result should hopefully be different at least once in 30 runs FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.BossTest.testAssassinRandomBribing(BossTest.java:216)
+FAILURE
+DONE
+Task 2b-8: Testing basic movement for hydra
+
+BossTest > Testing basic movement for hydra FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.BossTest.hydraMovement(BossTest.java:255)
+FAILURE
+DONE
+Task 2b-9: Testing hydras cannot move through closed doors and walls
+
+BossTest > Testing hydras cannot move through closed doors and walls FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.BossTest.hydraDoorsAndWalls(BossTest.java:282)
+FAILURE
+DONE
+Task 2b-10: Test player wins a battle against hydra when hydra does not increase health when taking damage
+
+BossTest > Test player wins a battle against hydra when hydra does not increase health when taking damage FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.BossTest.testPlayerWinsHydraBattle(BossTest.java:298)
+FAILURE
+DONE
+Task 2b-11: Test the hydra must increase health when taking damage - player loses
+
+BossTest > Test the hydra must increase health when taking damage - player loses FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.BossTest.testHydraIncreasesHealth(BossTest.java:327)
+FAILURE
+DONE
+Task 2b-12: Test health calculation when the hydra increases its health
+
+BossTest > Test health calculation when the hydra increases its health FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.BossTest.testHydraIncreasesHealthCalculation(BossTest.java:353)
+FAILURE
+DONE
+Task 2b-13: Test random healing result should hopefully be different at least once in 100 rounds of battle
+
+BossTest > Test random healing result should hopefully be different at least once in 100 rounds of battle FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.BossTest.testHydraIncreasesHealthRandom(BossTest.java:394)
+FAILURE
+DONE
+Your Bosses mark is 0.0
+
+Task 2c: Swamp Tile
+Task 2c-1: Testing mercenary gets stuck in swamp
+
+SwampTileTest > Testing mercenary gets stuck in swamp FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.SwampTileTest.slowMercenary(SwampTileTest.java:26)
+FAILURE
+DONE
+Task 2c-2: Testing if mercenaries take into account movement factor when pathfinding
+
+SwampTileTest > Testing if mercenaries take into account movement factor when pathfinding FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.SwampTileTest.mercPathfindWithSwampTile(SwampTileTest.java:50)
+FAILURE
+DONE
+Task 2c-3: Testing player does not get slowed by swamp tile
+
+SwampTileTest > Testing player does not get slowed by swamp tile FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.SwampTileTest.testPlayerNotSlowedBySwamp(SwampTileTest.java:78)
+FAILURE
+DONE
+Task 2c-4: Testing spider is slowed by swamp tile and that movement is still circling
+
+SwampTileTest > Testing spider is slowed by swamp tile and that movement is still circling FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.SwampTileTest.testSpiderSlowedBySwamp(SwampTileTest.java:95)
+FAILURE
+DONE
+Task 2c-5: Testing multiple swamp tiles all slow
+
+SwampTileTest > Testing multiple swamp tiles all slow FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.SwampTileTest.testMultiSwamp(SwampTileTest.java:116)
+FAILURE
+DONE
+Task 2c-6: Testing a battle on a swamp tile is successful - mercenary dies
+
+SwampTileTest > Testing a battle on a swamp tile is successful - mercenary dies FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.SwampTileTest.testBattleOnSwamp(SwampTileTest.java:144)
+FAILURE
+DONE
+Task 2c-7: Test mercenary moves towards the player using swamp tiles
+
+SwampTileTest > Test mercenary moves towards the player using swamp tiles FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.SwampTileTest.mercWithSwampTiles(SwampTileTest.java:170)
+FAILURE
+DONE
+Your Swamp Tile mark is 0.0
+
+Task 2d: Sunstone + Buildables
+Task 2d-1: Testing picking up a sun stone from the map adds to inventory
+SUCCESS
+DONE
+Task 2d-2: Testing using a sun stone to open two doors and the sun stone is retained
+SUCCESS
+DONE
+Task 2d-3: Testing sun stone can be used interchangeably with treasure to build shield and retained after building
+SUCCESS
+DONE
+Task 2d-4: (wood x1) + (sunstone x2) => (sceptre x1) + (retained sunstone x1)
+SUCCESS
+DONE
+Task 2d-5: Test sunstone counts towards the treasure goal
+SUCCESS
+DONE
+Task 2d-6: Sun stone cannot be used to bribe mercenaries
+SUCCESS
+DONE
+Task 2d-7: (arrows x2) + (key x1) + (sun stone x1) => (sceptre x1)
+SUCCESS
+DONE
+Task 2d-8: (wood x1) + (key x1) => (sceptre x0) + InvalidActionException
+SUCCESS
+DONE
+Task 2d-9: (sword x1) + (sun stone x1) + (zombie x0) => (midnight armour x1)
+SUCCESS
+DONE
+Task 2d-10: (sword x1) + (sun stone x1) + (zombie x1) => (midnight armour x0) + InvalidActionException
+SUCCESS
+DONE
+Task 2d-11: (sun stone x1) + (zombie x0) => (midnight armour x0) + InvalidActionException
+SUCCESS
+DONE
+Task 2d-12: Using sceptre to mind control a mercenary
+SUCCESS
+DONE
+Task 2d-13: Test for mind control duration
+SUCCESS
+DONE
+Task 2d-14: Use midnight armour to attack - player battles for less rounds to win
+SUCCESS
+DONE
+Task 2d-15: Use midnight armour to defence - player battles for more rounds but still dies
+SUCCESS
+DONE
+Your Sunstone + Buildables mark is 15.0
+
+Task 2e: Snake
+Task 2e-1: Testing a snake takes the shortest path to food
+
+SnakeTest > Testing a snake takes the shortest path to food FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.SnakeTest.simplePathfinding(SnakeTest.java:28)
+FAILURE
+DONE
+Task 2e-2: Testing a snake is blocked by other snakes
+
+SnakeTest > Testing a snake is blocked by other snakes FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.SnakeTest.pathfindingBlockedOtherSnakes(SnakeTest.java:52)
+FAILURE
+DONE
+Task 2e-3: Testing a snake grows after consuming food
+
+SnakeTest > Testing a snake grows after consuming food FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.SnakeTest.growthAfterEating(SnakeTest.java:72)
+FAILURE
+DONE
+Task 2e-4: Testing a snake won't run into itself
+
+SnakeTest > Testing a snake won't run into itself FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.SnakeTest.noSelfCollision(SnakeTest.java:94)
+FAILURE
+DONE
+Task 2e-5: Testing body moves correctly after snake grows
+
+SnakeTest > Testing body moves correctly after snake grows FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.SnakeTest.multipleGrowthMovement(SnakeTest.java:118)
+FAILURE
+DONE
+Task 2e-6: Testing a snake gets buffed after consuming 1 key; 1 treasure; 1 arrow in that order
+
+SnakeTest > Testing a snake gets buffed after consuming 1 key, 1 treasure, 1 arrow in that order FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.SnakeTest.simpleBuffs(SnakeTest.java:152)
+FAILURE
+DONE
+Task 2e-7: Testing snake head is battled and whole snake dies
+
+SnakeTest > Testing snake head is battled and whole snake dies FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.SnakeTest.killHeadDies(SnakeTest.java:186)
+FAILURE
+DONE
+Task 2e-8: Testing a snake body is buffed; battled/killed; and snake continues
+
+SnakeTest > Testing a snake body is buffed, battled/killed, and snake continues FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.SnakeTest.battleBodyContinues(SnakeTest.java:216)
+FAILURE
+DONE
+Task 2e-9: Testing snake can go through wall while invisible
+
+SnakeTest > Testing snake can go through wall while invisible FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.SnakeTest.invisibilityMovement(SnakeTest.java:263)
+FAILURE
+DONE
+Task 2e-10: Testing snake splits into a new snake when invincible
+
+SnakeTest > Testing snake splits into a new snake when invincible FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.SnakeTest.simpleInvincibility(SnakeTest.java:283)
+FAILURE
+DONE
+Task 2e-11: Testing new invincible snake acts independently from the original
+
+SnakeTest > Testing new invincible snake acts independently from the original FAILED
+    java.lang.NullPointerException: Cannot invoke "dungeonmania.map.GraphNode.getEntities()" because "newNode" is null
+        at dungeonmania.GameBuilder.lambda$buildMap$0(GameBuilder.java:82)
+        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        at dungeonmania.GameBuilder.buildMap(GameBuilder.java:79)
+        at dungeonmania.GameBuilder.buildGame(GameBuilder.java:49)
+        at dungeonmania.DungeonManiaController.newGame(DungeonManiaController.java:55)
+        at dungeonmania.automarking.SnakeTest.complexInvincibility(SnakeTest.java:315)
+FAILURE
+DONE
+Your Snake mark is 0.0
+
+Task 2f: Logic Switches
+Task 2f-1: Test walking onto a wire
+SUCCESS
+DONE
+Task 2f-2: Test turning on a light bulb
+SUCCESS
+DONE
+Task 2f-3: Test activating a wire and exploding a bomb
+
+LogicGatesTest > Test activating a wire and exploding a bomb FAILED
+    java.lang.IllegalArgumentException: class dungeonmania.entities.logic.LogicBomb cannot be used
+        at dungeonmania.Game.tick(Game.java:69)
+        at dungeonmania.DungeonManiaController.tick(DungeonManiaController.java:73)
+        at dungeonmania.automarking.LogicGatesTest.activateWireAndExplodeBomb(LogicGatesTest.java:76)
+FAILURE
+DONE
+Task 2f-4: Test complex logic switches with AND light bulb
+SUCCESS
+DONE
+Task 2f-5: Test complex logic switches with AND light bulb and three switches
+SUCCESS
+DONE
+Task 2f-6: Test complex logic switches with XOR light bulb and three switches
+SUCCESS
+DONE
+Task 2f-7: Test complex logic switches with XOR light bulb
+SUCCESS
+DONE
+Task 2f-8: Test complex logic switches with CO_AND light bulb
+SUCCESS
+DONE
+Task 2f-9: Test complex logic switches failure with CO_AND light bulb
+
+LogicGatesTest > Test complex logic switches failure with CO_AND light bulb FAILED
+    org.opentest4j.AssertionFailedError: expected: <1> but was: <0>
+        at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+        at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+        at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+        at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+        at app//org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:527)
+        at app//dungeonmania.automarking.LogicGatesTest.lightBulbCoAndFail(LogicGatesTest.java:289)
+FAILURE
+DONE
+Task 2f-10: Test opening a switch door
+SUCCESS
+DONE
+Task 2f-11: Test complex logic switches with AND switch door
+SUCCESS
+DONE
+Task 2f-12: Test complex logic switches with AND switch door and three switches
+SUCCESS
+DONE
+Task 2f-13: Test complex logic switches with XOR switch door and three switches
+SUCCESS
+DONE
+Task 2f-14: Test complex logic switches with CO_AND switch door
+SUCCESS
+DONE
+Task 2f-15: Test complex logic switches failure with CO_AND switch door
+
+LogicGatesTest > Test complex logic switches failure with CO_AND switch door FAILED
+    org.opentest4j.AssertionFailedError: expected: <Position [x=3, y=2, z=0]> but was: <Position [x=4, y=2, z=0]>
+        at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+        at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+        at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+        at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+        at app//org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1141)
+        at app//dungeonmania.automarking.LogicGatesTest.switchDoorCoAndFail(LogicGatesTest.java:615)
+FAILURE
+DONE
+Task 2f-16: Test an XOR light bulb does not remain on
+SUCCESS
+DONE
+Task 2f-17: Test an XOR switch door does not remain open
+SUCCESS
+DONE
+Task 2f-18: Test an OR lightbulb can be turned on; off; and on again
+SUCCESS
+DONE
+Your Logic Switches mark is 16.0
+
